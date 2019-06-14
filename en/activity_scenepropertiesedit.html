@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+ <HEAD><TITLE>Tasker: Scene Properties Edit</TITLE></HEAD>
+<BODY>
+<H2>
+	Scene Properties Edit
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+<P>
+Allows configuration of the general properties of a scene.
+The different types of property are divided into tabs.
+</P>
+<P>Each basic type of scene (<I>Overlay, Dialog</I> and <I>Activity</I>)
+has a different set of relevant properties. The <I>Property Type</I>
+parameter in the <B>UI</B> tab determines which properties are shown
+for configuration.
+</P>
+
+<UL>
+<LI><A HREF="#ui">UI</A> 
+<LI><A HREF="#actions">Actions</A> 
+<LI><A HREF="#event">Event</A> 
+<UL>
+<LI><A HREF="#key">Key</A> 
+<LI><A HREF="#hometap">Home Tap</A> 
+<LI><A HREF="#tabtab">Tab Tap</A> 
+</UL>
+</UL>
+
+<A NAME="ui" />
+<H3>UI</H3>
+
+</P>
+Configures the visual style and content of the scene.
+</P>
+
+<P><I>Geometry</I> (not shown in <A HREF="beginner.html">Beginner Mode</A>) allows precise
+specifiction of the pixel size of the scene in portrait and/or landscape modes.
+</P>
+
+<P><I>Orientation</I> determines how to make the decision about whether the scene
+should be displayed in portrait or landscape mode.
+The 
+<A HREF="https://developer.android.com/reference/android/R.attr.html#screenOrientation">Android
+developer guide</A> explains the various options.
+</P>
+
+<P>
+The <I>Action Bar Style, Title, Subtitle, Icon</I> and <I>Tab Labels</I> are only relevant
+to Activity scenes and refer to properties of the action bar.
+</P>
+
+<P><I>Icon</I> refers to the home icon in the top-left of
+the action bar. When clixked it generates a <A HREF="#hometap">Home Tap</A>
+event.
+</P>
+<P><I>Tab Labels</I> is a comma-separated list of tabs to show in
+the action bar. When a tab is selected it generates a <A HREF="#tabtap">Tab Tap</A>
+event.
+</P>
+
+<A NAME="actions" />
+<H3>Actions</H3>
+
+<P>
+Only relevant for Activity scenes.
+</P>
+<P>
+Each row configures an action item in the action bar. Starting from the left, the controls
+are:
+
+<UL>
+	<LI><B>icon button</B><BR> the icon to show for the item
+	<LI><B>label text</B><BR> the label to show for the item
+	<LI><B>action button</B><BR> an action to run when the item is tapped
+</UL>
+
+<P>
+To add an item, click the plus button at the bottom of the screen. Items
+can be rearranged and deleted by click-and-dragging at the right hand side.
+</P>
+
+<P>Whether the items are shown in the main bar or the <I>Overflow Menu</I> (accessed via the 3 dots in the top right of the action bar) is decided using the following rules:
+</P>
+<UL>
+	<LI>items with <B>just an icon</B> will always be shown in the main bar
+	<LI>items with <B>icon and label</B> will be shown if there is room
+	<LI>items with <B>just a label</B> will always be in the overflow menu
+</UL>
+
+<A NAME="event" />
+<H3>Event Tabs</H3>
+
+<P>
+Event tabs stipulate what Tasker should do when the user interacts with the
+scene in some way. Most consist only of a task to specify but some
+allow a filter specification so that the task only runs if the event matches
+the filter.
+</P>
+
+<P>
+To help the task to decide what to do with the event and to allow a single
+task to handle many different events if desired, Tasker sets certain 
+local variables which give specific information about it. The variables
+are easily accessible by clicking the usual variable tag icon in any action
+in the task.
+
+<P>The following variables are available in all such tasks:</P>
+<UL>
+	<LI><B>%scene_name</B><BR> the name of the scene containing the element
+	<LI><B>%event_type</B><BR> the name of the event (e.g. Tab Tap)
+</UL>
+
+<A NAME="key" />
+<H4>Key</H4>
+
+<P>
+Available only for Dialog and Activity scenes.
+</P>
+
+<P>
+Occurs when a key has been pressed which has <B>not been dealt with elsewhere</B>.
+Note that EditText elements with focus will absorb key presses and they won't
+generate a separate Key event.
+</P>
+
+<P>
+The filter part of the Key event acts as follows:
+</P>
+<UL>
+	<LI><I>Keys</I>: a slash-separated (/) list limiting the keys to handle, other
+keys will be passed on to the system to handle. When no keys are specified,
+ all keys will be handled. 
+	<BR>The keys can be specified via code or name e.g. <B>back/78/a</B>
+	<LI><I>Stop Event</I>: if checked, any keys handled by the scene will
+not be passed on to the system. Example use: prevent a user leaving the
+scene via the back key.
+</UL>
+<P>
+The following variables are available in tasks triggered by <I>Key</I> events:
+</P>
+
+<UL>
+	<LI><B>%key_code</B><BR> the unique numeric identifier
+	<LI><B>%key_name</B><BR> the human name of the key
+</UL>
+
+<P>
+Key codes and their names can be found on the Android <A HREF="https://developer.android.com/reference/android/view/KeyEvent.html">KeyEvent</A> reference page. Note that
+Tasker removes the KEYCODE prefix in keynames to save typing.
+</P>
+
+<A NAME="hometap" />
+<H4>Home Tap</H4>
+
+<P>
+Available only for Activity scenes and when an <I>Icon</I> has been specified in
+the UI tab.
+</P>
+
+<P>
+The event is triggered when the user taps the home icon in the top left
+of the action bar.
+</P>
+
+<A NAME="tabtap" />
+<H4>Tab Tap</H4>
+
+<P>
+Available only for Activity scenes and when one or more <I>Tab Labels</I> have been
+specified in the UI tab.
+</P>
+
+<P>
+The event is triggered when the user taps a tab in the action bar.
+</P>
+
+<P>
+The following variables are available in tasks triggered by <I>Tab Tap</I> events:
+</P>
+
+<UL>
+	<LI><B>%tap_index</B><BR> the tab number, starting at 1
+	<LI><B>%tap_label</B><BR> the tab label, as specified in the Tab Labels parameter of the UI tab
+</UL>
+
+</BODY>
+</HTML>

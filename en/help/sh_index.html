@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"><title>Tasker: State A-Z</title></head><body><H3>Tasker: State A-Z</H3>
+
+<H4>Active User</H4>Whether the user with the specified ID is active or not.<br/><br/>When a different user is selected, this state will become inactive.<br/><br/>When returning to the specified user, the state will become active again.<br/><br/>Note that each user account has it's own set of apps, so to detecting each user becoming active would require Tasker to be installed under each account.<br/><br/>In other words, it only makes sense to specify the user ID of the user under which the current Tasker install is running.<br/><br/>The administrator (first user) ID is usually 0, the action Test System can be used to determine other user IDs.<br/><br/>This state requires Android 4.2+.
+
+<H4>Airplane Mode</H4>Airplane Mode is enabled.
+
+<H4>BT Connected</H4>The device is connected to another device via Bluetooth. If either of Name or Address are specified, they must match a connected device.<br/><br/>Connections to non-paired devices (e.g. while pairing is taking place) are ignored.<br/><br/>Warning: Tasker can't directly detect when a BT device is connected, only when a connection or disconnection is made.<br/><br/>Only usable with Android 2.0+.
+
+<H4>BT Near</H4>A matching bluetooth device is nearby.<br/><br/>If any of the parameters are specified the device must match that parameter, otherwise any device  will match.<br/><br/>Standard/Low-Energy Devices: if you're only interested in a particular type of device, select only one of these to reduce power usage.<br/><br/>Non-Paired Devices: selecting this will use much more power and take longer to scan.<br/><br/>Toggle BT: if BT on the device is disabled, enable it for the period of the scan, probably around 5-15 seconds.<br/><br/>A seen device which is no longer visible for approximately two times the scan period is forgetten. This is to help prevent the profile bouncing on and off at the edge of the signal reception area.<br/><br/>The period for BT scanning is specified in Menu / Preferences / Monitor / BT Scan Time.
+
+<H4>BT Status</H4>Whether the Bluetooth adapter is enabled or not.
+
+<H4>Battery Level</H4>The device's battery level is within the specified range.<br/><br/>The values are inclusive i.e. 37-38 specifies a range with 2 values.
+
+<H4>Calendar Entry</H4>An Android Calendar entry with the specified parameters is currently active.<br/><br/>Any unspecified parameters are ignored i.e. any calendar entry will be matched.<br/><br/>The <i>Calendar</i> field is a pattern match, but the name of the calendar provider befoe the : (probably Google) is <b>not</b> e.g. Google:*@test.com is valid, G*gle:one@test.com is not.<br/><br/>See Also: action Misc / Test, variables %CALTITLE, %CALDESCR, %CALLOC
+
+<H4>Call</H4>There is a call in progress, optionally from or to the specified Number (see <i>Pattern Matching</i> in the Userguide).
+
+<H4>Cell Near</H4>One of the specified cell towers is visible to the phone.<br/><br/>Press <b>Scan</b> to start collecting cell (tower) information. Leave Scan on for at least 10 minutes and move around the location because many places are covered by several cells and the phone will often swap between them even if you're standing still.<br/><br/>Tasker will keep the device on while scanning because cell detection is more reliable then. If you turn the device off manually or change to a different activity, scanning will stop.<br/><br/>The first part of each line in the text box indicates the cell tower ID. The number afterwards is the *last seen* signal strength to that cell. The currently connected cell is marked with a less-than sign.<br/><br/>This state is a very inaccurate way of determining if you are in a particular location, but uses very little power.<br/><br/>If active when there is no signal (e.g. during Airplane Mode) this context will *stay active*.<br/><br/>Cells specified in <i>Ignore Cells</i> can never cause the context state to change, which can be useful if e.g. a particular cell is present in more than one desired area.<br/><br/>See Also: Prefs / Monitor / Use New Cell API, Prefs / Monitor / Net/Cell Wake Screen
+
+<H4>Device Idle</H4>The device has been sitting unused and unmoving for a sufficiently long period of time that it has decided to go into a lower power-use state.<br/><br/>May not function for manufacturer-specific power-saving systems.</state>
+<string name="state_help_battery_temperature">The device's battery temperature is within the specified range of degrees celsius.<br/><br/>The values are inclusive i.e. 37-38 specifies a range with 2 values.
+
+<H4>Display Orientation</H4>Whether the screen is in portrait or landscape mode.
+
+<H4>Display State</H4>Whether the device display is currently off or on.
+
+<H4>Docked</H4>A car or desk docking station is connected.<br/><br/>If you wish to launch an alternative docking application, clear your default app for docking and select Tasker when you are presented with the choice which app to launch next time you dock.<br/><br/>You can then launch an app via a Load App action in Tasker (or not, if no docking app is desired).
+
+<H4>Dreaming</H4>This state is active when the display is in Android Daydream mode.
+
+<H4>Ethernet Connect</H4>The device is connected to a network via an ethernet interface (probably through a USB adapter).<br/><br/>The Active parameter specifies whether or not the ethernet network must be the network currently in use in order to match.
+
+<H4>Headset Plugged</H4>A headset is plugged in.
+
+<H4>Heart Rate</H4>Whether the current measured heart rate is in the specified range of beats per minute (BPM).<br/><br/>See also: variable %HEART.
+
+<H4>Humidity</H4>The relative ambient air humidity in percent.<br/><br/>See also: variable %TEMP.
+
+<H4>Keyboard Out</H4>The physical keyboard is showing.
+
+<H4>Light Level</H4>The current light level as a (massaged) percentage of the minumum and maximum light levels ever seen.<br/><br/>After setting this state up, you should calibrate it by covering up the device for a few seconds and exposing it to bright light.<br/><br/>Warning: on at least some devices, 0% is the level of a dimly lit room, rather than that of total darkness.<br/><br/>See Also: Menu / Prefs / Monitor / Display Off Monitoring / Light Sensor
+
+<H4>Magnetic Field</H4>The absolute magnetic field strength at the current location in micro-Tesla.<br/><br/>Magnetic fields will be detected better on some axis than on others e.g. the base of the device may be more sensitive than the edge.<br/><br/>See Also: variable %MFIELD.
+
+<H4>Media Button</H4>One of the media buttons is pressed.<br/><br/>Not all devices have all represented buttons.<br/><br/>If <i>Held</i> is checked, the key must have been held down for minimally the normal key repeat time for this context to become active. Held will not function on most devices with Google Voice Search.<br/><br/>If <i>Stop Event</i> is checked, Tasker will try to prevent the event being passed on to other apps when it's received. This does not have effect use on Android 2.2+ devices because usually one or more apps will try to Grab (see below) the event and no others will see it. The changes in Android 2.2 have made media button handling very complicated...<br/><br/><i>Grab</i><br/><br/><i>Grab</i> is only relevant for Android 2.2+ devices, which changed the way in which the media button is handled. It indicates that Tasker should become the sole receiver of media button events. If you don't do this, Tasker may not receive the events e.g. because a media player has requested the events.<br/><br/>Note 1: if you <b>do</b> enable <i>Grab</i>, you probably want to add another context to this profile e.g. an application context, so that Tasker doesn't interfere with media control the whole time.<br/><br/>Note 2: Tasker grabs the event control as soon as it's necessary and releases it as soon as possible. Another app may grab control at a later time and so block events to Tasker.<br/><br/>Note 3: if you enable <i>Grab</i> for any media button, it blocks <b>all</b> media button events to other apps.<br/><br/>Note 4: you can regrab the focus with action Media / Media Button Events
+
+<H4>Missed Call</H4>The Android call log has one or missed calls.<br/><br/>If a Caller is specified, only missed calls from that number are relevant (see Pattern Matching in the Userguide).<br/><br/>If you want something to happen every time there is a *new* missed call, use the event Missed Call instead.
+
+<H4>Mobile Network</H4>The device has mobile data connectivity of one of the checked types.<br/><br/>The Active parameter specifies whether or not the mobile network must be the network currently in use in order to match.
+
+<H4>NFC Status</H4>Whether the default NFC adapter on the device is enabled or not.<br/><br/>Requires Android 4.3.3+.
+
+<H4>Orientation</H4>The device is in the specified orientation.<br/><br/>Note that on some devices the actual orientation may be the reverse of those shown.<br/><br/>See Also: Menu / Prefs / Monitor / Display Off Monitoring / Accelerometer
+
+<H4>Pen Menu</H4>The menu associated with the hardware pen is showing.<br/><br/>Currently only Samsung SPen is supported.
+
+<H4>Pen Out</H4>The hardware pen is not in its port.<br/><br/>Currently only Samsung SPen is supported.
+
+<H4>Plugin</H4>Listens for the conditions of the specified Locale-compatible 'condition' plugin being satisfied.<br/><br/>Locale does not need to be installed on the device.<br/><br/>WARNING: data you enter in the plugin configuration screen is collected by the *plugin*, not by Tasker. If the plugin has Internet permissions it could e.g. transmit your data to third-parties.
+
+<H4>Power</H4>The device is connected to a power source.
+
+<H4>Power Save Mode</H4>Whether Power Save Mode (also known as Battery Saver) is enabled or not.<br/><br/>Requires Android 5.0+.
+
+<H4>Pressure</H4>The (probably atmospheric) pressure at the current location in millibars.<br/><br/>At 30,000km altitude it will be virtually 0mb. At sea-level it will be approximately 1013mb.<br/><br/>See Also: Menu / Prefs / Monitor / Display Off Monitoring / Pressure Sensor
+
+<H4>Profile Active</H4>A Tasker profile with the specified name is running.<br/><br/>Name is a simple match, see Pattern Matching in the Userguide.
+
+<H4>Proximity Sensor</H4>Active when the proximity sensor of the device reports than an object is nearby.<br/><br/>After setting this state up, you should calibrate it by covering and then uncovering proximity sensor a couple of times.<br/><br/>This state may be unreliable in a profile mixed with other contexts. If the purpose is to save power, some people have had more luck toggling the Monitor preference instead.<br/><br/>See Also: Menu / Prefs / Monitor / Display Off Monitoring / Proximity
+
+<H4>Signal Strength</H4>The phone radio's reported signal level is within the specified range.<br/><br/>If the phone has no service or the signal strength is unknown this state will never be active.<br/><br/>See also: variable %CELLSIG.
+
+<H4>Task Running</H4>A Tasker task with the specified name is running.<br/><br/>Name is a simple match, see Pattern Matching in the Userguide.<br/><br/><i>Running</i> means that the task is in the queue for it's actions to be executed but it's not necessarily the case that one of its actions is currently being carried out.
+
+<H4>Temperature</H4>Whether the current ambient temperature is in the specified range of degrees (Celsius).<br/><br/>See also: variable %TEMP.
+
+<H4>USB Connected</H4>Whether a device of the specified class is currently connected.<br/><br/>Due to limitations of the Android USB interface, successful detection of USB connections is extremely dependent on the hardware of both the host and USB device.<br/><br/>Note: The <i>Any</i> class does <b>not</b> include USB Hubs.
+
+<H4>Unread Text</H4>There is an SMS or MMS which has not been read and matches the specified parameters.<br/><br/>Content is the Body of an SMS, or the Subject or an MMS.<br/><br/>Occasionally this state will be active when there are no apparent unread texts because sometimes texts get stuck in an unexpected state in the messaging app. The app 'Reset Unread SMS' can fix this problem.
+
+<H4>VPN Connected</H4>A VPN network is connected.<br/><br/>The Active parameter specifies whether or not the VPN must be the network currently being used in order to match.
+
+<H4>Variable Value</H4>The named user-defined variable matches the specified operator and value.<br/><br/>See the userguide document on Flow Control for details of how the operator/value comparison functions.<br/><br/>This state can also trigger on some 'dynamic' built-in variables: see the <i>Variables</i> section of the Userguide for details.<br/><br/>Warning: if you want to trigger on a variable and then take some action which sets the thing the variable represents you should use the Variable Set event instead. A Variable Value state will cause complications when the state exits and tries to restore the value again.
+
+<H4>Wifi Connected</H4>The device is connected to a Wifi Access Point (AP).<br/><br/>If any of the parameters are specified, the AP must match that parameter, otherwise any AP will match.<br/><br/>SSID: the SSID of the AP e.g. SKY34312<br/><br/>MAC: the MAC address of the AP e.g. 00:1f:35:34:43:4a<br/><br/>IP: the IP address of the AP e.g. 192.156.98.4<br/><br/>You can use the variable Wifi Info to see information about the current AP (when connected).<br/><br/>The Active parameter specifies whether or not the wifi network must be the network currently in use in order to match.
+
+<H4>Wifi Near</H4>The device is near a Wifi Access Point (AP).<br/><br/>If any of the parameters are specified, the AP must match that parameter, otherwise any AP will match.<br/><br/>SSID: the SSID of the AP e.g. SKY34312<br/><br/>MAC: the MAC address of the AP e.g. 00:1f:35:34:43:4a<br/><br/>Capabilities: e.g. [WPA-PSK-TKIP]<br/><br/>Min Activate Signal Level: the minimum signal strength to activate the context. It's ignored once the context is active.<br/><br/>Channel: the frequency channel.<br/><br/>Toggle Wifi: if Wifi on the device is disabled, enable it for the period of the scan, probably around 15 seconds. Toggling cannot take place when the Wifi Tether (Hotspot) is enabled on the device. On Android 4.3+ devices, consider enabling <i>Scanning Always Available</i> in Android advanced wifi settings, instead of toggling.<br/><br/>A seen AP which is no longer visible for approximately two times the scan period is forgetten. This is to help prevent the profile bouncing on and off at the edge of the signal reception area.<br/><br/>The period for Wifi scanning is specified in Menu->Preferences->Monitor->Wifi Scan Time.<br/><br/>You can use the variable Wifi Info to see information about nearby APs (when not connected).<br/><br/>When any profile has a Wifi Near state context, it will do regular scans for nearby APs (see Menu->Preferences->Monitor->Wifi Scan Period. This requires the device's Wifi radio to be enabled.
+
+</body></html>

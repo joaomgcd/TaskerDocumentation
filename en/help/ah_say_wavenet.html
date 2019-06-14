@@ -1,0 +1,47 @@
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+	.input{
+
+	}
+	.input .title{
+		font-size: 110%;
+		font-weight: bold;
+		margin-top: 24px;
+	}
+	.input .text{
+
+	}
+</style>
+</head>
+<body>
+	<H4>Say WaveNet</H4>
+	<P>Allows you to make Tasker say something out loud using advanced <a href="https://cloud.google.com/text-to-speech/">WaveNet Voices</a>.</P>
+	<P>To use this action, you'll have to have a Google Cloud project on your Google account and use an API Key from that project.</P>
+	<P>
+		<div>To do that:</div>
+		<ul>
+			<li>Select or create a Google Cloud project <a href="https://console.cloud.google.com/cloud-resource-manager">here</a>.</li>
+			<li>Enable billing for your project <a href="https://console.cloud.google.com/billing/linkedaccount">here</a>. (Note: even though billing is enabled, you'll only be charged if you go over the <a href="https://cloud.google.com/text-to-speech/pricing">free quota</a>.)</li>
+			<li>Enable the Text-to-Speech API <a href="https://console.cloud.google.com/flows/enableapi?apiid=texttospeech.googleapis.com">here</a>.</li>
+			<li>Go to the <a href="https://console.cloud.google.com/apis/credentials">Credentials</a> page, click on <b>Create credentials</b> &gt; <b>API key</b>.</li>
+			<li>Copy and paste the API Key into Tasker > Preferences > Misc > Google API Key.</li>
+			<li>Alternatively you can set the <b>Override API Key</b> field in every <b>Say WaveNet</b> action.</li>
+		</ul>
+	</P>
+	<DIV class="inputs">
+		<div class="input">
+			<div class="title">Continue Task Immediately</div>
+			<div class="text">Enable if you don't want the task to wait for it to finish speaking. You must select this in order to do a Shut Up action later.</div>			
+		</DIV>
+		<div class="input">
+			<div class="title">File</div>
+			<div class="text">If set, will write the speech to a file with the mp3 format</div>			
+		</DIV>
+		<div class="input">
+			<div class="title">Override API Key</div>
+			<div class="text">If set will override the key entered in the main Tasker Preferences.</div>
+		</DIV>		
+	</DIV>
+</body>
+</html>

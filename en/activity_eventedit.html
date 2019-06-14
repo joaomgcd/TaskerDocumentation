@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Event Edit</TITLE></HEAD>
+<BODY>
+<H2>
+	Event Edit
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+This screen allows configuration of an <A HREF="eventcontext.html">Event Context</A>.
+
+<H4>Event Name</H4>
+
+The name of the event is given at the top of the screen.
+Clicking on it allows changing to another event type.
+<P>
+In the top right is a button to show help for the
+displayed event type.
+<P>
+
+<H4>Priority</H4>
+
+Only present for relevant events.
+<P>
+Selects the priority at which this event will be detected.
+An event can be processed by other Tasker Profiles, other
+installed applications and system processes.
+</P>
+<P>
+If priority is high, then this profile will be more likely
+to detect the event before other processes, and vice versa.
+</P>
+
+<H4>Stop Event</H4>
+
+Only present for relevant events.
+<P>
+If checked, then once this profile has dealt with the event,
+other user or system applications will no longer be able to
+see it.
+<P>
+You can achieve different effects by combining <I>Priority</I>
+and <I>Stop Event</I>. For instance, if you want to show a Tasker menu
+when the camera button is pressed, you would set <I>Priority</I> <B>High</B>
+and check the <I>Stop Flag</I>, because you do not want the 
+camera application to appear afterwards.
+
+<H4>Event Parameters</H4>
+
+<P>
+Some events have paramaters to specify more details about the event.
+To get help on particular parameters, click the question-mark icon
+at top right.
+</P>
+
+<P>
+Text parameters are treated as <A HREF="matching.html">pattern matches</A>.
+</P>
+
+<P>
+If you would like to make more complex comparions (e.g. mathematical expressions), leave the event parameter
+blank and instead put a <A HREF="flowcontrol.html#condition">condition</A> on the first
+action of the task you execute with the profile.
+</P>
+
+</BODY>
+</HTML>

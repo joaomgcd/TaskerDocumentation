@@ -1,0 +1,534 @@
+<!--#include virtual=/tablestart.html -->
+<H2>
+        FAQ: How Do I... / Can I... ?
+        <IMG ALIGN="right" SRC="androidlogo.png"/>
+        <IMG ALIGN="right" SRC="icon_tasker.png"/>
+</H2>
+
+<UL>
+	<LI><A HREF="#z">How can I contact the developer ?</H4>
+	<LI><A HREF="#x">How can I send the developer a bug report ?</H4>
+	<LI><A HREF="#x2">How can I send the developer a long-term log ?</H4>
+	<LI><A HREF="#a">Can I change an app's settings / press it's buttons ?</A>
+	<LI><A HREF="#o">Can I control / respond to events in application X with Tasker ?</A>
+	<LI><A HREF="#cx">How can I stop Tasker restoring a setting ?</A>
+	<LI><A HREF="#c">Can Tasker detect volume button presses ?</A>
+	<LI><A HREF="#d">Can Tasker be used from an external SD card ?</A>
+	<LI><A HREF="#e">Can I use Tasker to turn the screen on and off ?</A>
+	<LI><A HREF="#f">How do I create my default settings ?</A>
+	<LI><A HREF="#g">How can I run more than one task when a profile goes active ?</A>
+	<LI><A HREF="#h">Can I hide the notification list entry when Tasker is running ?</A>
+	<LI><A HREF="#h2">Can I change or remove the status bar icon when Tasker is running ?</A>
+	<LI><A HREF="#i">What if I want a repeating time context, but I need to do something that takes a while ?</A>
+	<LI><A HREF="#j">How can I do something every minute ?</A>
+	<LI><A HREF="#k">How do I specify <I>9:30AM on Monday</I> and <I>10AM on Tuesday</I> with the same profile ?</A>
+	<LI><A HREF="#k2">How do I specify weekend night-times ?</A>
+	<LI><A HREF="#l">How do I stop the screen dimming when I have the display Stay On set to e.g. 'With AC' ?</A>
+	<LI><A HREF="#m">How can I stop Wifi Near toggling wifi on-off when the phone is in Airplane Mode ?</A>
+	<LI><A HREF="#n">Can I divert incoming calls ?</A>
+	<LI><A HREF="#p">How can I detect if Wifi is connected (not just enabled) ?</A>
+	<LI><A HREF="#q">How can I import/export individual profiles, tasks or scenes ?</A>
+	<LI><A HREF="#s">How do I turn off the flashing notification LED ?</A>
+	<LI><A HREF="#t">How do I put my phone in Silent or Vibrate mode ?</A>
+	<LI><A HREF="#u">Can I automate sending of an SMS / Call through Google Voice ?</A>
+	<LI><A HREF="#v">Can I change/remove the notification sounds for particular apps ?</A>
+	<LI><A HREF="#v2">Can I silence all notifications except from particular applications ?</H4>
+	<LI><A HREF="#w">Can I change the input method ?</A>
+	<LI><A HREF="#y">How do I test whether I can reach the Internet (ping) ?</A>
+	<LI><A HREF="#y2">How can I use whitespace (newline, tab etc) in action parameters ?</A>
+	<LI><A HREF="#y3">How can I run a task from a terminal login ?</A>
+	<LI><A HREF="#y4">How can I silence the camera shutter sound ?</A>
+</UL>
+
+<HR/>
+
+<!-------------------------------------------------------------------->
+
+<A NAME="z"/>
+<H4>How can I contact the developer ?</H4>
+
+There is a contact email given at <B>Menu / Info / Support</B>. In
+general, this is intended for order and validation help, which is
+often confidential, and other private issues.
+
+<P>
+Please post Tasker usage queries/problems in the <A HREF="http://groups.google.com/group/tasker">Tasker Forum</A> where the developer is very active.
+</P>
+
+<P>Advantages:
+<UL>
+	<LI>the user community has more experience than the developer with using Tasker
+	<LI>other people can benefit if your problem is solved
+	<LI>the developer has more time for fixing bugs and adding features, which benefits everyone
+</UL>
+
+<!-------------------------------------------------------------------->
+<A NAME="x"/>
+<H4>How can I send the developer a bug report ?</H4>
+
+<UL>
+	<LI>go to <I>Android Settings</I> then <B>About Phone</B>
+	<LI>tap 10 or more times on the <B>Build Version</B> entry
+	<LI>go back one screen
+	<LI>select <B>Developer Options</B>
+	<LI>check the <B>USB Debugging</B> option if it's not already checked
+	<LI>do whatever it is that causes the problem
+	<LI>go back to <B>Developer Options</B> and tap <B>Take Bug Report</B> (the first entry)
+	<LI>wait a short while until the bug report is ready (a notification will appear)
+	<LI>share using an email application
+	<LI>the destination email address is listed in <B>Menu / Info / Support</B> in Tasker
+	<LI>include at the top of the email a brief description of the problem that the email concerns
+	<LI>disable <B>USB Debugging</B> and <B>Developer Options</B> (switch at top)
+</UL>
+
+<P>
+Try to make the log as soon as possible after the problem occurs.
+</P>
+
+<!-------------------------------------------------------------------->
+<A NAME="x2"/>
+<H4>How can I send the developer a long-term log ?</H4>
+
+<UL>
+	<LI>deselect <B>Menu / Prefs / UI / Beginner Mode</b> in Tasker
+	<LI>enable <B>Menu / Prefs / Misc / Debug to Internal Storage</B> in Tasker
+	<LI>when the problem has occured, email the file <I>/sdcard/Tasker/log/tasker.txt</I>
+	(and <I>tasker.txt.1</I>, if it exists)  to
+	the developer email listed at <B>Menu / Info / Support</B>
+	<LI>include at the top a brief description of the problem that the log concerns
+</UL>
+
+<!-------------------------------------------------------------------->
+
+<A NAME="a"/>
+<H4>Can I change an app's settings / press it's buttons ?</H4>
+
+<P>
+Standard Android doesn't allow an app to change, poke, prod or peek at anything within another app,
+including simulating keypresses and screen taps.
+</P>
+<P>
+On a rooted device, you can use some of the actions in the <CODE>Input</CODE>
+category to navigate around an app, click on UI elements and enter text automatically.
+</P>
+
+<!-------------------------------------------------------------------->
+
+<A NAME="o"/>
+<H4>Can I control / respond to events in application X with Tasker ?</H4>
+
+<P>
+If a Tasker user wants to automate some aspect of another program they use, they just need to point the developer of the other app at the <A HREF="/developers.html">Tasker Developer Page</A> and nag at him/her a bit.
+</P>
+
+<!-------------------------------------------------------------------->
+
+<A NAME="cx"/>
+<H4>How can I stop Tasker restoring a setting ?</H4>
+
+Tasker will restore any setting which is changed in the Enter
+task of a profile.
+
+There are four ways to prevent this:
+
+<OL>
+	<LI>deselect the <I>Restore Settings</I> in the Profile Properties
+of the relevant profile.
+	<LI>if you set the same setting in the Exit task of the profile
+Tasker will take that as a hint that the previous value shouldn't be
+restored.
+	<LI>create a separate task to run the settings actions and
+in the Enter task of the profile do a </I>Perform Task</I> action
+(from the category <I>Tasker</I>) on that separate task. This trick is
+known as Stefan's Setting Sidestep.
+	<LI>you can use the corresponding Javascriptlet function 
+instead of the setting action. Settings made in Javascriptlets are
+not restored.
+</OL>
+
+
+
+<!-------------------------------------------------------------------->
+
+<A NAME="c"/>
+<H4>Can Tasker detect volume button presses ?</H4>
+
+No, sorry, that's not possible ATM.
+<P>
+The closest you can get is to detect changes in a volume variable
+(e.g. %VOLR for the ringer volume) via event Variable Set.
+</P>
+
+
+<!-------------------------------------------------------------------->
+<A NAME="d"/>
+<H4>Can Tasker be used from an external SD card ?</H4>
+
+<P>
+Prior to Android 6.0, that is not possible, even using apps2SD.
+</P>
+
+<P>
+With Android 6.0+ if the external SD is being used as 'adoptable', 'flex' or 'internal'
+(the wording varies) storage, there should be no issue.
+</P>
+
+<!-------------------------------------------------------------------->
+
+<A NAME="e"/>
+<H4>Can I use Tasker to turn the screen on and off ?</H4>
+
+<P>
+Turning on, use the Display / Turn On action. Unfortunately, that action
+is inaccessible with Android 2.3+.
+</P>
+
+<P>
+For turning off, you can use the Display / System Lock action with Android 2.0+.
+</P>
+<P>
+For Android 1.6, you can set the Display Timeout to it's minimum (around 7 seconds)
+and then set it back to normal in response to a Display Off event.
+</P>
+
+<!-------------------------------------------------------------------->
+
+<A NAME="f"/>
+<H4>How do I create my default settings ?</H4>
+
+<P>
+You don't have to configure 'default' settings in Tasker.
+The 'default' settings are how your device is configured before any Tasker profile becomes
+active. This 'default' is automatically restored as profiles become inactive.
+</P>
+<P>
+Exception: changes to settings made in <I>Exit</I> tasks are not restored.
+</P>
+
+<!-------------------------------------------------------------------->
+
+<A NAME="g"/>
+<H4>How can I run more than one task when a profile goes active ?</H4>
+
+Add an action <I>Perform Task</I> from the category <I>Tasker</I> for
+each task that you want to run (don't click the Stop button).
+<P>
+<B>Warning:</B>: settings in the called tasks will not be restored by Tasker,
+only settings changed directly within the Enter task.
+</P>
+
+<!-------------------------------------------------------------------->
+<A NAME="h"/>
+<H4>Can I hide the notification list entry when Tasker is running ?</H4>
+
+If the notification is very annoying, it can be removed
+on many devices by setting the icon transparent at
+<B>Menu / Prefs / Monitor / Notification Icon</B>.
+
+<P>
+If that doesn't work, disable the Run In Foreground setting which can be found
+at <B>Menu / Prefs / Monitor / Run In Foreground</B>
+</P>
+<P>
+	Please read the help text associated with this option first.
+</P>
+
+<!-------------------------------------------------------------------->
+
+<A NAME="h2"/>
+<H4>Can I change or remove the status bar icon when Tasker is running ?</H4>
+
+You can change it with <B>Menu / Prefs / Monitor / Notification Icon</B>.
+<P>
+You can remove it with <B>Menu / Prefs / Monitor / Show Notification Icon</B>.
+</P>
+
+<!-------------------------------------------------------------------->
+
+<A NAME="i"/>
+<H4>What if I want a repeating time context, but I need to do something that takes a while ?</H4>
+
+<UL>
+<LI>GPS On
+<LI>Wait 3 minutes
+<LI>GPS Off
+</UL>
+
+<!-------------------------------------------------------------------->
+
+<A NAME="j"/>
+<H4>How can I do something every minute ?</H4>
+
+<P>
+Set a repeat period of 2 minutes (the minumum allowed) and specify a task
+like this:
+</P>
+<UL>
+	<LI>Perform Task, TaDa
+	<LI>Wait 1 Minute
+	<LI>Perform Task, TaDa
+</UL>
+
+
+<!-------------------------------------------------------------------->
+
+<A NAME="k"/>
+<H4>How do I specify 9:30AM on Monday and 10AM on Tuesday with the same profile ?</H4>
+
+<P>
+You can't, because the Time and Day subcontexts operate completely independent of
+each other. You have to specify two profiles and run the same Task(s) with each of
+them (by giving the task a name).
+</P>
+
+<A NAME="k2"/>
+<H4>How do I specify weekend night-times ?</H4>
+
+It's tempting to say:
+
+<BLOCKQUOTE><CODE>
+	Time: 23 - 09<BR>
+	Day: Friday or Saturday
+</CODE></BLOCKQUOTE>
+
+<P>
+But that won't work, because on Sunday at e.g. 3am the Day context (and hence the
+whole profile) won't be active.
+</P>
+<P>
+For this kind of situation, you need to specify a profile for which morning you want
+to be active and another for which evenings. In the example, you want Friday and
+Saturday night plus Saturday or Sunday morning:
+</P>
+<BLOCKQUOTE><CODE>
+	Time: 23 - 24<BR>
+	Day: Friday or Saturday
+</CODE></BLOCKQUOTE>
+<BLOCKQUOTE><CODE>
+	Time: 00 - 09<BR>
+	Day: Saturday or Sunday
+</CODE></BLOCKQUOTE>
+
+<!-------------------------------------------------------------------->
+
+<A NAME="l"/>
+<H4>How do I stop the screen dimming when I have the display Stay On set to e.g. 'With AC' ?</H4>
+
+The screen dims around 10 seconds before the current Screen Off Timeout value is
+reached. You can set Screen Timeout (for the relevant context e.g. 'while docked')
+to <B>Never</B> (set all sliders to maximum) if you don't like that behaviour.
+
+<!-------------------------------------------------------------------->
+
+<A NAME="m"/>
+<H4>How can I stop Wifi Near toggling wifi on-off when the phone is in Airplane Mode ?</H4>
+
+Add a state <B>Airplane Mode</B> to your profile and click the <B>Invert</B> button, which
+means <I>if Airplane Mode is off</I>.
+
+<!-------------------------------------------------------------------->
+
+<A NAME="n"/>
+<H4>Can I divert incoming calls ?</H4>
+
+It's not possible to divert incoming calls via Android, but most Mobile Carriers accept special dialled
+sequences to do it before the call reaches your phone.
+<P>
+You can then use Tasker's <I>Phone / Call</I> action (with <I>Auto Dial</I> checked) to setup
+and cancel incoming call diversions.
+</P>
+
+<P>
+The <A HREF="http://en.wikipedia.org/wiki/Call_forwarding">Wikipedia page on Call Forwarding</A> is a good starting point.
+</P>
+
+<!-------------------------------------------------------------------->
+<A NAME="p"/>
+<H4>How can I detect if Wifi is connected (not just enabled) ?</H4>
+
+The 'standard' way is to use State <I>Wifi Connected</I> to set and clear your own variable with
+an enter and exit task respectively.
+
+<P>
+An alternative trick is to match the word <CODE>connected</CODE> or <CODE>connection</CODE> in the %WIFII variable (the actual word and lower/upper case changes with Android version).
+</P>
+
+<!-------------------------------------------------------------------->
+<A NAME="q"/>
+<H4>How can I import/export individual profiles, tasks or scenes ?</H4>
+
+<P>
+Import:
+</P>
+Go to the main screen, long click on the tab for the type of thing you want to import.
+</UL>
+
+<P>
+Export: 
+<UL>
+<LI>ensure that <CODE>Menu / Prefs / UI / Beginner Mode</CODE> is <B>un</B>checked
+<LI>go to the main screen 
+<LI>long-click on the thing you want to export
+</UL>
+
+<!-------------------------------------------------------------------->
+<A NAME="s"/>
+<H4>How do I turn off the flashing notification LED ?</H4>
+
+Use the Audio / Notification Pulse action.
+
+<P>
+If you're wondering what a flashing light is doing in the Audio section: ask Google,
+that's where they put it in Android Settings.
+</P>
+
+<!-------------------------------------------------------------------->
+<A NAME="t"/>
+<H4>>How do I put my phone in Silent or Vibrate mode ?</H4>
+
+Use action <I>Audio / Silent Mode</I>.
+
+<P>
+Do not try to do it with <I>Volume Ringer</I> or <I>Vibrate on Ringer</I>.
+</P>
+
+<!-------------------------------------------------------------------->
+<A NAME="u"/>
+<H4>Can I automate sending of an SMS / Call through Google Voice ?</H4>
+
+Not directly through Tasker. However, 
+<A HREF="http://sites.google.com/site/steelgirderdevelopmentsite/home">Steelgirder Developments</A> have
+(non-free) plugins which you can easily use with Tasker to accomplish this.
+
+<P>
+Steelgirder and the author of Tasker are agreed on working together wherever further
+integration of these plugins and Tasker is needed e.g. support for Tasker variables.
+</P>
+
+<!-------------------------------------------------------------------->
+<A NAME="v"/>
+<H4>Can I change/remove the notification sounds for particular apps ?</H4>
+
+Yes, but it's a little complicated, please see the 
+<A HREF="http://groups.google.com/group/tasker/browse_thread/thread/4a6b6ea8b4e4cc86">relevant forum post</A>.
+
+<!---------------------------------------------------------------------->
+<A NAME="v2"/>
+<H4>Can I silence all notifications except from particular applications ?</H4>
+
+With Tasker versions from 1.0.10, you can try turning off all notifications 
+(e.g. via Silent Mode or setting the Notification Volume to 0) and then
+using Tasker to do alerts for particular app notifications using the
+<CODE>Notification</CODE> event in the UI category.
+
+<!-------------------------------------------------------------------->
+<A NAME="w"/>
+<H4>Can I change the input method ?</H4>
+
+On a rooted phone, yes, using the free Secure Settings plugin.
+
+<P>
+Consider also starring this <A HREF="http://code.google.com/p/android/issues/detail?id=11677">feature request</A> with Google.
+</P>
+
+<!-------------------------------------------------------------------->
+<A NAME="y"/>
+<H4>How do I test whether I can reach the Internet (ping) ?</H4>
+
+<PRE>
+<CODE>
+  HTTP Get URL (a known webpage), Continue Task On Error
+  If [ %HTTPR = 200 ]
+     ...
+  Endif
+</CODE>
+</PRE>
+
+<!-------------------------------------------------------------------->
+<A NAME="y2"/>
+<H4>How can I use whitespace (newline, tab etc) in action parameters ?</H4>
+
+Tasker trims the start and end of all parameters to prevent whitespace causing problems.
+The only exception is the <CODE>Variable Set</CODE> action. 
+<P>
+Therefore, if you want to use whitespace you should first assign it to a variable and then
+use the variable where you want the whitespace to appear:
+
+<BLOCKQUOTE><CODE>
+Variable Set, %white, THISISANEWLINE<br>
+Flash, Here's a newline: %white
+</CODE></BLOCKQUOTE>
+
+<!-------------------------------------------------------------------->
+<A NAME="y3"/>
+<H4>How can I run a task from a terminal login ?</H4>
+
+<PRE>
+am broadcast -a net.dinglisch.android.tasker.ACTION_TASK -e task_name YOUR_TASK_NAME
+</PRE>
+
+<P>
+That's only possible on a rooted phone because otherwise there will be a permission problem.
+</P>
+
+<!-------------------------------------------------------------------->
+<A NAME="y4"/>
+<H4>How can I silence the camera shutter sound ?</H4>
+
+This varies per device.
+
+<P>Try creating a new profile with an <b>App</b> context
+and select the Camera app. When asked to create a task, 
+add the following actions:
+</P>
+
+<OL>
+	<LI><I>Task / Wait</I>, <B>2 seconds</B>
+	<LI><I>Audio / Sound Effects</I>, <B>off</B>
+	<LI><I>Audio / Media Volume</I>, <B>0</B>
+	<LI><I>Audio / System Volume</I>, <B>0</B>
+	<LI><I>Audio / Notification Volume</I>, <B>0</B>
+	<LI><I>Audio / Silent Mode</I>, <B>on</B>
+</OL>
+
+<P>
+Then go to the Camera app, wait a couple of seconds  and try taking a picture.
+</P>
+
+<P>
+If you still hear the shutter
+sound, go back to the Tasker UI, click on the task that you created and hit
+the <B>Play</B> button bottom-left to run the task manually. Then go
+back to the Camera app. If you still hear the shutter sound, then it's
+not going to be possible for Tasker to disable it on your device.
+</P>
+
+<P>
+Some manufacturers deliberately prevent disabling of the shutter sound,
+perhaps for legal reasons.
+</P>
+
+<P>Addendum</P>
+<P>
+A user has reported that setting DTMF volume to 0 removes the <b>focus</b> sound
+in the camera app.
+</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<!--#include virtual=/tableend.html -->

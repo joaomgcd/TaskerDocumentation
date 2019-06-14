@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Gestures & Shaking</TITLE></HEAD>
+<BODY>
+
+<H2>
+	Gestures & Shaking
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+<H4>General</H4>
+
+<I>Gestures</I> are physical movements of the phone in space, which you first
+record by creating a new Event of type <I>Gesture</I> (in the <I>Misc</I> category).
+
+<P>
+When you later redo the gesture while using your device, Tasker will carry out
+the corresponding task(s) you have attached to its profile.
+</P>
+<P>
+Like normal events, gestures are restricted by other contexts. For example,
+if you define a profile with a Gesture (Event) and Application context, the
+gesture will only be recognized while using that particular application.
+</P>
+<P>
+Note: it might be a good idea to disable Tasker before setting up
+new gestures, as otherwise you are likely to trigger previously defined ones.
+</P>
+
+<H4>Recording A Gesture</H4>
+
+<H5>Gesture Points</H5>
+
+First off, it's important to know that Tasker only records the particular points
+(which we'll call <I>inflection points</I>) of a gesture that you tell it to.
+For example, recording a gesture involving tilting the phone to the left and back
+you would record three inflection points: the start, the tilted left position, and
+the end (which is the same as the start in this case).
+
+<P>
+You can record as many points as you like, but in general it's best to record
+only the points where the phone is not moving.
+</P>
+
+<H5>Recognized Movements</H5>
+
+Tasker will only recognize changes in the <B>angle</B> of the phone i.e.
+<B>tilting</B> to left or right, backwards or forwards, or rotating vertically.
+Imagine three poles going through the device in the three dimensions.
+<P>
+<B>Moving</B> the phone backwards or forwards, up or down or side to side cannot
+be recognized.
+</P>
+
+<H5>Procedure</H5>
+<OL>
+<LI>create a new Gesture Event and give it a name (so you can differentiate between
+different gestures).
+<LI>put the phone in the position where you want the gesture to
+start and <B>press-and-hold</B> the <B>Call</B>, <B>Camera</B>, <B>Menu</B>, <B>Search</B> or <B>Volume</B> hardware buttons
+to record the point. The device will buzz.
+<LI>move to another (preferably not-moving) point on the path of your gesture, and
+press the button again (not a long press). The device will buzz.
+<LI>on the <B>final</B> inflection point, <B>press-and-hold</B> the button
+to mark the end of the gesture. The device will buzz again and the "Recorded." 
+message should now flash up. 
+<LI>Press <B>Done</B>, and add a Vibrate action so you can hear when your
+pattern matches when testing it.
+</OL>
+
+<H4>Activation</H4>
+
+<H5>Calibration</H5>
+
+Before trying to match a pattern, you probably need to calibrate the hardware
+in your device. Go to <CODE>Menu / Prefs / Monitor / Gestures</CODE>. Press
+the <B>Calibrate</B> button and tilt your phone around in all directions.
+
+<P>
+Tasker now has some idea what kind of values the <I>accelerometer</I> in your
+phone produces.
+</P>
+<P>
+You only need to calibrate once.
+</P>
+
+<H4>Matching</H4>
+
+Now exit Tasker and move your device through the points you previously defined
+when recording. You should hear the device vibrate when it reaches the final
+recorded point.
+
+<P>
+If not, try playing with the values in the Gesture Settings screen. For instance,
+you could try raising the Match Radius (but be careful not to raise it too much
+or you'll get a lot of matches by mistake).
+</P>
+
+<H4>Power Usage</H4>
+
+Tasker does its best to limit power usage of gesture monitoring.
+<UL>
+<LI>monitoring for gestures only takes place when all the
+other contexts in a profile are already active (and so the gesture might
+have a chance of activating the profile). For example, if you combine an
+Application and Gesture (Event) context, gesture monitoring will only
+take place while using that particular application.
+<LI>Gesture monitoring is by default turned off when the display is off unless a power source is connected to the device,
+unless specified otherwise in <CODE>Menu / Prefs / Monitor / Display Off Monitoring</CODE>
+<LI>updates from the accelerometer are at the minumum rate until the start of a gesture is detected.
+</UL>
+
+</BODY>
+</HTML>

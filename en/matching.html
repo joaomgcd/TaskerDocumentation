@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Pattern Matching</TITLE></HEAD>
+<BODY>
+
+<H2>
+	Pattern Matching
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+<H3>What's Pattern Matching ?</H3>
+
+With Pattern Matching, you specify a <I>pattern</I> which tells Tasker what text you wish
+to match. For instance, if you want to match any telephone number starting with <B>0135</B>, you
+can specify the simple match <B>0135*</B>. <B>*</B> is a special character which <I>matches</I>
+any number of any character.
+
+<P>
+Tasker has two type of matching, <A HREF="#simple">Simple Matching</A> and more advanced <A HREF="#regex">Regex Matching</A>.
+
+<A NAME="simple" />
+<H3>Simple Matching</H3>
+
+Simple matching is designed to be easy for non-technical people to use.
+
+<H4>Where's It Used ?</H4>
+
+Simple Matching is used in the following places:
+
+<UL>
+	<LI>in the <B>If</B> condition of an action, when the <B>~</B> (match) or <B>!~</B> (not match) operators
+	are specified.
+	<LI>in text paremeters of State and Event contexts</LI>
+	<LI>some other places :-)
+</UL>
+
+<H4>Matching Rules</H4>
+
+<UL>
+	<LI>if a pattern is left blank, it will match against anything
+	<LI>if it is not blank it must match the whole target text
+	<LI><B>/</B> means 'or', it divides up multiple possible matches
+	<LI>a <B>*</B> will match any number of any character. It's not possible to specifically
+		match a <B>*</B> character.
+	<LI>a <B>+</B> will match one or more of any character. It's not possible to specifically
+	match a <B>+</B> character.<BR>Beware: the condition '%var matches +' will be <B>true</B>
+	if %var has not been assigned a value, because Tasker does not replace variables which
+do not have a value.
+	<LI>matching is case-insensitive (<I>magic</I> will match with <I>MagiC</I>)
+	<B>unless</B> the pattern contains an upper-case letter e.g. <I>Magic*</I> will
+	not match against <I>magically</I>, but it will match against <I>Magic Roundabout</I>
+	<LI>a <B>!</B> at the very start of a match means <B>not</B> e.g. <I>!*Magic*/*Yellow*</I> matches anything <B>not</B>
+	containing the words <I>Magic</I> or <I>Yellow</I></LI>
+	<LI>it is not possible to specifically match a <B>!</B> character at the start of a target (but you could
+	 use <B>*!</B>
+	
+</UL>
+</P>
+<P>Examples
+</P>
+<UL>
+	<LI><I>help</I> matches <I>help</I> but not <I>helper</I>.
+	<LI><I>help*</I> matches <I>helper</I>
+	<LI><I>*the*</I> matches <I>the</I> (anywhere)
+	<LI><I>123+</I> matches <I>123</I> and minimally one more character
+	<LI><I>+</I> matches anything with at least one character (non-empty)
+	<LI><I>the*way</I> matches <I>the other way</I> and <I>the first way</I>, amongst others
+	<LI><I>Help/*shell</I> matchs <I>Help</I> or anything ending with <I>shell</I>, case-sensitively
+</UL>
+
+<A NAME="caller"/>
+<H4>Caller Matching</H4>
+
+Caller matching (some events and states e.g. <I>Call</I>) is handled slightly differently.
+
+<UL>
+	<LI><I>C:ANY</I> matches the telephone number of any contact
+	<LI><I>C:FAV</I> matches the telephone number of any favourite (starred) contact
+	<LI><I>CG:<CODE>groupmatch</CODE></I> matches the telephone number of a contact in a group which matches <CODE>groupmatch</CODE>
+	<LI><I>Otherwise:</I> otherwise a match is attempted using the general matching rules
+	against <B>both</B> the caller phone number and the associated contact's name (if there
+	is one).
+</UL>
+
+<P>Examples:</P>
+
+<UL>
+	<LI><I>!C:ANY</I> matches a number <B>not</B> belonging to a contact
+	<LI><I>077*/Geoff*</I> matches a number starting with <I>077</I> or belonging to a contact
+	 whose names starts with <I>Geoff</I>
+	 <LI><I>C:FAV/0123456789</I> matches any favourite contact or the telephone number <I>0123456789</I>
+	 <LI><I>CG:*Family*/CG:Business</I> matches any contact in the contact groups <I>Family Members</I>, <I>My Family</I>  or <I>Business</I>
+</UL>
+
+<A NAME="regex" />
+<H3>Regular Expression Matching</H3>
+
+Regular expressions are similar to simple matching patterns but have many more features
+and are much harder for non-technical people.
+
+<H4>Where's It Used ?</H4>
+
+Regex Matching is available:
+
+<UL>
+	<LI>in the <B>If</B> condition of an action, when the <B>~R</B> or <B>!~R</B> operators
+	are specified.
+	<LI>in the <I>Variable Search Replace</I> action
+	<LI>in the condition of a <I>Variable Value</I> state
+	<LI>wherever a Simple Match is possible, by preceding the regex with <B>~R</B> or <B>!~R</B>
+</UL>
+
+<H4>Matching Rules</H4>
+
+Standard Java regular expression matching is applied. The Android Developer site has a
+<A HREF="http://developer.android.com/reference/java/util/regex/Pattern.html">reference page</A>.
+
+</BODY>
+</HTML>

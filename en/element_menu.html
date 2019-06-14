@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Scene Element: Menu</TITLE></HEAD>
+<BODY>
+
+<H2>
+	Scene Element: Menu
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+<H4>About</H4>
+
+A menu displays a variable selection of items and can have a separate action, text and
+icon defined for each item in the list.
+
+<H4>Parameter: Source</H4>
+
+Items can either be filled manually or from a variable array. In the case of an array,
+the list shows all the items starting at the first index; %var(1) %var(2) etc.
+
+<P>
+In the case of manual specification, click on the <I>Items</I> tab in the element editor
+to specify the items.
+</P>
+
+<H4>Parameter: Selection Mode</H4>
+
+There are three selection modes:
+<UL>
+<LI>single: tapping an item deselects any other item selected
+<LI>multi: several items can be selected at the same time
+<LI>none: tapping an item never selects it
+</UL>
+
+<P>
+Selected items are highlighted. There are two ways to find out the selected
+items:
+
+<UL>
+<LI>assign a task under the <B>Item Tap</B> element event tab. Every time an item is
+tapped, the selected items are available in the local variable <B>%select_indices</B>
+<LI>query the selected items at any time using the action <CODE>Element Get Value</CODE>
+</UL>
+
+<H4>Parameter: Item Layout</H4>
+
+Specifies how each item within the list will be displayed. Each item has exactly the same layout. To change the layout, click on it. Each Menu element has it's own unique item layout.
+
+<P>
+There are two pre-defined layouts you can choose from (click the magnifying glass icon). 'Icon and Text' is the default.
+</P>
+
+<H4>Events</H4>
+
+<UL>
+<LI><A HREF="activity_elementedit.html#tap">Item Tap, Item Long Tap</A>
+</UL>
+
+<H4>Related Actions</H4>
+
+<UL>
+<LI><A HREF="help/ah_menu.html">Menu</A><BR>
+allows easy display of a dialog with a title and showing a single menu
+element.
+<BR>
+When using the Menu action, items are configured in the action itself
+rather than in the Menu element.
+<LI><A HREF="help/ah_scene_element_position.html">Element Position</A>
+<LI><A HREF="help/ah_scene_element_size.html">Element Size</A>
+<LI><A HREF="help/ah_scene_element_visibility.html">Element Visibility</A>
+<LI><A HREF="help/ah_scene_element_depth.html">Element Depth</A>
+<LI><A HREF="help/ah_scene_element_test.html">Test Element</A>
+
+</UL>
+
+</BODY>
+</HTML>

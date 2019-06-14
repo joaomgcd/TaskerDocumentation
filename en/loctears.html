@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Location Without Tears</TITLE></HEAD>
+<BODY>
+
+<H2>
+	Location Without Tears
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+
+<P>
+This is an overview guide to choosing a method for fixing your location with Tasker. At the end are
+some <A HREF="#adv">advanced power-saving strategies</A>.
+</P>
+
+<H2>Power / Accuracy Comparison</H2>
+
+<TABLE CELLPADDING="5">
+<TR>
+	<TH ALIGN="left">Method</TH>			<TH>Power Usage</TH> <TH>Acc</TH> <TH>Network</TH> <TH>Wifi</TH> <TH>BT</TH>
+</TR>
+
+<TR>
+	<TD><A HREF="#cell">State: Cell Near</A></TD>		<TD>*</TD> 		<TD>*</TD>   <TD></TD> <TD></TD> <TD></TD>
+</TR>
+
+<TR>
+	<TD><A HREF="#btnear">State: BT Near</A></TD>	<TD>**</TD> 		<TD>*****</TD> <TD></TD> <TD></TD> <TD>Y</TD>
+</TR>
+
+<TR>
+	<TD><A HREF="#near">State: Wifi Near</A></TD>	<TD>**</TD> 		<TD>*****</TD> <TD></TD> <TD>Y</TD> <TD></TD>
+</TR>
+
+<TR>
+	<TD><A HREF="#net">Location: Net</A></TD>		<TD>**</TD> 		<TD>**</TD> <TD>Y</TD><TD></TD> <TD></TD>
+</TR>
+
+<TR>
+	<TD><A HREF="#netwifi">Location: Net &amp; Wifi</A></TD><TD>***</TD> <TD>*/*****</TD> <TD>Y</TD> <TD>Y</TD> <TD></TD>
+</TR>
+
+
+<TR>
+	<TD><A HREF="#gps">Location: GPS</A></TD>		<TD>*****</TD> 		<TD>*****</TD> <TD>Y</TD> <TD></TD> <TD></TD>
+</TR>
+
+</TABLE>
+
+<P>
+More stars mean higher power usage or higher accuracy (Acc).
+</P>
+
+<H2>Detail Comparison</H2>
+
+<A NAME="cell"/>
+<H3>State: Cell Near</H3>
+
+<H5>Setup</H5>
+
+Create a <B>state context</B>, select <B>Phone</B> then <B>Cell Near</B>. Click Update and walk around a bit to scan for cell towers nearby.
+
+<H5>About</H5>
+
+Uses information about the cell towers the phone uses for telephony to record and match a location.
+
+<P>
+When the display is off, frequency of checks is controlled by <CODE>Prefs / Monitor / Display Off All Checks</CODE>.
+</P>
+<P>If your profile keeps deactivating, go back to the Cell Near state and click the magnifying glass icon to check
+for cells you may have missed in your scan.
+</P>
+
+<H5>Plus / Minus</H5>
+
+<UL>
+	<LI>(+) virtually no extra power on top of power needed for normal phone service
+	<LI>(+) when the display is on, context updates as soon as the tower is visible
+	<LI>(+) when the display is off, only one check period is needed to determine context exit
+	<LI>(-) highly inaccurate
+	<LI>(-) must be physically at the location in order to record it
+</UL>
+
+<H5>Other Settings</H5>
+
+<UL>
+	<LI><CODE>Monitor / General Monitoring / Use New Cell API</CODE>: if you're not seeing any cells at all when scanning on a modern device, try checking this
+	<LI><CODE>Monitor / Display Off Monitoring / Cell Workaround</CODE>: if things aren't working when the display is off
+	<LI><CODE>Monitor / Display Off Monitoring / Cell Wake Screen</CODE>: second possible workaround when the display is off
+</UL>
+
+<A NAME="btnear"/>
+<H3>State: BT Near</H3>
+
+<H5>Setup</H5>
+
+Create a <B>State context</B>, click <B>BT Near</B> (in the Net category), fill in the name or address of a bluetooth device near the location you want to identify.
+
+<H5>About</H5>
+
+<P>
+BT Near does regular bluetooth Scans and will activate when it recognizes a device  you have configured
+is nearby. Note: you don't have to connect to the device, so it doesn't have to be a device you own.
+</P>
+
+<P>
+Frequency of checks is controlled by <CODE>Prefs / Monitor / BT Scan Seconds</CODE> (screen on) and <CODE>Prefs / Monitor / Display Off All Checks</CODE> (screen off).
+</P>
+
+<P>
+Check the <B>BT Toggle</B> box if you don't want bluetooth enabled all the time. It will then be toggled when Tasker needs to do a scan.
+</P>
+
+<P>
+If your target device is a low-energy device, deselect <B>Standard Devices</B> to reduce energy usage. If you can pair with the target device, you can have a major reduction in power usage and scan times by not selecting <B>Non-Paired Devices</B>.
+</P>
+
+<H5>Plus / Minus</H5>
+
+<UL>
+    	<LI>(+) very good accuracy, reliability
+	<LI>(+) modest power usage, especially for paired devices
+     	<LI>(+) works indoors too
+     	<LI>(-) need a known device nearby
+</UL>
+
+<H5>Other Settings</H5>
+
+<UL>
+	<LI><CODE>Prefs / Monitor / Display Off Monitoring / Motion Detection</CODE>: if available on your device, will need to be disabled if you wish to detect a nearby BT device that may move or turn off or on
+</UL>
+
+<A NAME="net"/>
+<H3>Location: Net</H3>
+
+<H5>Setup</H5>
+
+Create a location context, and deselect GPS.
+
+<H5>About</H5>
+
+<P>
+Net location accuracy varies greatly. It's <B>very important</B> that you create a <b>large radius</b> around
+the spot you wish to detect.
+</P>
+<P>
+Frequency of checks is controlled by <CODE>Prefs / Monitor / Network Location Check</CODE> (screen on)
+and <CODE>Prefs / Monitor / Display Off All Checks</CODE>.
+</P>
+
+<A HREF="loccontext.html">More Info</A>.
+
+<H5>Plus / Minus</H5>
+
+<UL>
+	<LI>(+) extremely low (extra) power (IF network is available anyway)</LI>
+	<LI>(-) requires network and phone service</LI>
+	<LI>(-) highly inaccurate and variable fixes</LI>
+</UL>
+
+<A NAME="netwifi"/>
+<H3>Location: Net &amp; Wifi</H3>
+
+<H5>Setup</H5>
+
+Create a location context and deselect GPS. Make sure your device's Wifi is turned on
+when you want a more accurate location fix.
+
+<H5>About</H5>
+<P>
+Net location can be assisted by nearby access points when Wifi is turned on (Google has
+a map of APs for many areas).
+</P>
+
+<P>Turn Wifi off when not needed to conserve power e.g. use a Time context to turn wifi off at night.</P>
+<H5>Plus / Minus</H5>
+
+<UL>
+    <LI>(+) very good accuracy in built-up areas for relatively low power usage
+   	<LI>(-) must be physically at the location in order to record it
+</UL>
+
+<A NAME="near"/>
+<H3>State: Wifi Near</H3>
+
+<H5>Setup</H5>
+
+Create a <B>State context</B>, click <B>Wifi Near</B> (in the Net category), fill in the SSID of an Access Point (AP)
+with the best signal near where you want to identify.
+
+<H5>About</H5>
+
+<P>
+Wifi Near does regular Wifi Scans and will activate when it recognizes an AP you have configured
+is nearby. Note: you don't have to connect to the AP. You could configure e.g. the neighbours AP
+if the signal is strong enough.
+</P>
+
+
+<P>
+Frequency of checks is controlled by <CODE>Prefs / Monitor / Wifi Scan Seconds</CODE> (screen on) and <CODE>Prefs / Monitor / Display Off All Checks</CODE> (screen off).
+</P>
+
+<P>
+Check the <B>Wifi Toggle</B> box if you don't want wifi on all the time. It will then be toggled when Tasker needs to do a scan. This isn't needed in
+In Android 4.4+ if you select <CODE>Scanning Always Available</CODE> in Advanced Wifi Settings and will save power.
+</P>
+
+
+<H5>Plus / Minus</H5>
+
+<UL>
+    	<LI>(+) very good accuracy and reliability
+     	<LI>(+) less power than GPS
+     	<LI>(+) works indoors too
+     	<LI>(-) need an AP nearby
+</UL>
+
+
+<H5>Other Settings</H5>
+
+<UL>
+	<LI><CODE>Prefs / Monitor / Display Off Monitoring / Motion Detection</CODE>: if available on your device, will need to be disabled if you wish to detect an AP
+that may turn off and on.
+	<LI>Android location settings: basic location needs to be enabled for Android 8.1+.
+</UL>
+
+<A NAME="gps"/>
+<H5>Location: GPS</H5>
+
+<H5>Setup</H5>
+
+Create a location context, and deselect Net.
+
+<H5>About</H5>
+
+<P>
+Frequency of GPS checks is controlled by <CODE>Prefs / Monitor / GPS Check</CODE> (screen on)
+and <CODE>Prefs / Monitor / Display Off All Checks</CODE>. Higher frequencies mean
+more battery usage but that location changes will be noticed more quickly.
+</P>
+
+<P>
+When indoors, GPS will try a long time to get a signal, using a lot of battery. Adjust
+it at <CODE>Prefs / Monitor / GPS Timeout</CODE>. Make the
+timeout as low as you can until you start losing effectiveness.
+</P>
+
+
+<A HREF="loccontext.html">More Info</A>.
+
+<H5>Plus / Minus</H5>
+
+<UL>
+	<LI>(+) highly accurate in the open air</LI>
+	<LI>(-) functions very poorly or not at all indoors. A bad side effect is that if you enter a building e.g. office while between the check times, it may never detect 
+your new location until you leave.
+	<LI>(-) extreme power usage
+	<LI>(-) needs network to get a first fix
+</UL>
+
+<H5>Other Settings</H5>
+
+<UL>
+	<LI><CODE>Prefs / Monitor / Display Off Monitoring / Motion Detection</CODE>: if available on your device, will need to be disabled if you wish to detect changes of location
+on the order of a few meters.
+</UL>
+
+<A NAME="adv" />
+<H3>Advanced Strategies</H3>
+
+<H5>Motion Detection</H5>
+
+<P>
+Some devices have a low-power accelerometer that can be active while the rest of
+the device is sleeping.
+</P>
+
+<P>
+For such devices, Tasker will not do location checks with the display off unless
+it detects that significant movement has taken place since the last check, resulting
+in lower power usage and faster response times when the device does eventually move.
+</P>
+
+<H5>Multiple Contexts</H5>
+
+Tasker does not check high-power contexts until all lower-power contexts in the same profile are active.
+You can use this to reduce power consumption. For instance, if you use the Wifi Near state to 
+detect coming home, you could add a Location: Net context to the same profile, so that wifi scanning
+will only take place when you are in the right neighbourhood.
+
+<H5>Location Control</H5>
+
+Disable GPS/Net location when they're not needed by creating a separate profile with e.g. a Time context which disables GPS during the night.
+
+<P>
+This works because Location contexts assume you are in the same location until there is a fix which says otherwise.
+</P>
+
+</HTML>

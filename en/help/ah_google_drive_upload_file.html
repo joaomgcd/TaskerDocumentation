@@ -1,0 +1,54 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+	.input{
+
+	}
+	.input .title{
+		font-size: 110%;
+		font-weight: bold;
+		margin-top: 24px;
+	}
+	.input .text{
+
+	}
+</style>
+</head><body>
+	<H3>Google Drive Upload</H3>
+	<P>Send a file or folder to Google Drive for a given account. If uploading a folder, all files in sub-folders will also be uploaded recursively.</P>
+	<P>While the content is uploading, a notification will be shown with the progress.</P>
+	<DIV class="inputs">
+		<div class="input">
+			<div class="title">Output Variables</div>
+			<div class="text">This action will generate several local variables related to the uploaded files/folder, including their web url. If uploading multiple files or folder, array variables will be generated.</div>
+		</DIV>
+		<div class="input">
+			<div class="title">Account</div>
+			<div class="text">The account you want to upload the file/folder to</div>
+		</DIV>
+		<div class="input">
+			<div class="title">Data/File</div>
+			<div class="text">If it's a valid file/folder path, the file/folder will be uploaded. If not, the text you provide will uploaded as the file's content</div>
+		</DIV>
+		<div class="input">
+			<div class="title">Remote Name</div>
+			<div class="text">The file name on Google Drive where you want to upload the content to. Ignored if uploading a folder. If not set, file name will be the same as the local file name.</div>
+		</DIV>
+		<div class="input">
+			<div class="title">Remote Folder</div>
+			<div class="text">Folder path on Google Drive. If left empty, file/folder will be uploaded to the root folder</div>
+		</DIV>
+		<div class="input">
+			<div class="title">Content Description</div>
+			<div class="text">Description for the file that shows up on Google Drive. Will also be used in the progress notification's text</div>
+		</DIV>
+		<div class="input">
+			<div class="title">Overwrite If Exists</div>
+			<div class="text">Will overwrite the Google Drive files if they already exists. If not enabled and a file with the same name exists, a file with the same name will be created, so you'll end up with multiple files with the exact same name.</div>
+		</DIV>
+		<div class="input">
+			<div class="title">Publicly Share File</div>
+			<div class="text">Will create a share link for the files and anyone with the link will be able to access it.</div>
+		</DIV>
+	</DIV>
+	<P><b>Note</b>: For security reasons this action can't be used on App Factory generated apps.</P>
+</body></html>

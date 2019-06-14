@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Action Edit</TITLE></HEAD>
+<BODY>
+<H2>
+	Action Edit
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+This screen allows configuration of a single action in a Task.
+
+<H4>General</H4>
+
+At top left is the name of the action. Tapping on this allows it
+to be changed.
+<P>
+Bottom-right is a help button. Please be sure to read the action help
+of every action before you use it for the first time, there may be e.g. device specific restrictions you should know about.
+</P>
+
+<H4>Action Parameters</H4>
+
+A <I>parameter</I> gives extra detail about how the action is to be carried out.
+
+<H5>Text Parameters</H5>
+
+<UL>
+	<LI>are sometimes optional: in that case the text <I>Optional</I>
+will appear as a hint unless the entry box has already been filled in
+	<LI>sometimes have a dialog to help you fill in a value
+	which you can access by clicking the magnifying glass icon next to them
+	<LI>can have <A HREF="variables.html">variables</A> automatically inserted by clicking the tag
+	icon next to them.
+</UL>
+
+<H5>Numeric Slider Parameters</H5>
+
+Clicking the arrows icon next to numeric sliders allows you to specify the
+number textually or use a <A HREF="variables.html">variable</A> for the parameter instead, if the value
+will not be known until the action is actually executed.
+
+<H5><I>If</I> (Condition) Parameter</H5>
+
+<I>(most actions)</I>
+
+<P>
+Allows specification of one or more conditions which must match if this action is to execute.
+</P>
+
+<P>Single conditions consist of a <I>left-hand side</I>  (usually a variable name), an <I>operator</I> and a <I>right-hand-side</I> for example
+<CODE>%number, Equals, 1</CODE> indicates that the action will be executed
+if the variable %number has the value 1.
+<P>
+
+<P>
+When more than one condition is specified, they must be combined via <I>And</I> (all conditions
+must be true), <I>Or</I> (at least one condition must be true) or <I>Xor</I> (exactly one must be true). These 'combiners' are called <I>boolean operators</I>.
+</P>
+
+<P>Usually, 2 or 3 conditions will be combined with all <I>And</I>s or all <I>Or</I>s, but in order to allow more complicated logic, Tasker also offers <I>And</I> and <I>Or</I> in high-precedence versions.
+Of the 4 boolean operators which are available, the selection goes from low to high precedence ones.
+</P>
+<P>
+The higher the precedence of a boolean operator, the further to the right it is shown. This enables the
+logical groups to be visualised.
+</P>
+
+<P>
+Examples:
+</P>
+
+<P>
+<CODE>True | False & True | False</CODE> is the same as <CODE>( True | False ) & ( True | False )</CODE>
+so is <B>True</B>.
+</P>
+<P>
+<CODE>True & False | True & False</CODE> is the same as <CODE>True & ( False |  True ) & False</CODE>
+so is <B>False</B>.
+</P>
+
+<P>
+<CODE>True & False | True |+ False</CODE> is the same as <CODE>True & ( False | ( True | False ) )</CODE>
+so is <B>True</B>.
+</P>
+
+<P>Note that the order of the conditions can mean that some conditions are never evaluated. For instance, when two conditions
+are present and the one above an <I>And</I> is <B>false</B> then the condition below it will never be evaluated.
+This can be advantageous if the second condition takes relatively more resources e.g. involves matching against 
+a lot of text.
+</P>
+
+<P>Please see the section on <A HREF="flowcontrol.html">Flow Control</A> for more information.
+</P>
+
+<H5><I>Continue Task After Error</I> Parameter</H5>
+
+<I>(selected actions only)</I>
+<P>
+By default, if an action fails with an error (e.g. the user specified to delete a file that doesn't exist)
+Tasker will stop the task immediately and the remaining actions will never be executed.
+</P>
+<P>
+This parameter specifies that the task should continue even if this action fails.
+</P>
+<P>
+In addition, if it's checked, errors will be logged in the system log as diagnostics instead of errors
+and error popups will be surpressed.
+</P>
+
+<H5><I>Label</I> Parameter</H5>
+
+<I>(all actions)</I>
+
+<P>
+A label for the action which is shown on the Task Edit screen. This parameter
+could also be used to add comments to actions to help understand 
+how the task works.
+</P>
+<P>
+Labels are also used with <CODE>Goto</CODE> actions to jump from one part of
+the task to another.
+<P>
+
+<H4>Menu Options</H4>
+
+<H5><I>Search</I></H5>
+
+<P>
+Search for and jump to a specified action. The entered term is searched against action
+properties in the following order:
+</P>
+
+<OL>
+	<LI>the action number
+	<LI>the action label if present
+	<LI>the action name
+	<LI>the action description, including the action parameter contents
+</OL>
+
+<P>
+The matching is case-insensitive. Searching starts from the current action and
+wraps around. Only the header action (<LI>If</LI> or <I>For</I>) of closed
+blocks is searched.
+</P>
+
+
+</BODY>
+</HTML>

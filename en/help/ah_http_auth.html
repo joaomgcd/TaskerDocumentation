@@ -1,0 +1,47 @@
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+	.input{
+
+	}
+	.input .title{
+		font-size: 110%;
+		font-weight: bold;
+		margin-top: 24px;
+	}
+	.input .text{
+
+	}
+</style>
+</head>
+<body>
+	<H3>HTTP Auth</H3>
+	<P>Authenticate with a web service.</P>
+	<H4>OAuth 2.0</H4>
+	<P>Allows you to sign in a user and act on behalf of that user in a web service.</P>
+	<P>For example, if you sign in as a user on the Spotify API and give it proper permissions, you can then add songs to the user's Spotify playlists.</P>
+	<P>On most web services that use OAuth 2.0 you have to create an <i>app</i> on that service that you can then use to sign in the user.</P>
+	<P><b>Very important</b>: when creating the app on the web service make sure to set the <b>Redirect URI</b> to <b>https://tasker.joaoapps.com/auth.html</b>.</P>
+	<DIV class="inputs">
+		<div class="input">
+			<div class="title">Client ID and Client Secret</div>
+			<div class="text">Given to you by the web service when you create an app on it</div>
+		</DIV>
+		<div class="input">
+			<div class="title">Endpoint To Get Code</div>
+			<div class="text">A URL that is indicated in the web service documentation. Look for a URL in the docs that has the <b>response_type=code</b> parameter and use just the base URL.</div>
+			<div class="text">For example, for Google web services that support OAuth 2.0 this URL is <b>https://accounts.google.com/o/oauth2/v2/auth</b> as you can see <a href="https://developers.google.com/identity/protocols/OAuth2WebServer">here</a>.</div>
+		</DIV>		
+		<div class="input">
+			<div class="title">Endpoint To Get Refresh Token</div>
+			<div class="text">Also an URL that is indicated in the web service documentation. Look for a URL in the docs that has the <b>grant_type=refresh_token</b> parameter in the request body.</div>
+			<div class="text">For example, for Google web services that support OAuth 2.0 this URL is <b>https://www.googleapis.com/oauth2/v4/token</b> as you can see <a href="https://developers.google.com/identity/protocols/OAuth2WebServer">here</a>.</div>
+		</DIV>		
+		<div class="input">
+			<div class="title">Scopes</div>
+			<div class="text">The will define the permissions that your app will request the user when acting on his/her behalf.</div>
+			<div class="text">For example, to <a href="https://developers.google.com/calendar/v3/reference/calendarList/list">list a user's calendars in the Google Calendar API</a> you would need to use the <b>https://www.googleapis.com/auth/calendar.readonly</b> scope.</div>
+		</DIV>
+	</DIV>
+</body>
+</html>

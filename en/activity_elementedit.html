@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+ <HEAD><TITLE>Tasker: Scene Element Edit</TITLE></HEAD>
+<BODY>
+<H2>
+	Scene Element Edit
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+<P>
+Allows configuration of the properties of a scene element. The different
+types of property are divided into tabs.
+</P>
+
+<UL>
+<LI><A HREF="#ui">UI</A> 
+<LI><A HREF="#items">Items</A> 
+<LI><A HREF="#background">Background</A> 
+<LI><A HREF="#event">Event</A> 
+<UL>
+<LI><A HREF="#checkchange">Change</A> 
+<LI><A HREF="#focus">Focus</A> 
+<LI><A HREF="#tap">Tap, Long Tap</A> 
+<LI><A HREF="#itemselect">Item Select</A> 
+<LI><A HREF="#value">Value Selected</A> 
+<LI><A HREF="#itemtap">Item Tap</A> 
+<LI><A HREF="#stroke">Stroke</A> 
+<LI><A HREF="#text">Text Changed</A> 
+<LI><A HREF="#linktap">Link Tap</A> 
+<LI><A HREF="#pageloaded">Page Loaded</A> 
+<LI><A HREF="#video">Video</A> 
+</UL>
+</UL>
+
+<P>
+Not all elements have all tabs.
+</P>
+
+<A NAME="ui" />
+<H3>UI</H3>
+
+For the most part, configures the visual style of the element.
+
+<A NAME="items" />
+<H3>Items</H3>
+
+<P>
+Only relevant to Menu and Spinner elements.
+</P>
+<P>
+Each row configures an item in the menu/spinner. Starting from the left, the controls
+are:
+
+<UL>
+	<LI><B>selection checkbox</B><BR> this is only present when <I>Selection Mode</I> is set to <B>Single</B> or <B>Multi</B>. It stipulates whether the item will be shown as selected when the menu is displayed.
+	<LI><B>icon button</B><BR> the icon to show for the item. If you don't want to show an icon, hide the icon element in the Layout parameter in the UI tab
+	<LI><B>label text</B><BR> the label to show for the item. If you don't want to show a label, hide the label element in the Layout parameter in the UI tab
+	<LI><B>action button</B><BR> an action to run when the item is tapped
+</UL>
+
+<P>
+To add an item, click the plus button at the bottom of the screen.
+Items can be rearranged and deleted by click-and-dragging at the right hand side.
+
+</P>
+
+<A NAME="background" />
+<H3>Background</H3>
+
+Configures a rectangle shape to be used as the background for the element
+when it is displayed. The background will be stretched to fit the size of
+the element.
+<P>
+If you want to use an image for a background, create a separate Image element and
+place it underneath.
+
+<A NAME="event" />
+<H3>Event Tabs</H3>
+
+<P>
+Event tabs stipulate what Tasker should do when the user interacts with the
+element in some way. When the scene is showing, the event will also occur
+if an action (probably Element Value) sets the element.
+</P>
+
+
+<P>
+Most events consist only of a task to specify but some
+allow a filter specification so that the task only runs if the event matches
+the filter.
+</P>
+
+<P>
+To help the task to decide what to do with the event and to allow a single
+task to handle many different events if desired, Tasker sets certain 
+local variables which give specific information about it. The variables
+are easily accessible by clicking the usual variable tag icon in any action
+in the task.
+</P>
+
+<P>The following variables are available in all such tasks:</P>
+<UL>
+	<LI><B>%scene_name</B><BR> the name of the scene containing the element
+	<LI><B>%element_name</B><BR> the name of the element that the user interacted with (e.g. Button1)
+	<LI><B>%element_type</B><BR> the type of element (e.g. Button)
+	<LI><B>%event_type</B><BR> the name of the event (e.g. Tap)
+</UL>
+
+<A NAME="text" />
+<H4>Text Changed</H4>
+
+Elements: <I>TextEdit</I>
+
+<P>
+This event is triggered whenever the text changes e.g. because a
+letter key has been pressed while the element had focus.
+</P>
+
+<UL>
+	<LI><B>%new_val</B><BR> the new text
+	<LI><B>%old_val</B><BR> the old text
+</UL>
+
+<P>Text entry is buffered so that it may be up to 1 or 2 seconds before
+new input is seen, and that input may include several accumulated
+changes.
+</P>
+
+
+<A NAME="checkchange" />
+<H4>Change</H4>
+
+Elements: <I>CheckBox, Toggle</I>
+
+<UL>
+	<LI><B>%new_val</B><BR> the new state of the element (<i>on</i> or <i>off</i>)
+	<LI><B>%old_val</B><BR> the last state (<i>on</i> or <i>off</i>)
+</UL>
+
+<A NAME="focus" />
+<H4>Focus</H4>
+
+<P>This event is triggered when the element gains or loses focus, probably
+because the user has tapped it or another focusable element.
+</P>
+
+Elements: <I>TextEdit</I>
+
+<UL>
+	<LI><B>%focused</B><BR> whether the element now has focus (<i>true</i>) or not (<i>false</i>)
+</UL>
+
+<A NAME="tap" />
+<H4>Tap, Long Tap</H4>
+
+Elements: <I>Button, Doodle, Image, Map, Oval, Rectangle, Text</I>
+
+<P>
+In a <I>Map</I> element, the following variables are available:
+</P>
+
+<UL>
+	<LI><B>%coord</B><BR> the latitute,longitude of the tapped location on the map
+	<LI><B>%label</B><BR> the label of the tapped GeoMarker (if any). You can add GeoMarkers to a Map element with the action Scene / Element Add GeoMarker
+</UL>
+
+<A NAME="value" />
+<H4>Value Selected</H4>
+
+Elements: <I>Number Picker, Slider</I>
+
+<UL>
+	<LI><B>%new_val</B><BR> the new value of the element (e.g. 50)
+	<LI><B>%old_val</B><BR> the last selected value (e.g. 43)
+</UL>
+
+<A NAME="itemtap" />
+<H4>Item Tap, Item Long Tap</H4>
+
+Elements: <I>Menu</I>
+
+<UL>
+	<LI><B>%select_indices</B><BR> a comma-separated list of currently selected items in the list (e.g. 3,4)
+	<LI><B>%select_labels</B><BR> a comma-separated list of the labels of currently selected items in the list (e.g. Blue,Yellow)
+	<LI><B>%tap_index</B><BR> the index of the item that was tapped to cause this event (e.g. 3)
+	<LI><B>%tap_label</B><BR> the label of the item that was tapped to cause this event (e.g. Blue)
+</UL>
+
+<A NAME="stroke" />
+<H4>Stroke</H4>
+
+Elements: <I>Doodle, Image, Oval, Rectangle, Text</i>
+
+<P>
+A stroke has two filter parameters.
+</P>
+
+<UL>
+	<LI><B>Direction</B><br>the direction from the start point of the stroke to the end point
+	<LI><B>Length</B><BR>minimum distance in (approximate) pixels from the start point of the stroke to the end point 
+</UL>
+
+<P>
+If either of these parameters don't match the event, the task will not run.
+</P>
+
+<UL>
+	<LI><B>%stroke_dir</B><BR>Direction, as described above
+	<LI><B>%stroke_len</B><BR>Length, as described above
+</UL>
+
+<A NAME="itemselect" />
+<H4>Item Select</H4>
+
+Elements: <I>Spinner</I>
+
+<P>
+Occurs when a <B>new</B> item is selected.
+</P>
+
+<UL>
+	<LI><B>%tap_index</B><BR> the index of the item that was selected
+	<LI><B>%tap_label</B><BR> the label of the item that was selected
+</UL>
+
+<A NAME="linktap" />
+<H4>Link Tap</H4>
+
+Elements: <I>WebView</I>
+
+<P>
+A Link Tap has two filter parameters:
+</P>
+
+<UL>
+	<LI><B>URL</B><BR> the URL of the tapped link. If entered, the tapped URL must <A HREF="matching.html">match</A> the entry (e.g. http://*.fruit.com) for the task to run
+	<LI><B>Stop Event</B> <BR>whether to stop the WebView following the link
+</UL>
+
+<UL>
+	<LI><B>%url</B><BR> URL as described above
+</UL>
+
+<A NAME="pageloaded" />
+<H4>Page Loaded</H4>
+
+Elements: <I>WebView</I>
+
+<UL>
+	<LI><B>%url</B><BR> the URL of the page (e.g. http://i.hate.fruit/except/mangos.html)
+</UL>
+
+<A NAME="video" />
+<H4>Video</H4>
+
+<P>
+Elements: <I>Video</I>
+</P>
+
+<P>
+Occurs when the state of the video playback changes.
+</P>
+
+<UL>
+	<LI><B>%event_subtype</B><BR> the type of the video event, possible values being: <I>Prepared, BufferStart, BufferEnd, RenderStart, Lagging, Finished</I>
+</UL>
+
+<P>
+Note that the <B>Finished</B> event will never occur if the Video element
+has the <CODE>Loop</CODE> parameter checked.
+</P>
+</BODY>
+</HTML>

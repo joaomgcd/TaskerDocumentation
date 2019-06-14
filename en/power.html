@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Power Usage</TITLE></HEAD>
+<BODY>
+
+<H2>
+	Power Usage
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+Internally, Tasker does its best to keep power usage down. Following are some macro-strategies to
+achieve this.
+
+<H4>Context Monitoring</H4>
+
+<P>
+When a profile contains multiple contexts, power is saved by only monitoring for changes in order of
+the least-power-hungry first. For example, in a profile with a Time and App context, Tasker will not
+decide that it needs to monitor for a changing application unless the Time context is active (because the
+profile cannot become active until both contexts are active).
+</P>
+
+<P>Tasker rates contexts for power-hungriness in the following (ascending) order:
+</P>
+<UL>
+	<LI>Other State
+	<LI>Day / Time
+	<LI>Calendar Entry State
+	<LI>Cell Near State
+	<LI>App
+	<LI>BT Near State
+	<LI>Network Location
+	<LI>Wifi Near State
+	<LI>GPS Location
+	<LI>Temperature / Humidity / Proximity / Pressure / Magnetic Field / Light Sensor /  Gesture Event / Orientation State (accelerometer activation)
+</UL>
+
+<P>
+Items at the bottom of the list won't become eligible for monitoring until all items further up the
+list are active.
+</P>
+
+<H4>Display-Off Checks</H4>
+
+When the display is off, all necessary 'active' checks (GPS/Net Location, Wifi Near, App) are done at
+the same time so that the device is awake for as short a time as possible. See <I>Display Off Timings</I>
+in <CODE>Menu / Prefs / Monitor</CODE> for the frequency and maximum duration of these checks.
+
+</BODY>
+</HTML>

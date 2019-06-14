@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Scene Element: Video</TITLE></HEAD>
+<BODY>
+
+<H2>
+	Scene Element: Video
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+<H4>About</H4>
+
+<P>
+Displays a video from file or URI.
+</P>
+
+<P>
+The playback state is maintained during rotation or
+hiding of the scene.
+</P>
+
+<H4>Parameters: Source</H4>
+
+<P>
+Determines where to acquire the content for the video.
+</P>
+
+<P>
+A source which starts with a <B>/</B> or does not contain a <B>:</B>
+is treated as a local file path.
+</P>
+
+<P>
+Anything else is treated as a URI.
+</P>
+
+<H4>Parameter: Start Automatically</H4>
+
+<P>
+If checked, whenever a new video is loaded it will begin play
+immediately. If not checked, the video must be started via
+the <A HREF="help/ah_element_video_control.html">Element Video Control</A>
+action.
+</P>
+
+<H4>Parameter: Loop</H4>
+
+If checked, the video will start playing again from the start when
+the end is reached.
+
+<H4>Parameter: Adapt To Fit</H4>
+
+What to do when the video size does not exactly match the element size.
+
+<UL>
+<LI><I>Stretch</I><BR>
+The video is stretched (or shrunk) to fill the element, probably changing the aspect
+ratio in the process
+<LI><I>Scale</I><BR>
+The video is scaled up or down while maintaining the aspect ratio until
+it horizontally or vertically matches the element size. As a result, the video will not completely
+fill the element on the other side.
+</UL>
+
+<H4>Events</H4>
+
+<UL>
+<LI><A HREF="activity_elementedit.html#tap">Tap, Long Tap</A>
+<LI><A HREF="activity_elementedit.html#stroke">Stroke</A>
+<LI><A HREF="activity_elementedit.html#video">Video</A>
+</UL>
+
+<H4>Related Actions</H4>
+
+<UL>
+<LI><A HREF="help/ah_scene_element_video_control.html">Element Video Control</A>
+<LI><A HREF="help/ah_scene_element_focus.html">Element Focus<A>
+<LI><A HREF="help/ah_scene_element_position.html">Element Position</A>
+<LI><A HREF="help/ah_scene_element_size.html">Element Size</A>
+<LI><A HREF="help/ah_scene_element_visibility.html">Element Visibility</A>
+<LI><A HREF="help/ah_scene_element_depth.html">Element Depth</A>
+<LI><A HREF="help/ah_scene_element_test.html">Test Element</A>
+</UL>
+
+<P>
+Note on <CODE>Test Element</CODE>: testing the element <I>Value</I> returns the 
+current playback position in Milliseconds, <I>Maximum Value</I> returns the duration of the current video.
+In both cases, the video must be already in the 'Prepared' (see the
+<A HREF="activity_elementedit.html#video">Video event</A>) state before running the test.
+</P>
+
+<H4>See Also</H4>
+
+The <A HREF="activity_elementedit.html">Element Editor</A> screen.
+
+</BODY>
+</HTML>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Encryption</TITLE></HEAD>
+<BODY>
+
+<H2>
+	Encryption
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+<HR>
+<P>
+<B>Note:</B> encryption functions are not available to new customers or
+in Play Store versions of Tasker due to US export restrictions.
+</P>
+<HR>
+
+Tasker has the ability to encrypt and decrypt files. The relevant
+actions are in the <I>Encryption</I> action category.
+
+<P>
+Since decryption can be automated, you have the possibility to
+keep data files encrypted outside of certain times, locations, 
+applications etc.
+</P>
+<P>
+<B>Warning</B>: make backups of your files while setting up encryption
+until you understand how the system works and are sure the 
+encryption/decryption process does not cause any corruption.
+</P>
+
+<B>Tip</B>: Tasker does not give progress reports while it's doing
+encryption, if you want to know when an long decryption operation
+is finished, just put a <I>Vibrate</I> action or similar after the
+<I>Encrypt/Decrypt</I> action.
+
+<H4>Keys</H4>
+
+Tasker uses a system of named <I>keys</I>. All of the encryption
+actions can specify a key name so that you can use different keys
+with different files (if desired).
+<P>
+If no key name is specified, <B>default</B> is used.
+</P>
+<P>
+Once a passphrase for a key is entered, the ciphers it generated are stored in memory
+until explicitly deleted. The deletion might be specified after an <I>Encrypt/
+Decrypt File</I> action, or explicitly with the <I>Clear Key</I> action.
+
+<H4>Setting Up Encryption</H4>
+
+<H5>General Preferences</H5>
+
+<P>
+First thing to do is check whether the encryption preferences for 
+<B>Encryption Iterations</B> and <B>Encryption Algorithm</B> are
+as you wish. Once you start encryping things, it's time consuming
+to start again with new encryption preferences.
+</P>
+<P>
+The preferences can be found at <CODE>Menu / Prefs / Action</CODE>.
+Be sure to have a look at the help text for each item.
+</P>
+
+<H5>Initial Encryption</H5>
+
+To start with, you probably want to encrypt some files which are in 
+a particular directory, which you can then decrypt as they are needed.
+<P>
+To do that, create a task called <B>Encrypt</B> or similar
+and add one or more <I>Encrypt File</I> or <I>Encrypt Dir</I> actions to it.
+</P>
+<P>
+By default, the
+key is cleared once the file is encrypted, so click 'Leave Key'
+for all but the last action, otherwise you'll have to enter your
+passphrase for each file.
+</P>
+<P>
+Next, <A HREF="app_widgets.html">create a Tasker shortcut</A> on the home screen, using the <I>Encrypt</I>
+task. Tap the widget to encrypt your files. Notice how
+you are only asked for the passphrase for the first one, because it
+is stored until cleared.
+</P>
+<P>
+The encrypted files will all receive an extension <I>.tec</I>
+and the original files are deleted.
+</P>
+
+<H4>Decryption</H4>
+
+Once you have a set of encrypted files, you need to setup the contexts
+in which they will be decrypted.
+<P>
+Create another task called <I>Decrypt</I> or similar, and add <I>Decrypt</I>
+actions to it to match the encrypt actions you setup previously.
+</P>
+<P><B>Don't</B> click Clear Key, otherwise you'll have to enter your
+passphrase for every file (and at the start of encryption).
+</P>
+
+<P>
+Now you can use your <I>Encrypt</I> and <I>Decrypt</I> tasks whenever you like. For instance,
+you could create a profile with a Location Context and run your <I>Decrypt</I> task
+when entering the location (assign Decrypt as the Enter task) and your <I>Encrypt</I>
+task when leaving the location (assign <I>Encrypt</I> as the Exit task).
+</P>
+
+<P>
+<B>Important</B>: when you use the <I>Decrypt</I> action, it recreates the original
+file from the encrypted copy, but does <B>not</B> delete the encrypted version.
+</P>
+<P>
+When you re-encrypt the file, if it has not changed it is simply deleted since we
+already have an encrypted copy. If it <B>has</B> changed, it is re-encrypted.
+</P>
+<P>
+The purpose of this method of operation is to:
+<UL>
+	<LI>avoid the lengthy encryption process when unnecessary</LI>
+	<LI>prevent accidental double-encryption (encrypting the same file twice)</LI>
+</UL>
+
+<H4><I>Enter Key</I> Action</H4>
+
+It's not always convenient to enter the key at the point at which de- or encryption
+takes place. This action allows you to specify the passphrase for a key
+at a different point.
+<P>
+If you don't wish to double-enter a key when encrypting, you can also use this
+action before an Encrypt action and not select <I>Confirm</I>.
+</P>
+
+<H4><I>Set Key</I> Action</H4>
+
+To allow full-automation of en/decryption, the passphrase for a key can also be set
+without user interaction. However, this is much less secure tham <code>Enter Key</code> because:
+
+<UL>
+	<LI>the passphrase (as part of the action) is stored in <B>clear text</B> in device memory and could be read by the root user if the device OS is compromised
+	<LI>although the passphrase is itself encrypted when a backup is made to SD, the parameters for that encryption can be recovered from the java code in the Tasker apk file
+</UL>
+
+<H4>Security</H4>
+
+<H5>Algorithm</H5>
+
+Tasker uses symmetric encryption, meaning the same passphrase is used both
+to encrypt and decrypt the data.
+
+<P>
+The default algorithm is "PBEWithMD5And128BitAES-CBC-OpenSSL".
+PBE stands for password-based encryption, see <A HREF="http://www.ietf.org/rfc/rfc2898.txt">RFC 2898</A>.
+</P>
+<P>
+A salt is combined with the passphrase several hundreds of times using the MD5 algorithm
+to produce a key which is used for the 128-bit (default setting) AES algorithm.
+</P>
+<P>
+The number of iterations and algorithm can be set in <CODE>Menu / Prefs / Action</CODE>.
+</P>
+
+<H5>Pass Phrases</H5>
+
+The longer the passphrase, the more secure the data. Minimally 8 characters of mixed
+alphabetic, numeric and punctuation characters is recommended.
+
+<H5>Clearing Keys</H5>
+
+While a key's ciphers are in memory, anyone can use the key for
+decryption or encryption if your device is lost or stolen, so it may be wise
+to setup a <I>Clear Key</I> action e.g. when the device is turned off
+(see Screen Off in the Event Context) or at a particular time (Time Context),
+depending on what you are using the encryption for.
+
+<H5>Manually Encrypting/Decrypting</H5>
+
+You can use Tasker's file browser (action Browse Files) to encrypt/decrypt files
+directly, via a long-click on the file.
+
+</BODY>
+</HTML>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Application Context</TITLE></HEAD>
+<BODY>
+
+<H2>
+	Application Context
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+<P>
+An <I>Application Context</I> is activated when selected parts of one or more application are
+running.
+<P>
+<P>
+Important: in Android versions after (and including) L, app detection is much less accurate.
+For some apps it may not work at all, for others it may activate and never deactivate.
+</P>
+
+<H4>Controls</H4>
+
+<H5><I>App</I> button</H5>
+
+When checked, indicates that the context will become active if any of the selected applications
+is in the <I>foreground</I>, meaning it is currently being displayed to the user.
+
+<H5><I>Services</I> button</H5>
+
+When checked, indicates that the context will also become active if a service
+associated with any of the selected applications is running.
+<P>
+Note that services other than the obvious ones may be running. For example,
+the default Play Music app may have a download service running even when not playing
+music at a particular time.</P>
+
+
+<H5><I>Invert</I> button</H5>
+
+When the context is <I>inverted</I>, it will become active when any
+application <B>apart from</B> the selected ones is matched
+
+<H5><I>All</I> button</H5>
+
+Usually only applications are shown for selection which would usually be shown
+in the launcher. The All button shows certain other launchable activities.
+
+<P>This button in no way affects how the context behaves.</P>
+
+<H4>Application Checking</H4>
+
+<P>
+When any profiles have application contexts specified, Tasker checks frequently
+to see if one of those applications has been launched. The default is every
+1.5 seconds.
+</P>
+<P>
+If you would like quicker response, or you suspect this is severely increasing
+your battery usage, you can change this value in preferences
+(select <CODE>Menu / Preferences / Monitor</CODE> from the main screen).
+</P>
+</BODY>
+</HTML>

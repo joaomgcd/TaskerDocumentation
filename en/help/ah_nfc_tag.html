@@ -1,0 +1,39 @@
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+	.input{
+
+	}
+	.input .title{
+		font-size: 110%;
+		font-weight: bold;
+		margin-top: 24px;
+	}
+	.input .text{
+
+	}
+</style>
+</head>
+<body>
+	<H4>NFC Tag</H4>
+	<P>Allows you to read and/or write data from and to an NFC Tag.</P>
+	<P>You have a list of pre-defined variables that this action will create. These are visible in the configuration screen.</P>
+	<P>Check out <a href="https://www.youtube.com/watch?v=PMbj7bRoSKI">this video example</a> to see this in action.</P>
+	<DIV class="inputs">
+		<div class="input">
+			<div class="title">Payload To Write</div>
+			<div class="text">Optionally allows you to write data to the tag. If you leave this empty, data will just be read. Select different <b>Payload Types</b> and then use the magnifying glass to help selecting a payload for the selected type.</div>			
+		</DIV>
+		<div class="input">
+			<div class="title">Payload Type</div>
+			<div class="text">Optinally set a type for the payload. If none is set, the <b>Text</b> type will be automatically used.</div>
+			<div class="text">Different Payload Types will have different behaviours when the tag is later scanned:</div>
+			<ul>
+				<li><b>Text</b>: The system will not react to this. You'll have to implement your own behaviour by using the <b>NFC Tag Event</b>.</li>
+				<li><b>Application</b>: The system will automatically open the selected app, even on a device that doesn't have Tasker installed.</li>
+				<li><b>Uri</b>: The system will automatically open the selected Uri (like a web URL for example), even on a device that doesn't have Tasker installed.</li>
+			</ul>
+		</DIV>		
+	</DIV>
+</body>
+</html>

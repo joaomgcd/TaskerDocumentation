@@ -1,0 +1,612 @@
+<!--#include virtual=/tablestart.html -->
+<H2>
+        FAQ: Usage Problems
+        <IMG ALIGN="right" SRC="androidlogo.png"/>
+        <IMG ALIGN="right" SRC="icon_tasker.png"/>
+</H2>
+
+<UL>
+
+<LI><A HREF="#00">Why doesn't Tasker work in the background on my device?</A>
+<LI><A HREF="#0">Why won't Android let me uninstall Tasker ?</A>
+<LI><A HREF="#c">Why isn't GPS coming on for my profile with Time And GPS Location contexts ?</A>
+<LI><A HREF="#d">Why can't I select Tasker for an application context ?</A>
+<LI><A HREF="#e">Why does it take my Wifi Near state so long to exit ?</A>
+<LI><A HREF="#f">Why isn't Tasker detecting when my Location Context changes ?</A>
+<LI><A HREF="#g">Why does Tasker mess up the app launching when I have an Application Context for it ?</A>
+<LI><A HREF="#h">Why does my profile not do anything ?</A>
+<LI><A HREF="#w">Why aren't my settings restored ?</A>
+<LI><A HREF="#i">Why does nothing happen when I click a Tasker widget ?</H4>
+<LI><A HREF="#j">Why does Tasker crash when I try to create a Location Context ?</A>
+<LI><A HREF="#k">Why can't I see any Tasker widgets in the home screen widget selector ?</A>
+<LI><A HREF="#l">Why doesn't my repeating Time Context work ?</A>
+<LI><A HREF="#m">Why aren't my exit tasks run / settings restored before the device shuts down ?</A>
+<LI><A HREF="#n">Why does my location exit task fire multiple times ?</A>
+<LI><A HREF="#o">Why does my Cell Near state keep going inactive ?</A>
+<LI><A HREF="#p">Why doesn't Notify LED work ?</A>
+<LI><A HREF="#q">Why do Tasker widgets disappear after a reboot on my Wildfire ?</A>
+<LI><A HREF="#r">Why isn't my docking station detected ?</A>
+<LI><A HREF="#s">Why aren't I getting any cell data for the Cell Near state ?</A>
+<LI><A HREF="#t">Why isn't there a green light for the On/Off radio button on the main screen ?</A>
+<LI><A HREF="#u">Why does the action Display Brightness cause my keyboard or application to close ?</A>
+<LI><A HREF="#v">Why is the date in Tasker's notification list completely wrong ?</A>
+<LI><A HREF="#w">Why won't Tasker install on my custom ROM ?</A>
+<LI><A HREF="#x">Why doesn't my <CODE>Perform Task</CODE> action work when I Test it ?</A>
+<LI><A HREF="#app">Why doesn't my App Context work ?</A>
+<LI><A HREF="#keyguard">Why doesn't the Keyguard action work properly ?</A>
+<LI><A HREF="#root">Why doesn't Tasker think my device is rooted ?</A>
+<LI><A HREF="#img">Why doesn't Tasker show my Local Media images anymore ?</A>
+</UL>
+
+<HR/>
+
+<!----------------------------------------------------------------------------->
+
+<A NAME="00"/>
+<H4>Why doesn't Tasker work in the background on my device?</H4>
+<P>
+To make sure Tasker and the AutoApps run in the foreground:
+</P>	
+<ul>
+	<li>make sure Tasker is enabled</li>
+	<li>enable foreground notification in Tasker settings</li>
+	<li>enable the "Use reliable alarms" option</li>	
+	<li><b>Check out <a href="https://dontkillmyapp.com/?app=Tasker" target="_blank">dontkillmyapp.com</a>.</b> This website will show, for your specific vendor, the best way to allow Tasker to work correctly in the background.</li>
+	<li>Disable battery optimization for the apps</li>
+	<li>Make sure the Android Settings -> Apps -> Tasker -> Battery -> Background activity option is enabled (this setting may be somewhere else on different OEMs, but it's a very important setting that might be disabled by default on some devices)</li>
+	<li>If you want to use features while the screen is off make sure that the options in Preferences -> Monitor -> Display Off Monitoring are enabled for the conditions you want.</li>
+	<li>Make sure that you disable any "battery saving" apps like Greenify, etc</li>
+	<li>If you want to have Wifi and Cell based profiles work on Android 8+ make sure that location is enabled on your device. It's an Android requirement that Tasker can't work around.</li>
+	<li>On Sasmung devices go to Android Settings -> Device Maintenance -> Battery -> Unmonitored apps -> add Tasker and all AutoApps</li>
+	<li>On Xiaomi devices enable "Auto Start" for the apps and "Display on Lock Screen" under "Other Permissions"</li>
+	<li>On Xiaomi devices disable automatic backup of apps because that process kills all running apps, including Tasker.</li>
+	<li>On Huawei devices click the  <a href="huaweilock.jpg" target="_blank">lock in the recents menu</a> for all the AutoApps and Tasker</li>
+	<li>On Huawei devices manage battery optimizations manually in <a href="huaweibatteryoptimizations.jpg" target="_blank">battery settings</a> for all the AutoApps and Tasker</li>
+	<li>On Huawei devices disable Powergenie which stops apps from running in the background. Try going to Settings -> Battery, then tapping on the gear in the upper right corner. Disable "Close excessively power-intensive apps". Or use ADB:
+		<ul>
+			<li>To disable powergenie use: <kbd>adb shell pm disable-user com.huawei.powergenie</kbd></li>	
+		</ul>
+		<ul>
+			<li>To enable powergenie: <kbd>adb shell pm enable com.huawei.powergenie</kbd></li>	
+		</ul>
+	</li>
+	<li>On Lenovo devices (possibly others) you have to disable the <a href="lenovoapps.png">"Disable Auto Start"</a> options for Tasker and all AutoApps.</li>
+	<li>If you plan on using plugins, disabling power saver mode may help with some issues</li>
+</ul>
+
+
+
+<!----------------------------------------------------------------------------->
+
+<A NAME="0"/>
+<H4>Why won't Android let me uninstall Tasker ?</H4>
+
+It's probably because you're using an action which needs Tasker's device administrator function (e.g. <CODE>Display / System Lock</CODE>).
+<P>
+You can disable it by going to <CODE>Android Settings / Location &amp; Security / Device Administration</CODE>.
+</P>
+
+<!----------------------------------------------------------------------------->
+
+<A NAME="c"/>
+<H4>Why isn't GPS coming on for my profile with Time And GPS Location contexts ?</H4>
+
+In order to save power, Tasker only activates context detection as it is needed.
+Therefore it will not attempt to fix your GPS location unless the Time context is
+active.
+<P>
+See the <A HREF="userguide/en/power.html">Power Usage</A> section of the userguide
+for more details.
+</P>
+
+<!----------------------------------------------------------------------------->
+
+<A NAME="d"/>
+<H4>Why can't I select Tasker for an application context ?</H4>
+
+This is considered too dangerous. A mistake could easily result in being unable
+to enter Tasker and therefore being unable to rectify the mistake.
+
+<!----------------------------------------------------------------------------->
+
+<A NAME="e"/>
+<H4>Why does it take my Wifi Near state so long to exit ?</H4>
+
+<P>
+Wifi Near requires <b>two</B> check periods to pass without seeing the Access Point before the
+profile exits. This is intended to avoid the context activating and deactivating if the
+AP is briefly not visible.
+</P>
+<P>
+Note also that there are different check periods for when the device is on or off, and by default
+the off-period is much longer than the on-period. See Menu / Preferences / Monitor/ Display On/Off Timings.
+</P>
+
+
+<!----------------------------------------------------------------------------->
+
+<A NAME="f"/>
+<H4>Why isn't Tasker detecting when my Location Context changes ?</H4>
+
+<P>
+Your radius is probably too small.
+<P>
+<P>
+As an example, if you are not using GPS the accuracy of your fixes is probably
+around += 2km, so your radius should be also minimally 2km.
+</P>
+<P>
+If you *are* using GPS, the accuracy may still be only +-400m in built-up areas.
+</P>
+<P>Here's a good way to create a location context:
+</P>
+<UL>
+        <LI>go to the geographical location you want a context for
+        <LI>make a new location context
+        <LI>deselect GPS if you don't want to use it
+        <LI>press Grab Fix, and wait till it's done
+</UL>
+
+<P>
+This will set your radius appropriate to the accuracy of the location providers at that spot.
+</P>
+
+<P>
+If there's still nothing happening:
+</P>
+
+<UL>
+	<LI>check GPS is on in Android Settings, if you're using GPS.
+	<LI>check your device has a view of the sky, if you're using GPS
+	<LI>network connectivity is often needed to get GPS started, and always needed for a Net location context.
+	<LI>realize that location is only checked every 10 minutes by default when the Display is off (to save power).
+	You can check more often by changing <CODE>Menu / Prefs / Monitor / Display Off Timings / All Checks</CODE>
+	<LI>try the <A HREF="#h">general 'nothing happens'</A> tips
+	<LI>look at <A HREF="/userguide/en/loctears.html">other possibilities for detecting your location</A>
+</UL>
+
+<!----------------------------------------------------------------------------->
+
+<A NAME="g"/>
+<H4>Why does Tasker mess up the app launching when I have an Application Context for
+it ?</H4>
+<P>
+Some applications are sensitive like this. Probably all you have to do is put as the
+first action in the <B>Enter</B> task the action <I>Wait</I> and give as a
+parameter e.g. 300ms. If that doesn't work keep increasing the value until it does.
+</P>
+<P>
+That gives the application time to finish initializing before messing around
+with the screen brightness etc.
+</P>
+
+<!----------------------------------------------------------------------------->
+<A NAME="w"/>
+<H4>Why aren't my settings restored ?</H4>
+
+Some possibilities:
+
+<UL>
+<LI>if your profile sets setting x to <I>on</I>, then
+if x is already <I>on</I> when the profile goes active, it will be left at <I>1</I> when the
+profile exits. Test for this by putting an Alert / Notify action in the enter
+task to see what the original value was.
+<LI>some other apps installed on the system can cause Tasker to be killed and
+therefore the original settings being forgotten e.g. this has been reported to be
+a problem with Titanium Backup.
+<LI>similarly, if the system is rebooted suddenly, some devices aren't fast enough
+to save all the settings before the system turns off.
+</UL>
+
+<!----------------------------------------------------------------------------->
+
+<A NAME="h"/>
+<H4>Why does my profile not do anything ?</H4>
+
+Firstly, if are you using any of these other apps which have been reported as interfering
+try disabling or temporarily uninstalling them:
+
+<UL>
+	<LI>'Task Killers'
+	<LI>Quick System Info
+	<LI>Autostarts
+</UL>
+
+<P>After that:</P>
+
+<UL>
+<LI>is the profile enabled ? It should have a green tick next to it.
+<LI>have you clicked the <I>On</I> button in the <A HREF="userguide/en/activity_summary.html">Profile List screen</A> before leaving Tasker ?
+It should be showing a <B>green light</B>.
+<LI>is the profile shown as active in the status bar pulldown ? If so, it's probably your task that's not working.
+<LI>make sure the Monitor service running in the foreground (see <CODE>Menu / Prefs / Monitor</CODE>)
+<LI>how's your available memory, see <CODE>Android Settings / Application / Running Services / Available Memory</CODE>. Are you maybe getting
+Tasker's low-memory notifications ?
+</UL>
+
+<P>
+If your profile is activating but the task doesn't seem to do anything:
+</P>
+
+<UL>
+<LI>perhaps you are running a pirated version of Tasker ?
+<LI>try enabling <B>Menu / Prefs / More / Popup Warning/Errors</B> to see if any errors are occuring (they may not be shown till you go back to the Tasker UI)
+<LI>look in <B>Menu / More / Run Log</B> to see if the task is being carried out.
+<LI>try a simple task like <I>Alert / Vibrate</I> or <I>Alert / Flash</I>
+<LI>perhaps another profile is interfering: do <B>Menu / Data / Backup</B>, then delete all other profiles except the one that's not working
+</UL>
+
+<!----------------------------------------------------------------------------->
+
+<A NAME="i"/>
+<H4>Why does nothing happen when I click a Tasker widget ?</H4>
+
+Usually this is due to Tasker not being enabled, see the <I>On/Off</I> button in the first UI screen.
+
+<!----------------------------------------------------------------------------->
+<A NAME="j"/>
+
+<H4>Why does Tasker crash when I try to create a Location Context ?</H4>
+
+The likely cause is that you are running a non-standard Android ROM which doesn't
+contain the correct (or maybe any) Google Maps library.
+
+<!----------------------------------------------------------------------------->
+<A NAME="k"/>
+
+<H4>Why can't I see any Tasker widgets in the home screen widget selector ?</H4>
+
+This is almost always because you have Tasker installed on the SD card, which is just not
+possible due to several reasons related to how Tasker works.
+
+<!----------------------------------------------------------------------------->
+<A NAME="l"/>
+
+<H4>Why doesn't my repeating Time Context work ?</H4>
+
+<P>
+It's important to understand that a repeating time context is a <B>series of instant events</B>.
+</P>
+
+<P>Trying to combine a repeating time context with another context that does
+active monitoring usually won't work e.g.
+
+<BLOCKQUOTE><CODE>
+	Time: Repeating Every 5 Minutes
+<BR>
+	Task: Enable Wifi (no toggle)
+</CODE></BLOCKQUOTE>
+<BLOCKQUOTE><CODE>
+	State: Wifi Near
+<BR>
+	Task: XXX
+</CODE></BLOCKQUOTE>
+
+<P>
+Wifi Near is checked on a static schedule. You currently can't change the schedule dynamically,
+so the above two profiles will only do XXX when the 5 minute repeat happens to coincide with
+when Tasker is doing it's Wifi Near check.
+</P>
+
+<!----------------------------------------------------------------------------->
+<A NAME="m"/>
+
+<H4>Why aren't my exit tasks run / settings restored before the device shuts down ?</H4>
+
+Android gives an app very little time to perform cleanup during shutdown, this is especially
+a problem on slow devices.
+
+<P>
+Therefore (as of 1.0.9), Tasker only attempts to run <I>Variable Set, Clear, Add</I> and <I>Subtract</I> actions
+when the device shuts down, since they take relatively little time.
+</P>
+<P>
+In the future, Tasker will have some concept of default values which will then be restored when
+it starts after the device has booted again.
+</P>
+<P>
+On Android 1.5 devices, Tasker cannot do anything at shutdown because the system does not send a notification.
+</P>
+
+<!----------------------------------------------------------------------------->
+<A NAME="n"/>
+<H4>Why does my location exit task fire multiple times ?</H4>
+
+Probably the location Android reports is <I>bouncing</I> between a point inside
+your location radius and one outside. This is relatively unusual because Tasker
+has some built-in mechanisms to try and prevent it.
+
+<P>
+A quick fix is to add a <I>Cooldown</I> to your profile. Click on a context,
+select Profile then Properties and slide the Cooldown Time to 30 minutes.
+</P>
+<P>
+The profile is then prevented from going active more than once every 30 minutes.
+</P>
+
+<!----------------------------------------------------------------------------->
+<A NAME="o"/>
+<H4>Why does my Cell Near state keep going inactive ?</H4>
+
+Even when your phone is motionless, it will probably still often switch between
+different cell towers. Going to a different room in your house may involve
+a whole different set of cell towers.
+
+<P>
+When you notice your Cell Near state going inactive at your location (and assuming
+you still have a signal), launch Tasker, click on the Cell Near context and edit
+it. Click <B>Scan</B> and you should immediately see a new Cell added to the list.
+Click <B>Done</B> and then <B>Apply</B> and your context should go active again.
+</P>
+
+<P>
+Sometimes the new cell will only be visible for a few seconds and will not appear
+when you press scan. In that case, press the <B>Recent</B> button and
+select it manually from the list.
+</P>
+
+<A NAME="p"/>
+<H4>Why doesn't Notify LED work ?</H4>
+
+From the action help (hint hint):
+
+<UL>
+	<LI>not all devices support all colours. Many devices will only support red and green. In general, colours near the top of the list are more likely to be supported.
+	<LI>some devices will only flash the LED when the device is off at the time the notification is received.
+</UL>
+
+<!----------------------------------------------------------------------------->
+<A NAME="q"/>
+<H4>Why do Tasker widgets disappear after a reboot on my Wildfire ?</H4>
+
+This is a bug on some Wildfire firmware version.
+
+<P>It's not possible for the Tasker developer to
+work around, but is reported as fixed in version 1.25.405.1 of the firmware.
+</P>
+
+
+<!----------------------------------------------------------------------------->
+<A NAME="r"/>
+<H4>Why isn't my docking station detected ?</H4>
+
+Some docking stations just aren't recognized as such (Android doesn't indicate that
+a docking station has been connected).
+
+<P>
+Depending on other things you connect your device to, you might be able to use one of
+the following as a workaround:
+</P>
+
+<UL>
+	<LI>State: USB connected
+	<LI>State: Power
+	<LI>State: BT Connected (if it's a BT dock)
+</UL>
+
+
+<!----------------------------------------------------------------------------->
+<A NAME="s"/>
+<H4>Why aren't I getting any cell data for the Cell Near state ?</H4>
+
+A user reports being able to fix this issue as follows:
+
+<PRE>
+I was able to fix this issue by going into the EPST menues using
+##DATA# on the keypad and changing the EVDO Preferred mode from HDR to
+Automatic.
+</PRE>
+
+<P>
+It's possible that you will only be able to receive, not make, phone
+calls as another symptom of this problem.
+</P>
+
+
+<!----------------------------------------------------------------------------->
+<A NAME="t"/>
+<H4>Why isn't there a green light for the On/Off radio button on the main screen ?</H4>
+
+A user discovered that this happens when the DPI value of the Android build is set to
+particulart values (e.g. 200,240 is OK, 220 the light disappears).
+
+<!----------------------------------------------------------------------------->
+<A NAME="u"/>
+<H4>Why does the action Display Brightness cause my keyboard or application to close ?</H4>
+
+Normally Android does not effect changes to brightness immediately, so Tasker has to
+use a trick to make it happen. That trick can sometimes have the side effect that 
+e.g. some dialogs like the soft keyboard may close.
+
+<P>
+To avoid that, you can deselect the Immediate Effect checkbox in the Display Brightness action.
+</P>
+
+<!----------------------------------------------------------------------------->
+<A NAME="v"/>
+<H4>Why is the date in Tasker's notification list completely wrong ?</H4>
+
+<P>
+This occurs if you select a transparent <I>Notification Icon</I> at <CODE>Menu / Prefs / Monitor</CODE>,
+but don't specify a <I>Custom Notification Layout</I>.
+</P>
+<P>
+Changing to a non-transparent icon or a custom layout will fix the problem.
+</P>
+
+<!----------------------------------------------------------------------------->
+<A NAME="w"/>
+<H4>Why won't Tasker install on my custom ROM ?</H4>
+
+The most likely reason is that you don't have Google Maps installed on the device. With
+several custom ROMs that comes as a separate package.
+
+<!----------------------------------------------------------------------------->
+<A NAME="x"/>
+<H4>Why doesn't my <CODE>Perform Task</CODE> action work when I Test it ?</H4>
+ 
+<P>
+When task (a) runs a <CODE>Perform Task</CODE> action to start task (b), the order in which the two tasks are executed depends on their relative priorities.
+</P>
+<P>
+A feature of the Test button is that the tested task (a) runs at extremely high priority
+to ensure that the task runs even if other tasks are running in the background.
+</P>
+<P>
+So testing <CODE>Perform Task</CODE> with the Test button will only work as expected if in actual usage task (a) will always have higher priority than task (b) or the <CODE>Perform Task</CODE> action has <B>Stop</B> specified.
+</P>
+
+<!----------------------------------------------------------------------------->
+<A NAME="app"/>
+<H4>Why doesn't my App Context work ?</H4>
+
+First, we need to find out which method Tasker is using to detect app changes on your device.
+
+<P>
+Disable <CODE>Menu / Prefs / UI / Beginner Mode</CODE> then look in 
+<CODE>Menu / Prefs / Monitor</CODE> to see if you have an entry <B>App Check Method</B>.
+If you don't have such an entry, Tasker is using its <I>Accessibility Service</I>.
+</P>
+
+<P>
+If Tasker is using Usage Stats for app detection, you need to ask Android to give Tasker
+permission to do that, see <CODE>Menu / More / Android Settings / App Usage Stats</CODE>.
+Otherwise, you need to make sure Tasker's Accessibility Service is enabled in Android Settings,
+see <CODE>Menu / More / Android Settings / Accessibility service</CODE>.
+<P>
+
+<P>
+Further tips:
+
+<UL>
+
+<LI>if Tasker offers you the choice to use different methods, try the other methods. Remember to give Tasker permission in Android settings for the new method (see above).
+
+<LI>If you are using Nova Launcher, set <CODE>Settings / App &amp; Widget Drawer / Advanced / Automatically Close</CODE> to <B>off</B>.
+
+<LI>Some apps (very few) aren't detected by Tasker, usually due to their internal structure. 
+
+<LI>Some custom Android ROMs also have special configurations which prevent Tasker's app detection working.
+</UL>
+
+<P>For the latter problem, there are a few things you can try:
+</P>
+<UL>
+<LI>look for special settings in your ROM that relate to 'keeping the launcher in memory'. They should be <B>disabled</B>.
+
+<LI>change the build properties file. Look in <CODE>/system/build.prop</CODE> (or possibly <CODE>/system/local.prop</CODE> or <CODE>/data/local.prop</CODE>) for a line like:
+<BLOCKQUOTE>
+ro.HOME_APP_ADJ=-17
+</BLOCKQUOTE>
+
+<P>Change it in a terminal program to look like this:</P>
+
+<BLOCKQUOTE>
+ro.HOME_APP_ADJ=1
+</BLOCKQUOTE>
+
+<P>If you didn't find an existing line, just add the new line as above.</P>
+
+<P>Note: you will first need to make <CODE>/system</CODE> writeable. You can
+do that e.g. with Tasker's <CODE>Remount</CODE> action. Remember to make it
+not-writeable again after making the change.
+</P>
+<LI>try detecting apps with a state using the <B>%WIN</B> (<I>window title</I>) variable; create a new state <BLOCKQUOTE><CODE>Variable Value, %WIN, Matches, TITLE</CODE></BLOCKQUOTE>where TITLE is the title of the window of the app you are interested in. For this solution to work, you also need to enable Tasker's <I>Accessibility Service</I> in Android Settings.
+<P>
+You can check what %WIN shows for the app you are interested in with this profile:
+<BLOCKQUOTE>
+	Event: Variable Set, %WIN<BR>
+	Alert / Flash, Win is now %WIN
+</BLOCKQUOTE>
+
+</UL>
+
+<!----------------------------------------------------------------------------->
+<A NAME="keyguard"/>
+<H4>Why doesn't the Keyguard action work properly ?</H4>
+
+<P>
+Android does not officially support toggling of the Keyguard by an app. The Keyguard
+action was introduced in an early version of Tasker when a reliable workaround was
+possible. 
+</P>
+
+<P>
+In more recent Android versions, the workaround is no longer so reliable due to
+internal changes made within Android. If Keyguard works at all, there may be
+disturbing side-effects.
+</P>
+<P>
+The Keyguard action will likely be most reliablewhen the display is on and and the
+Keyguard is already unlocked.
+</P>
+<P>
+Some people have more luck with the same functionality provided by the 
+<A HREF="https://play.google.com/store/apps/details?id=com.intangibleobject.securesettings.plugin">Secure Settings plugin</A>. After install, you can find the
+Secure Settings plugin in the <B>Plugin</B> action category. Note that a rooted
+device is <B>not</B> needed to use this part of Secure Settings.
+</P>
+
+<!----------------------------------------------------------------------------->
+<A NAME="root"/>
+<H4>Why doesn't Tasker think my device is rooted ?</H4>
+
+Tasker requires two things before root functionality is enabled:
+
+<OL>
+<LI>the <CODE>su</CODE> program must be in your path
+<LI><B>one</B> of the following must be found:
+<UL>
+<LI>a superuser package
+<LI>the word <I>modversion</I> somewhere in the file <CODE>/system/build.prop</CODE>
+</UL>
+</OL>
+
+<P>If root is not being detected on your device but you are sure that root can be used by Tasker, you can therefore probably fix that by adding a line like:
+</P>
+<BLOCKQUOTE><CODE># modversion this line enables Tasker root support</CODE></BLOCKQUOTE>
+
+<P>
+to the top of the file <CODE>/system/build.prop</CODE>.
+</P>
+
+
+<!----------------------------------------------------------------------------->
+<A NAME="img"/>
+<H4>Why doesn't Tasker show my Local Media images anymore ?</H4>
+
+When you select a Local Media image, Android grants Tasker rights to keep using
+it.
+
+<P>
+However, when you uninstall Tasker, Android forgets those rights and doesn't
+reassign them when you install Tasker again. This is clearly a failing in
+Android...  On some devices Android also forgets the rights when the device is rebooted, but this is very rare and almost certainly a problem with the particular device
+involved.
+</P>
+
+<P>
+To fix the problem, you wil unfortunately need to reselect the Local Media images
+in the Tasker UI so that Android grants it access rights again.
+</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+
+
+<!--#include virtual=/tableend.html -->

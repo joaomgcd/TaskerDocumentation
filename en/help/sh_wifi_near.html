@@ -1,0 +1,13 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><body><H3>Wifi Near</H3><P>The device is near a Wifi Access Point (AP).<br/><br/>
+	On recent Android versions wifi scanning is only available for apps with the location permission, so that's why Tasker asks for it.<br/><br/>
+	If any of the parameters are specified, the AP must match that parameter, otherwise any AP will match.<br/><br/>
+SSID: the SSID of the AP e.g. SKY34312<br/><br/>
+MAC: the MAC address of the AP e.g. 00:1f:35:34:43:4a<br/><br/>
+Capabilities: e.g. [WPA-PSK-TKIP]<br/><br/>
+Min Activate Signal Level: the minimum signal strength to activate the context. It's ignored once the context is active.<br/><br/>
+Channel: the frequency channel.<br/><br/>
+Toggle Wifi: if Wifi on the device is disabled, enable it for the period of the scan, probably around 15 seconds. On Android 6+ this is rarely needed, unless you disabled the <i>Scanning Always Available</i> option in Android settings. Toggling cannot take place when the Wifi Tether (Hotspot) is enabled on the device. On Android 4.3+ devices, consider enabling <i>Scanning Always Available</i> in Android advanced wifi settings, instead of toggling.<br/><br/>
+A seen AP which is no longer visible for approximately two times the scan period is forgetten. This is to help prevent the profile bouncing on and off at the edge of the signal reception area.<br/><br/>
+The period for Wifi scanning is specified in Menu->Preferences->Monitor->Wifi Scan Time.<br/><br/>
+You can use the variable Wifi Info to see information about nearby APs (when not connected).<br/><br/>
+When any profile has a Wifi Near state context, it will do regular scans for nearby APs (see Menu->Preferences->Monitor->Wifi Scan Period. This requires the device's Wifi radio to be enabled.</P></body></html>

@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Java Support</TITLE></HEAD>
+<BODY>
+
+<H2>
+	Java Support
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+<UL>
+	<LI><A HREF="#intro">Introduction</A>
+	<LI><A HREF="#javafunction">The <CODE>Java Function</CODE> Action</A>
+		<UL>
+			<LI>Using The Action
+			<LI>Parameters
+			<LI>Return Values
+		</UL>
+	<LI><A HREF="#objects">Objects</A>
+		<UL>
+			<LI>Creating An Object
+			<LI>Object Naming, Local And Global
+			<LI>Built-in Objects
+			<LI>Assigning Values
+			<LI>Other Actions Supporting Objects
+		</UL>
+	<LI><A HREF="#other">Other Topics</A>
+		<UL>
+			<LI>Casting
+			<LI>Constants
+			<LI>Generic Classes
+			<LI>Permissions
+			<LI>Service Thread
+			<LI>Static Fields
+		</UL>
+</UL>
+
+<A NAME="intro" />
+<H3>Introduction</H3>
+<P>
+Android has hundreds of thousands of functions which apps can use. It's not possible
+for Tasker to present all of those to the user, so Tasker allows the 
+advanced user to directly call those Java functions and work with Java objects themselves.
+</P>
+
+<P>It does <B>not</B> allow you to 'write Java code'... but the combination of
+Tasker's logic and flow control with direct access to the Android API is
+sufficient for most automation purposes.
+</P>
+
+<P>
+This page assumes you have a basic familiarity with the Java concepts
+of <I>objects</I> and <I>classes</I>.
+</P>
+
+<P>
+Developer information on the Android API is available from <A HREF="http://developer.google.com/develop">Google</A>.
+</P>
+
+<H4>Example</H4>
+
+<OL>
+	<LI><CODE>Variable Set</CODE>, %service, wifi
+	<LI><CODE>Java Function</CODE>, wiman = CONTEXT.getSystemService( %service )
+	<LI><CODE>Java Function</CODE>, %enabled = wiman.isWifiEnabled()
+	<LI><CODE>Java Function</CODE>, wiman.setEnabled( true ), If %enabled eq false
+</OL>
+
+<P>
+This example task turns wifi on if it is not already enabled.
+</P>
+
+<P>
+Action 2 demonstrates that Tasker variables can be used in Java function calls.
+<I>wiman</I> is a Java object resulting from the function call which is stored 
+by Tasker for use in subsequent actions. <I>CONTEXT</I> is also such a variable
+but is built-in and always accessible to <code>Java Function</code>.
+</P>
+
+<P>Action 3 demonstrates that results of <CODE>Java Function</CODE> can also
+be assigned to Tasker variables. Since all Tasker variables are strings,
+some conversion needs to take place depending on what type of object the
+Java function returns. In this case it's a boolean, and so %enabled will be
+<B>true</B> or <B>false</B>.
+</P>
+
+<P>Action 4 demonstrates taking a decision based on the result of previous
+Java function call.
+</P>
+
+<A NAME="javafunction" />
+<H3>The <CODE>Java Function</CODE> Action</H3>
+
+<H4>Using The Action</H4>
+
+<OL>
+<LI>enter an object or class (to access static functions)
+into the first parameter. 
+<P>The magnifying glass icon will show a
+class selector for classes known in the latest Android API. Some may
+be coloured red, as not all classes are available on all devices. 
+</P>
+<P>The coffee-cup icon allows quick selection of known Java objects
+</P>
+<P>The question mark icon will attempt to link to the relevant Android
+reference page for the object or class. 
+</P>
+
+<LI>click the magnifying class next to the <CODE>Function</CODE>
+parameter to select a function to execute appropriate to the object
+or class from step 1.
+
+<P>In most cases, Tasker will be able to guess which class an object
+is, and hence which functions are available, if not, see <A HREF="#casting">casting
+</A> below.
+</P>
+<P>
+Functions listed in red are private, meaning they can be used, but the
+author didn't intend them to be.
+</P>
+
+<LI>if the function returns a value, you can enter a Java <A HREF="names">object
+name</A> to assign it to, or a Tasker variable, see <A HREF="#return">below</A>.
+<P />
+<LI>enter any parameters required for the function, see <A HREF="#params">below</A>.
+ The type of object the function expects for the parameter is displayed above the text entry
+field. The magnifying glass will list any fields associated with the current 
+entry in the text box, where possible.
+
+</OL>
+
+<A NAME="params" />
+<H4>Parameters</H4>
+
+<P>
+If you don't enter a value for a parameter, <CODE>null</CODE> will be used for
+that parameter when the function is called.
+</P>
+
+<P>
+If you enter the name of a variable array, Tasker will attempt to convert
+the array values into the type of object (an array or collection) which
+the function expects.
+</P>
+
+<P>
+Other Tasker variables will be replaced in the usual way.
+</P>
+<P>
+Here can also be entered Java objects, or their fields, either built-in or created by
+previous calls to <CODE>Java Function</CODE> (e.g. <CODE>wiman</CODE> or <CODE>arr[0].length</CODE>)
+</P>
+
+<A NAME="return" />
+<H4>Return Values</H4>
+
+<P>
+When a Java function returns a value, it can be placed in either a Tasker variable or a Java object (or ignored).
+</P>
+
+<P>
+If it's placed into a Tasker variable, it's converted to a piece of text and the object itself is lost
+and can no longer be accessed. Note that if the Java object is an array or list, it will be assigned
+to multiple Tasker variables in the usual way e.g. %val1, %val2...
+<P>
+<P>
+When the returned value is placed into a Java object, you can access the object at a later time in another <CODE>Java Function</CODE> and some other (see later) actions.
+</P>
+<P>
+Note that return value classes are inferred from the function, so 
+object names can refer to different classes at different times.
+It's not recommended to reuse names in this way however!
+</P>
+
+
+<A NAME="objects" />
+<H3>Objects</H3>
+
+<H4>Creating An Object</H4>
+
+<P>
+New objects of most types can be created by filling in the class name,
+hitting the function selector and selecting a function called <CODE>new</CODE>.
+</P>
+
+<P>
+It's worth noting that many classes in the Android API have special static
+functions for getting a new object of that class called e.g. <CODE>getInstance</CODE>
+or similar.
+</P>
+
+<P>
+Arrays (also multidimensional) can be created by adding <CODE>[]</CODE> to the 
+class name (or e.g. <CODE>[][]</CODE>).
+</P>
+
+<P>
+Here's an example of creating a 3x5 string array:
+
+<OL>
+	<LI><CODE>Java Function</CODE>, arr = new String[][]( 3 )
+	<LI><CODE>For</CODE>, %rowno, 0:2
+	<LI>&nbsp;&nbsp;&nbsp;<CODE>Java Function</CODE>, arr[%rowno] = new String[]( 5 )
+</OL>
+
+<P>
+Creating an array is also possible natively via the <CODE>newInstance</CODE> function in the the class <CODE>Array</CODE>.
+</P>
+
+<P>
+Array components can be accessed as in normal Java (<CODE>arr[0][1]</CODE>)
+wherever Java objects are <A HREF="#support">supported</A>.
+</P>
+
+
+<A NAME="names" />
+<H4>Object Naming, Local and Global</H4>
+
+Object names can consist of any any combination of upper or lower case letters and underscore and, unlike Tasker
+variable names, may start with underscore. The first letter
+may not be upper-case, as this is a convention used to distinguish objects from classes.
+<P>
+Analogous to Tasker variables, Java objects are either local to the current task if their name is all
+lower case, or global (available to any other task) if there are any upper-case characters in the name.
+All-upper-case names represent final (fixed) global objects which cannot be modified.
+</P>
+<P>
+There are three important things to remember about global Java objects:
+<UL>
+	<LI>it's important to delete them  once they are no longer needed, because they can take up
+a lot of memory.
+	<LI>unlike global Tasker variables, they are lost when Tasker is killed e.g. because the device was restarted
+	<LI>their names can only contain upper- or lower-case letters or underscore.
+</UL>
+
+<H4>Built-in Objects</H4>
+
+<UL>
+	<LI><B>Android Context</B> (class <CODE>Context</CODE>)
+        <BR><I>CONTEXT</I> <BR>
+	Many funtions in Android require a context object. In tasks running <b>directly</b> as a result of a scene element event,
+	this is the Activity object which is displaying the scene, otherwise it's Tasker's Application context.
+
+	<LI><B>Image Buffer</B> (class <CODE>Bitmap</CODE>)
+	<BR><I>IBUFFER</I>
+	The object manipulated by functions in Tasker's <I>Image</I> action category.<br>
+</UL>
+
+<H4>Assigning Values</H4>
+
+When writing Java code, to make a name refer to the same object as another
+name, you would use something like:
+
+<PRE>
+	<CODE>String a = "hello";</CODE>
+	<CODE>String b = a;</CODE>
+</PRE>
+
+<P>
+Now both a and b refer to the same object.
+</P>
+
+<P>
+To achieve that in Tasker, you use the special <CODE>assignTo</CODE>
+function after selecting the object to assign.
+</P>
+
+<PRE>
+	<CODE>Java Function, a, "hello", assign</CODE> (or <CODE>a = "hello".assign()</CODE>)
+	<CODE>Java Function, b, a, assign</CODE> (or <CODE>b = a.assign()</CODE>)
+</PRE>
+
+<A NAME="support" />
+<H4>Other Actions Supporting Objects</H4>
+
+<H5>If</H5>
+
+A Java object can be directly referenced in a condition. Null-value
+objects are replaced with text representation <CODE>null</CODE>.
+
+<P>
+Examples:
+</P>
+
+<PRE>
+	<CODE>If, arr[0][0] eq 45</CODE>
+	<CODE>If, arr[0].length > 3 </CODE>
+	<CODE>If, lightlevel Equals null</CODE>
+</PRE>
+
+<P>
+You cannot make function calls e.g. str.charAt( 5 )
+</P>
+
+<H5>For</H5>
+
+<P>
+The <I>Value</I> parameter in the For action can include Java object
+references as for <I>If</I>.
+</P>
+<PRE>
+	<CODE>For, %value, arr</CODE>
+</PRE>
+<P>
+Will repeat once for each value in the array <I>arr</I>. This will
+also work for string lists and simple objects (boolean etc)
+</P>
+
+<A NAME="other" />
+<H3>Other Topics</H3>
+
+<A NAME="casting" />
+<H4>Casting</H4>
+
+<P>
+<I>Casting</I> in Tasker is used only to tell Tasker the type of
+a particular object. That can be useful so that e.g. Tasker can
+show functions which are appropriate to it.
+</P>
+
+<P>
+In the example at the top of the page, the <CODE>getSystemService</CODE>
+function returns an Object:
+
+<PRE>
+	<CODE>Java Function</CODE>, wiman = CONTEXT.getSystemService( %service )
+</PRE>
+
+<P>
+Since the object could be one of many kinds of managers, Tasker is
+not able to list the WifiManager functions for easy selection
+when creating the next <CODE>Java Function</CODE> action in the task.
+</P>
+
+<P>
+You can tell Tasker the actual type by adding a cast in brackets
+before the name:
+</P>
+<PRE>
+	<CODE>Java Function</CODE>, (WifiManager) wiman = CONTEXT.getSystemService( %service )
+</PRE>
+
+<H4>Constants</H4>
+
+Tasker support the usual naming conventions for Java constants.
+
+<UL>
+	<LI><B>L</B> a long integer e.g. <CODE>300L</CODE>
+	<LI><B>F</B> a floating-point number e.g. <CODE>45.6D</CODE>
+	<LI><B>D</B> a double-length float e.g. <CODE>45.6D</CODE>
+	<LI><B>double quotes</B> indicate a string e.g. <CODE>"hello"</CODE>, though
+	in many cases Tasker will infer that a string was intended
+	anyway
+	<LI><B>single quotes</B> indicate a character e.g. <CODE>'x'</CODE>
+</UL>
+
+<P>
+Tasker will attempt to convert numbers without affixes to a Java type in
+the following order: <CODE>int, long, float, double</CODE>.
+</P>
+
+<H4>Generic Classes</H4>
+
+Tasker only supports fully the following generic classes:
+
+<CODE>
+<UL>
+	<LI>ArrayList&lt;String&gt;
+	<LI>ArrayList&lt;View&gt;
+	<LI>ArrayList&lt;Bundle&gt;
+	<LI>ArrayList&lt;Integer&gt;
+	<LI>ArrayList&lt;Long&gt;
+	<LI>ArrayList&lt;Double&gt;
+	<LI>ArrayList&lt;Float&gt;
+</UL>
+</CODE>
+
+<P>
+Create them by selecting their class in the class selector, clicking the
+function selector and clicking <I>new</I>.
+</P>
+
+<P>
+Generic classes mixed with arrays cannot be handled by Tasker, though
+you can pass such objects around from function to function.
+</P>
+
+<H4>Permissions</H4>
+
+<P>
+For some function calls, Android requires that the calling app have declared
+a permission otherwise the call will fail. This means that a
+Java Function call will fail if the permission is not one of the
+ones pre-declared by Tasker.
+</P>
+
+<P>
+Unfortunately, Android does not allow permissions to be added dynamically, so
+if you wish to use a function requiring a permission that Tasker
+does not already have, the only option is to generate a child
+app to run the function (see <A HREF="appcreation.html">App Creation</A>). 
+In the child configuration screen
+you can add any permissions which your Java Function call
+needs to the child app.
+</P>
+
+
+<H4>Service Thread</H4>
+
+Java code is executed with a non-UI thread by a service.
+
+<P>
+Some implications are:
+</P>
+
+<UL>
+	<LI>things which require an activity will not work e.g. showing a dialog
+	<LI>sending intents will in some cases require the flag <CODE>Intent.FLAG_FROM_BACKGROUND</CODE>
+	and possibly also <CODE>Intent.FLAG_ACTIVITY_NEW_TASK</CODE>
+</UL>
+
+<H4>Static Fields</H4>
+
+Static fields (e.g. <CODE>ContentResolver.EXTRA_SIZE</CODE>) are not currently supported
+by Tasker.
+
+<P>
+A workaround is to use reflection to get (or set) the value:
+
+<PRE>
+	<CODE>res = CONTEXT.getContentResolver();</CODE>
+	<CODE>cls = res.getClass();</CODE>
+	<CODE>fld = cls.getField( EXTRA_SIZE );</CODE>
+	<CODE>%val = fld.get( null );</CODE>
+
+</PRE>
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Location Edit</TITLE></HEAD>
+<BODY>
+<H2>
+	Location Edit
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+This screen allows configuration of a <A HREF="loccontext.html">Location Context</A>.
+
+<H4>Map Display</H4>
+
+The map shows the location (base of the flag icon), radius and names of all defined location contexts
+
+<P>
+The location currently being defined has a yellow base, other location contexts have a blue base.
+</P>
+
+<H4>Map Controls</H4>
+
+<UL>
+	<LI><B>long-click</B> on the map to select a location for this context.
+	<LI><B>long-click then drag</B> on the flag for the current location to drag it
+</UL>
+
+<P>
+Use the pull-down selector under the map to specify the radius for this context.
+</P>
+<P>
+<B>Important:</B> if your radius is too small compared to the accuracy of
+the fixes you are receiving, your context may never go active. If you can't get
+a fix, try increasing the radius. Typically, a good radius would be around twice the
+accuracy of the fixes you are receiving.
+</P>
+<P>
+If you have no internet available in order to retrieve the map tiles, you can still use
+the <B>Get Fix</B> button (see below) to specify your current location.
+</P>
+
+<H4>Action Bar Options</H4>
+
+<H5>Grab ('My Location') Button</H5>
+<P>
+Acquires a location fix using the enabled and available providers (make sure the GPS
+Button is clicked first if you want to use GPS).
+</P>
+<P>
+Once a fix is acquired, the latitude, longitude and radius of this location context
+are set according to it. If you reduce the radius after a fix, Tasker may no longer
+accurately detect whether you are in or out of the context.
+</P>
+<P>
+When trying to determine current location, Tasker will keep going with fixes until they stop improving (e.g. as the
+GPS locks on to more satellites). If you get impatient you can press the Get Fix button
+again to stop the process (its label is changed to <B>Stop</B> while a fix is being
+acquired).
+</P>
+
+<H5>Address Menu Item</H5>
+
+Allows entry of an address for which this location context should be active.
+
+<H4>Bottom Buttons</H4>
+
+<H5>Net Button</H5>
+
+The Net toggle button specifies whether to use the 
+<A HREF="loccontext.html#net">Network</A> location provider
+to monitor for this location 
+
+<H5>GPS Button</H5>
+
+The GPS toggle button specifies whether to use 
+<A HREF="loccontext.html#gps">GPS</A>
+ to monitor for this location
+(assuming it is available on the device). If GPS is not used, the network will need
+to be available in order to query for location fixes based on cell-towers or WiFi
+data.
+
+</BODY>
+</HTML>

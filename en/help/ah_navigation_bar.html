@@ -1,0 +1,43 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+	.input{
+
+	}
+	.input .title{
+		font-size: 110%;
+		font-weight: bold;
+		margin-top: 24px;
+	}
+	.input .text{
+
+	}
+</style>
+</head><body>
+	<H3>Navigation Bar</H3>
+	<P>Change the buttons on the Android navigation bar that's usually at the bottom of the screen. To bring back the default buttons, run the action with all blank fields.</P>	
+	<H3>This is a Secure Setting</H3>
+	<P>To use this setting, Tasker needs to be granted permission to change secure settings on your device</P>
+	<P>Please follow the <a href="ah_secure_setting_grant.html">instructions</a> to learn how to grant the permission.</P>
+	<H4>Important Note</H4>
+	<P>If for some reason <b>System UI</b> crashes while using this action, use the following adb command to reset the navigation bar:</P>
+	<pre class="small">adb shell settings delete secure sysui_nav_bar</pre>
+	<P>This will make the navigation bar back to what it was and make it stop crashing.</P>
+	<P>If you can, re-configure the action and leave all the fields empty and run it. That should make it reset as well.</P>
+	<!--<H4>UI Crashes When Rotating</H4>
+	<P>On some devices, System UI will crash when this action is applied and the device's screen is rotated. These are the devices I've found this happening on:</P>
+	<ul>
+		<li>Samsung Galaxy S8 (Oreo)</li>
+		<li>Samsung Galaxy S9 (Oreo)</li>
+	</ul>
+	<H4>Can't Set Default</H4>
+	<P>On some devices (apparently Samsung devices), once this action is applied, the navigation bar won't go back to normal even if you run the action with all blank fields. On these devices, to make the navigation bar default again you can go to Settings -> Display -> Navigation bar -> Button layout -> Toggle the setting. Alternatively you can rotate the screen which will make the System UI crash. This will reload the default settings again.</P>-->
+	<H4>Unsupported Devices</H4>
+	<P>This action may not work on all devices. These are the ones that I've confirmed are not working correctly:</P>
+	<ul>
+		<li>Some (all?) OnePlus devices</li>
+		<li>Some (all?) LG devices</li>
+		<li>Huawei P20 Lite</li>
+		<li>Probably a lot (if not all) of Huawei devices</li>
+	</ul>
+	<P>Other devices may also not be compatible</P>
+</body></html>

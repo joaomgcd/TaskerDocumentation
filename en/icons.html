@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Icons</TITLE></HEAD>
+<BODY>
+
+<H2>
+	Icons
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+Tasker can use four categories of icons:
+
+<A HREF="#app">Application</A>, 
+<A HREF="#builtin">Built-In</A>, 
+<A HREF="#ipack">Ipack</A>, 
+<A HREF="#user">User-Installed</A>.
+
+<P>
+In some places it's also possible to use any image stored on local media as an icon.
+</P>
+
+<A NAME="app"></A>
+<H4>Application Icons</H4>
+
+These are taken from applications installed on the device.
+<P>
+Minor note: if the icon of the application changes, an update of previously created widgets/shortcuts can
+be forced by creating a single widget with the new icon and then rebooting.
+</P>
+
+<A NAME="builtin"></A>
+<H4>Built-In Icons</H4>
+
+These come with Tasker and are kept in the device's memory.
+
+<A NAME="ipack"></A>
+<H4>Ipack Icon Sets</H4>
+
+<A HREF="http://ipack.dinglisch.net">Ipack</A> is a free, open format for sharing of icon sets between Android applications.
+Ipack icon sets can be either installed from <A HREF="http://market.android.com/search?q=ipack">Play Store</A> or from the <A HREF="http://ipack.dinglisch.net/download.html">Ipack website</A>. 
+<P>
+When setting an icon, you will notice an item labelled <I>Download More Icons</I>. Clicking on it will use the appropriate source depending on which version of Tasker you have.
+</P>
+
+<A NAME="user"></A>
+<H4>User-Installed Icons</H4>
+
+<P>
+You can also install your own icons directly into Tasker's icon directory
+<CODE>/sdcard/Tasker/.icn/</CODE>. Make sure the icons are in a subdirectory.
+The subdirectory should also only be one level deep (no subsubdirectories).
+</P>
+<P>
+Icons must be in PNG format.
+</P>
+<P>
+Example: a two-icon set called <I>Christmas</I> would have the two files
+in these locations:
+</P>
+<BLOCKQUOTE>
+<CODE>/sdcard/Tasker/.icn/Christmas/santa.png</CODE><BR>
+<CODE>/sdcard/Tasker/.icn/Christmas/snowman.png</CODE>
+</BLOCKQUOTE>
+
+</BODY>
+</HTML>

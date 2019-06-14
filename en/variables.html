@@ -1,0 +1,844 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Variables</TITLE></HEAD>
+<BODY>
+<H2>
+	Variables
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+<H4>General</H4>
+
+A variable is a named value which changes over time e.g. the level of the battery, the time of day.
+
+<P>
+When Tasker encounters a variable name in a text, it replaces the name with
+the current value of the relevant variable before carrying out the action.
+</P>
+<P>
+The main purposes of variables are:
+
+<UL>
+	<LI><I>dynamic binding</I>: doing something with an action with data which
+</P>
+	is unknown when the task is created e.g. respond to an SMS; the sender
+	is not known until the SMS is received.
+	<LI>allow <A HREF="flowcontrol.html">flow control</A> within and
+	between tasks
+	<LI>record data for some future use e.g. passing data between tasks
+</UL>
+
+<H4>Global vs. Local Variables</H4>
+
+<P>
+Variables which have an <B>all-lower-case</B> name (e.g. %fruit_bar) are <I>local</I>, meaning that their value is specific to the task or scene in which they are used.
+</P>
+
+</P>
+Variables which have one or more capital letters in their name (e.g. %Car, %WIFI) are <I>global</I>, meaning that wherever they
+are accessed from the same value is returned.
+</P>
+
+<H4>Built-In Variables</H4>
+
+<P>
+The values of built-In variables are updated automatically by Tasker.
+</P>
+
+<a name="localbuiltin"></a>
+<H5>Local Built-In Variables</H5>
+
+<UL>
+	<LI><B>Action Error</B><BR>
+	<I>%err</I><BR>
+	Is set to an integer if an error occurred when running the last action. The actual number
+	can signify the error which occurred, but is usually 1 for most Tasker actions (notable
+	exception: <CODE>Run Shell</CODE> and plugins). Every action sets or clears it, so it must be saved (e.g. with <a href="https://tasker.joaoapps.com/userguide/en/help/ah_set_variable.html">Variable Set</a>) if it will be needed later than in the immediate next action. 
+
+	<LI><B>Action Error Description</B><BR>
+	<I>%errmsg</I><BR>
+	A description of the error which <B>last resulted in %err being set</B>. Currently never set by
+	Tasker but possibly by some plugin actions.
+
+	<LI><B>Task Priority</B><BR>
+	<I>%priority</I><BR>
+	The priority of the running task. The priority determines which task
+	executes its next action when several tasks are running together.<BR>See
+	also: <A HREF="tasks.html#scheduling">Task Scheduling</A>
+
+	<LI><B>Task Queue Time</B><BR>
+	<I>%qtime</I><BR>
+	How long (seconds) the running task has been running.
+	<BR>
+        Note that tasks can be interrupted by higher priority tasks, so this number
+        is not necessarily the total run-time of the task.
+
+	<BR>
+	<LI><B>Task Caller</B><BR>
+	<I>%caller</I><BR>
+	A variable array tracing the origin of the current running task. <I>%caller1</I> gives the origin
+	of the current task, <I>%caller2 </I>the origin of <I>%caller1</I> etc. 
+	<P>
+	Example: if task A uses action <CODE>Perform Task</CODE> to start task B, then when task A is run by pressing
+	the Play button in the task edit screen, <I>%caller1</I> in task B will show <B>task=A</B>, <I>%caller2</I> will show <B>ui</B>.
+	<P>
+	The format of each entry in the array is <I>callertype</I>(<B>=</B><I>callername</I>(<B>:</B><I>subcallername</I>))
+	<P>
+
+	Caller types ares detailed below:
+	<UL>
+		<LI><B>profile</B><BR>
+		a profile (when it's state changes). <I>callername</I> is either <B>enter</B> or <B>exit</B> depending on whether the profile
+		activated or deactivated. <I>subcallername</I> is the name of the profile, if it has one, otherwise <B>anon</B>
+		<LI><B>scene</B><BR>
+		a scene event, with <I>callername</I> being the scene name. For element events, <I>subcallername</I> is the element name. For action bar button presses, <I>subcallername</I> is the label if one was given. For scene-global events (e.g. Key), <I>subcallername</I> is event type 
+		<LI><B>ui</B><BR>
+		the Play button in the task edit screen in the Tasker UI
+		<LI><B>launch</B><BR>
+		clicking a child application icon in the launcher
+		<LI><B>nbutton</B><BR>
+		a notification action button, either from Tasker's permanent notification or one created with one of the Notify actions.
+		<I>callername</I> specifies the label of the button if present.
+		<LI><B>external</B><BR>
+		an external application
+		<LI><B>qstile</B><BR>
+		a Quick Settings tile. <I>callername</I> specifies the label of the tile.
+		<LI><B>appshort</B><BR> 
+		an app shortcut (accessed via long-click on the Tasker icon). <I>callername</I> specifies the label of the tile.
+		<LI><B>task</B><BR>
+		another task, from a Perform Task action. <I>subcallername</I> is the task name, if it has one, otherwise <B>anon</B>
+	</UL>
+</UL>
+
+<a name="globalbuiltin"></a>
+<H5>Global Built-In Variables</H5>
+
+<UL>
+	<LI><B>Airplane Mode Status</B><CODE>(dynamic)</CODE><BR> 
+	<I>%AIR</I><BR>
+	Whether Airplane Mode is <B>on</B> or <B>off</B>
+
+	<LI><B>Airplane Radios</B><BR> 
+	<I>%AIRR</I><BR>
+	A comma-separated list of the radios which will be <b>disabled</b> when entering Airplane Mode.<BR>
+	Common radio names are: <I>bluetooth, cell, nfc, wifi, wimax</I>.
+
+	<LI><B>Battery Level</B> 
+	<BR><I>%BATT</I> <BR>
+	Current device battery level from 0-100.
+
+	<LI><B>Bluetooth Status</B> 	<CODE>(dynamic)</CODE><BR>
+	<I>%BLUE</I> </BR>
+	Whether Bluetooth is <B>on</B> or in some other state (<B>off</B>).<BR>
+
+	<LI><B>Calendar List</B><BR>
+	<I>%CALS</I><BR>
+	Newline-separated list of calendars available on the device.
+	<br>Each entry is in the format <I>calendarprovider:calendarname</I>.<BR>
+	Example usage:
+	<PRE>	Variable Set, %newline, \n
+	Variable Split, %CALS, %newline
+	Flash, %CALS(#) calendars, first one is %CALS(1)</PRE>
+	For the sign <I>\n</I>, press carriage-return on the keyboard.
+	<LI><B>Calendar Event Title / Descr / Location</B>
+	<I>%CALTITLE / %CALDESCR / %CALLOC</I><BR>
+	The title, description and location of the <B>current</B> calendar event, if there is one. If there are multiple current calendar events the
+	variables refer to the <B>shortest</B>.
+	<BR>Tip: find other details about the current event(s) using the <CODE>Misc / Test</CODE> action, specifying %TIMES for the data.
+
+	<LI><B>Call Name / Number/ Date / Time (In)</B> <CODE>(dynamic, monitored)</CODE><BR>
+	<I>%CNAME / %CNUM / %CDATE / %CTIME</I><BR>
+	The caller name, number, date and time of the current (if a call is in progress) or last call received.<BR>
+	Caller number is <B>0</B> if it's unknown.<BR>
+	Caller name is <B>?</B> if it's unknown (probably because the caller number was blocked)
+	and set to the caller number if the contact couldn't be looked up.
+	It's unavailable on Android versions prior to 2.0.
+
+	<LI><B>Call Name / Number/ Date / Time / Duration (Out)</B><CODE>(dynamic, monitored)</CODE><BR>
+	<I>%CONAME / %CONUM / %CODATE / %COTIME / %CODUR</I><BR>
+	The called name, number, date and time of the last (<B>not</B> the current) outgoing call made.<BR>
+	Called Name	is set to the called number if the contact couldn't be looked up.
+	It's unavailable on Android versions prior to 2.0.
+
+	<LI><B>Cell ID</B> <CODE>(monitored,dynamic)</CODE>
+	<BR><I>%CELLID</I><BR>
+	The current cell tower ID if known.<BR>
+	If you are using a Cell Near state, note that sometimes the Cell Near state will stay active
+	even though %CELLID reports that the tower ID is unknown or invalid; that is because Cell Near only
+	responds to valid IDs to prevent the state becoming inactive e.g. due to a service interruption.
+	<BR>
+	For backwards compatibility, UMTS cells are reported with a GSM prefix.
+	<BR>
+	From Android 4.2, Tasker version 4.3+, cells could be found from 2 different network types simultaneously. In that case, the value is reported with preference for the network type leftmost on the list: GSM, CDMA, UMTS, LTE.
+
+	<LI><B>Cell Signal Strength</B> <CODE>(monitored,dynamic)</CODE>
+	<BR><I>%CELLSIG</I>
+	<BR>
+	The current phone signal level from 0-8 inclusive on a rougly linear scale. On some phones, the level will rise in steps of 2 (0,2,4,6,8). The value is -1 if the value
+	is unknown or there is e.g. no service.
+	<BR>
+	From Android 4.2, Tasker version 4.3+, cells could be found from 2 different network types simultaneously. In that case, the value is reported with preference for the network type leftmost on the list: GSM, CDMA, UMTS, LTE.
+	<BR>
+	There is a bug with some Android versions that the reported signal strength is not updated until the 
+	device is turned off and on.
+
+	<LI><B>Cell Service State</B> <CODE>(monitored,dynamic)</CODE>
+	<BR><I>%CELLSRV</I><BR>
+	The current phone service state. One of <I>unknown, service, noservice, emergency, nopower</I>.
+
+	<LI><B>Clipboard Contents</B><CODE>(monitored,dynamic)</CODE>
+	<I>%CLIP</I> <BR>
+	The current contents of the system clipboard. Please note that the clipboard can't be accessed while the device's screen is securely locked.
+
+	<LI><B>CPU Frequency</B><BR>
+	<I>%CPUFREQ</I> <BR>
+	The current frequency CPU 0 is running at.  See also: <A HREF="cpu.html">CPU Control</A>.
+
+	<LI><B>CPU Governor</B><BR>
+	<I>%CPUGOV</I> <BR>
+	The current governor controlling the frequency of CPU 0. See also: <A HREF="cpu.html">CPU Control</A>.
+
+	<LI><B>Date</B> 
+	<BR><I>%DATE</I> <BR>
+ 	Current human-readable date.
+	
+	<LI><B>Day of the Month</B> 
+	<BR><I>%DAYM</I> <BR>
+	Current Day of the Month, starting at 1.
+
+	<LI><B>Day of the Week</B> 
+	<BR><I>%DAYW</I> <BR>
+	Current Day of the Week starting with Sunday.
+
+	<LI><B>Device ID / Manufacturer / Model / Product</B>
+	<BR><I>%DEVID / %DEVMAN / %DEVMOD / %DEVPROD</I><BR>
+	The ID, manufacturer, model and product name of the device. <BR>Note: ID is <B>not</B> a unique
+	identifier for the device, but rather for the hardware of the device. See also: %DEVTID.
+
+	<LI><B>Device Telephony ID</B>
+	<BR><I>%DEVTID</I><BR>
+	Returns the unique telephony-based ID for the device (e.g. for GSM the IMEI, for CDMA the
+	MEID or ESN). <BR>Not available on all devices.
+
+	<LI><B>Display Brightness</B>
+	<I>%BRIGHT</I> </BR>
+	Current screen brightness, 0-255. On some devices, if the Android setting Auto Brightness is enabled, the
+	value will always be 255.
+
+	<LI><B>Display Timeout</B>
+	<I>%DTOUT</I> </BR>
+	Current system screen timeout (seconds).
+
+	<LI><B>Email From / Cc / Subject / Date / Time</B> <CODE>(dynamic)</CODE><BR>
+	<I>%EFROM / %ECC / %ESUBJ / %EDATE / %ETIME</I><BR>
+	The From, Cc, Subject, Received Date and Received Time of the last email received
+	by the K9 email agent.
+
+	<LI><B>Free Memory</B><BR>
+	<I>%MEMF</I><BR>
+	System free memory remaining in MB.
+
+	<LI><B>GPS Status</B><BR> (monitored,dynamic Gingerbread+)
+	<I>%GPS</I><BR>
+	Whether the system GPS receiver is <B>on</B> or <B>off</B>.
+
+	<LI><B>Heart Rate</B> <CODE>(monitored,dynamic)</CODE>
+        <BR><I>%HEART</I><BR>
+
+        The current detected heart rate in beats per minute.
+	<BR>See also: state <I>Heart Rate</I>.
+	<BR>The value will be negative for no contact (-1), accuracy unreliable (-2) or some other problem (-3)
+
+	<LI><B>HTTP Response Code / Data / Content Length</B><CODE>(dynamic)</CODE>
+	<I>%HTTPR / %HTTPD / %HTTPL</I><BR>
+	Values from the last HTTP POST/GET action.<BR>
+	If the server doesn't return a content length, %HTTPL will be calculated from the returned
+	data where possible.
+
+	<LI><B>Humidity</B> <CODE>(monitored,dynamic)</CODE>
+        <BR><I>%HUMIDITY</I><BR>
+
+        The relative ambient air humidity in percent.
+	<BR>See also: state <I>Humidity</I>.
+
+	<LI><B>Input Method</B><BR>
+	<I>%IMETHOD</I><BR>
+	The current active input method. Consists of 4 parts separated by commas: Method Name, SubType Name, Mode, Locale.
+	<BR>To access particular parts, use the <I>Variable Split</I> action.
+
+	<LI><B>Interrupt Mode</B> <CODE>(dynamic)</CODE>
+	<BR><I>%INTERRUPT</I><BR>
+	Only available on Android 5.0+, <B>requires Tasker's notification access service to be enabled</B>, see Android's
+	Sound &amp; Notification settings.
+	<BR>
+	<BR>Android 5.0+: the current state of interruptions mode on the device: <B>none</B>, <B>priority</B> or <B>all</B>
+	<BR>See Also: action <I>Interrupt Mode</I>
+	<BR>
+	<BR>Android 6.0+: the current state of Do Not Disturb mode on the device: <B>none</B>, <B>priority</B>, <B>all</B> or <B>alarms</B>
+	<BR>See Also: action <I>Do Not Disturb</I>
+
+	<LI><B>Keyguard Status</B><BR>
+	<I>%KEYG</I><BR>
+	Whether the Keyguard is <B>on</B> or <B>off</B>
+
+	<LI><B>Last Application</B><BR>
+	<I>%LAPP</I><BR>
+	The name of the application that was in the foreground before the current one e.g. Maps.
+
+	<LI><B>Last Photo</B><BR>
+	<I>%FOTO</I><BR>
+	The filesystem path to the last photo taken by Tasker or the
+	standard system camera application.
+
+	<LI><B>Light Level</B> <CODE>(monitored,dynamic)</CODE>
+	<BR><I>%LIGHT</I><BR>
+	The last recorded light level in lux.<BR>Note that Android does not return a value until the light
+	level changes, so to test the sensor is working you should put it near a bright light initially.
+	<BR>May not change when the device display is off, see <CODE>Menu / Prefs / More / Display Off Monitoring / Light Sensor</CODE>.
+
+	<LI><B>Location</B> <CODE>(dynamic)</CODE>  
+	<BR><I>%LOC</I><BR>
+	The latitude and longitude of the last GPS fix.
+	<BR><A HREF="#locnote">See note</A>.
+
+	<LI><B>Location Accuracy</B> <CODE>(dynamic)</CODE>
+	<BR><I>%LOCACC</I><BR>
+	The accuracy in metres of the last GPS fix.
+	<BR><A HREF="#locnote">See note</A>.
+
+	<LI><B>Location Altitude</B> <CODE>(dynamic)</CODE>
+	<BR><I>%LOCALT</I><BR>
+	The altitude in metres of the last GPS fix, or 0 if unavailable.
+	<BR><A HREF="#locnote">See note</A>.
+	
+	<LI><B>Location Speed</B> <CODE>(dynamic)</CODE>
+	<BR><I>%LOCSPD</I><BR>
+	The speed in metres/second at the last GPS position fix or 0 if unavailable.
+	<BR><A HREF="#locnote">See note</A>.
+	
+	<LI><B>Location Fix Time Seconds</B>  <CODE>(dynamic)</CODE>
+	<BR><I>%LOCTMS</I><BR>
+	The time in seconds of the last GPS fix. To get age of fix, take this away from %TIMES.
+	<BR>This value is not set until an offset of the GPS time from the fixed time has
+	been calculated (should be after the first GPS fix) because the value is meaningless
+	until that point.
+	<BR><A HREF="#locnote">See note</A>.
+	
+	<LI><B>Location (Net)</B> <CODE>(dynamic)</CODE>
+	<BR><I>%LOCN</I><BR>
+	The latitude and longitude of the last network location fix.
+	<BR><A HREF="#locnote">See note</A>.
+	
+	<LI><B>Location Accuracy (Net)</B> <CODE>(dynamic)</CODE>
+	<BR><I>%LOCNACC</I><BR>
+	The accuracy in metres of the last network location fix.
+	<BR><A HREF="#locnote">See note</A>.
+	
+	<LI><B>Location Fix Time (Net)</B> <CODE>(dynamic)</CODE>
+	<BR><I>%LOCNTMS</I><BR>
+	The time in seconds of the last net location fix. To get age of fix, take this away from %TIMES.
+	<BR><A HREF="#locnote">See note</A>.
+	
+	<LI><B>Magnetic Field Strength</B> <CODE>(monitored,dynamic)</CODE>
+	<BR><I>%MFIELD</I><BR> 
+
+	The total magnitudes in micro-Teslas of the magnetic fields acting on all three axis of the devices sensor.
+	<BR>Updated once per second.<BR>See Also: state <CODE>Magnetic Field</CODE>.
+
+	<LI><B>Music Track</B> <CODE>(monitored,dynamic)</CODE>
+	<BR><I>%MTRACK</I><BR>
+	The current playing music track, supported for:<UL>
+		<LI>Tasker actions <i>Music Play</i> and <i>Music Play Dir</i>
+		<LI>Built-in Android music-player, probably not on all devices however
+		<LI>Power AMP
+		<LI>BeyondPod (Tasker v1.2.1+)
+		<LI>Phantom Music Control Pro
+		<LI>Media Utilities
+	</UL>
+	Priority: if both Tasker and one of the other supported apps are playing simultaneously, the
+	non-Tasker track will be shown. If more than one of the other supported apps is playing 
+	simultaneuosly, behaviour is unspecified.
+	<BR>Notes:<UL>
+		<LI> if you don't have a supported player, you could try Phantom Music Control Pro or Media Utilities, which support a lot of
+		players and should pass the info on to Tasker
+		<LI>pausing a track clears the variable, unpausing sets it again
+		<LI>your music player may need an option enabled in order to broadcast the track information, or 
+		the broadcast may only be available in a 'pro' version
+	</UL>
+
+	<LI><B>Muted</B>
+	<BR><I>%MUTED</I><BR>
+	Whether the microphone is currently muted (<B>on</B>) or not (<B>off</B>).
+
+	<LI><B>Night Mode</B> 
+	<BR><I>%NIGHT</I><BR>
+	The current Android Night Mode.<BR>
+	One of <B>on</B>, <B>off</B> or <B>auto</B>.<BR>
+	If <B>auto</B>, Android will decide whether it should be in Night Mode itself.
+
+	<LI><B>Notification Title</B> <CODE>(monitored, dynamic)</CODE>
+	<BR><I>%NTITLE</I><BR>
+	The title of the last notification shown in the status bar. Prior to KitKat, requires Tasker's accessibility server
+	to be running (see Android Accessibility Settings). From KitKat, requires Tasker's Notification Listener service
+	to be running instead. 
+	<BR>
+	In a task running as a result of a <CODE>Notification</CODE> or <CODE>Notification Removed</CODE> event, use variable %evtprm2 instead
+	of %NTITLE. This is much more reliable and you have access to other parts of the notification (%evtprm3 etc)
+	<BR>
+	Notifications generated by Tasker are not shown.
+
+	<LI><B>Phone Number</B>
+	<BR><I>%PNUM</I><BR> 
+
+	The current phone number of the device, if it's in service.<BR>
+	On some phones it doesn't work (Android limitation), seems related to the type of SIM.
+
+	<LI><B>Pressure</B> <CODE>(monitored,dynamic)</CODE>
+	<BR><I>%PRESSURE</I><BR> 
+
+	The current air pressure on the device in millibars.
+	<BR>May not change when the device display is off, see <CODE>Menu / Prefs / Monitor / Display Off Monitoring / Pressure Sensor</CODE>.
+
+	<LI><B>Profiles Active</B> 	<CODE>(dynamic)</CODE>
+	<BR><I>%PACTIVE</I><BR> 
+
+	A comma-separated list of the currently active, named profiles in activation order. Duplicate
+	names will appear on the list only once. The list always starts and ends with a comma 
+	to make matching easier, if it's not empty.
+	
+	<LI><B>Profiles Enabled</B> <CODE>(dynamic)</CODE>
+	<BR><I>%PENABLED</I><BR>
+	
+	A comma-separated list of the currently enabled, named profiles in creation order. Duplicate
+	names will appear on the list only once. The list always starts and ends with a comma 
+        to make matching easier, if it's not empty.
+
+	<LI><B>Roaming</B>
+	<BR><I>%ROAM</I><BR>
+	<B>on</B> if device is roaming on the current telephone network, otherwise <B>off</B>.
+
+	<LI><B>Root Available</B>
+	<BR><I>%ROOT</I><BR>
+	<B>yes</B> if root functions are available on this device, otherwise <B>no</B>.
+
+	<LI><B>Screen</B> 	<CODE>(dynamic)</CODE>
+	<BR><I>%SCREEN</I><BR>
+	Whether the screen is on (value <B>on</B>) or off (value <B>off</B>).
+
+	<LI><B>SDK Version</B>
+	<BR><I>%SDK</I><BR>
+	The numeric Android <A HREF="http://developer.android.com/reference/android/os/Build.VERSION_CODES.html">SDK version</A>
+	of the device.
+
+	<LI><B>Silent Mode</B> <CODE>(dynamic)</CODE>
+	<BR><I>%SILENT</I><BR>
+	The current state of silent mode: <B>off</B>, <B>vibrate</B> or <B>on</B>.
+	<BR>
+	From Android 5.0+ this variable is intended to only reflect whether the device
+	is in vibrate mode (<B>vibrate</B>) or not (any other value), but the <B>on</B> value is included for backwards
+	compatibility and set when the device is not in vibrate mode and the interrupt mode is <B>none</B>
+	or <B>priority</B>.
+	<BR>
+	See Also: variable <I>%INTERRUPT</I>, actions <I>Silent Mode</I> and <I>Interrupt Mode</I>.
+
+	<LI><B>SIM Serial Number</B>
+	<BR><I>%SIMNUM</I><BR>
+	The serial number of the SIM card, if one is present and accessible.
+	<BR>If the SIM has not been unlocked it will not be available.
+
+	<LI><B>SIM State</B>
+	<BR><I>%SIMSTATE</I><BR>
+	The current state of the SIM card.<BR>
+	One of <B>unknown</B>, <B>absent</B>, <B>pinrequired</B>, <B>pukrequired</B>, <B>netlocked</B> or <B>ready</B>.
+
+	<LI><B>Speakerphone</B>
+	<BR><I>%SPHONE</I><BR>
+	Whether the speakerphone is <B>on</B> or <B>off</B>
+	
+	<LI><B>Speech</B> <CODE>(dynamic)</CODE>
+	<BR><I>%SPEECH</I><BR>
+	The current utterance as a result of a <I>Say</I> or <I>Say File</I> action, if applicable.
+	
+	<LI><B>Tasks Running</B> <CODE>(dynamic)</CODE>
+	<BR><I>%TRUN</I><BR>
+	A comma-separated list of any named tasks which are currently running. The list always starts
+	 and ends with a comma to make matching easier, if it's not empty.
+
+
+	<LI><B>Telephone Network</B> <CODE>(dynamic, monitored)</CODE>
+	<BR><I>%TNET</I><BR>
+
+	The current telephony network operator the device is using.
+	<BR>May be unreliable on CDMA networks
+
+	<LI><B>Temperature</B> <CODE>(monitored,dynamic)</CODE>
+        <BR><I>%TEMP</I><BR>
+
+        The current ambient temperature in degrees Celsius.
+        <BR>May not change when the device display is off, see <CODE>Menu / Prefs / Monitor / Display Off Monitoring / Temp. Sensor</CODE>.
+	<BR>See also: state <I>Temperature</I>.
+
+	<LI><B>Text From/Date/Subject/Time</B> <CODE>(monitored)</CODE>
+	<BR>
+	<I>%SMSRF / %SMSRN / %SMSRB / %MMSRS / %SMSRD / %SMSRT</I><BR>
+	The sender address, name, body, subject, date and time of the last text (SMS or MMS) received.
+	<BR>These variables will be empty until the first time a text is received after
+	they have been referenced because Tasker does not monitor texts unless it's needed.<BR>
+	<I>Name</I> is set to sender address of no contact could be looked up.
+	It's unavailable on Android versions prior to 2.0.
+	<BR><I>Body</I> (%SMSRB) is only set for SMSs.
+	<BR><I>Subject</I> (%MMSRS) is only set for MMSs.
+
+	<LI><B>Time</B> 
+	<BR><I>%TIME</I> <BR>
+	Current human-readable time separated by a period e.g. 10.59
+
+	<LI><B>Tether</B> (dynamic)
+	<BR><I>%TETHER</I> <BR>
+	A comma-separated list of enabled tethering forms i.e. connections over which another device can connect to this
+	one in order to use its internet connection.<BR>
+	The possible forms are <B>wifi</B>, <B>usb</B> or <B>bt</B>.<BR>
+	BT will only be present when an actual client is connected via BT for using the devices network connection, whereas
+	the others will be present as soon as the functionality is enabled (Android bug/limitation).
+
+	<LI><B>Time MilliSeconds</B> 
+	<BR><I>%TIMEMS</I><BR>
+	The current time in milliseconds.<BR> (milliseconds since some time in January, 1970, if you must know).
+
+	<LI><B>Time Seconds</B> 
+	<BR><I>%TIMES</I><BR>
+	The current time in seconds.<BR> (seconds since some time in January, 1970, if you must know).
+
+	<LI><B>UI Mode</B> <CODE>(monitored,dynamic)</CODE>
+	<BR><I>%UIMODE</I><BR>
+	The current Android UI mode.<BR>
+	One of <B>car</B>, <B>desk</B>, <B>appliance</B>, <B>tv</B> (television), <B>watch</B>, <B>undef</B> (undefined) or <B>normal</B>.
+
+	<LI><B>Uptime Seconds</B> 
+	<BR><I>%UPS</I><BR>
+	The number of seconds since the device last booted.
+
+	<LI><B>Volume - Alarm/Call/DTMF/Media/Notification/Ringer/System</B> <CODE>(dynamic)</CODE><BR>
+	<I>%VOLA / %VOLC / %VOLD / %VOLM / %VOLN / %VOLR / %VOLS</I><BR>
+	Current audio channel volume level.<BR>
+	On some devices, volume changes are not picked up dynamically, on others not
+	when using the phone app.
+
+	<LI><B>WiFi Info</B><BR>
+	<I>%WIFII</I><BR>
+	When connected to an Access Point (AP), shows human-readable data about the AP. When not connected,
+	show details of the most recent Wifi scan results for nearby APs.
+	<BR>On Android 8.1+, may require basic location services to be enabled in Android settings.</BR>
+
+	<LI><B>WiFi Status</B> 	<CODE>(dynamic)</CODE><BR> 
+	<I>%WIFI</I><BR>
+	Whether WiFi is <B>on</B> or <B>off</B>.
+	Note: if WiFi is enabling or disabled, in fact anything but enabled, it's classed as off.
+
+	<LI><B>Wimax Status</B> <BR>
+	<I>%WIMAX</I><BR>
+	Whether Wimax is <B>on</B> or <B>off</B>.
+	Note: if Wimax is enabling or disabled, in fact anything but enabled, it's classed as off.
+
+	<LI><B>Window Label</B> <code>(monitored,dynamic)</code><BR>
+	<I>%WIN</I><BR>
+	The label of the current window, which could be a full-screen activity or a dialog. 
+	<BR>Not set if the label is unknown.
+	<BR>For some windows, the label might be that of the first item in the window e.g. a menu entry or even a button.
+</UL>
+
+<a name="notes"></a>
+<H5>General Notes</H5>
+
+<P>
+Variables marked <CODE>dynamic</CODE> in the list above trigger changes in <I>Variable Value</I> states
+and <I>Variable Set</I> events whenever their value changes.
+</P>
+
+<P>
+Variables marked <CODE>monitored</CODE> will cause the relevant monitor to startup to track their state
+when they are used in contexts or tasks which are used by widgets or <B>enabled</B> profiles. 
+For instance, %CELLID used in a Flash action will cause cell location to be tracked.
+</P>
+<P>
+Limitation: monitored variables cannot be detected in anonymous shortcuts.
+</P>
+
+<A NAME="locnote"/>
+<H5>Note On Location Variables</H5>
+
+<P>
+When the relevant provider (Net or GPS) of a location context is active, these variables report the values from the provider,
+which may be more recent than Tasker has seen if other applications are asking for location.
+</P>
+<P>
+When the relevant provider is <B>not</B> active, these variables report the last values <B>seen by Tasker</B>,
+which could be the result of a <CODE>Get Location</CODE> action or of monitoring for a <CODE>Location Context</CODE>.
+</P>
+<P>
+That means the the reported fix times could <B>go backwards</B>, if you turn off the location provider
+between two uses of the variables.
+</P>
+
+<P>
+Location variables can also be manually updated by running the <CODE>Get Location</CODE> action.
+</P>
+
+<H4>User Variables</H4>
+
+The action <I>Variable Set</I> (and several others) can be used to create new variables. Variable names have the following restrictions:
+
+<UL>
+	<LI>they must start with the <B>%</B> character
+	<LI>they are case-sensitive
+	<LI>then must at least a further <B>3</B> alphanumeric characters
+	<LI>they can also contain the underscore character (_) but not start or end with it
+</UL>
+
+</P>
+<P>In general, it's best to use local variables wherever possible because:
+</P>
+
+<UL>
+<LI>you know they won't be interfered with by other tasks or scenes
+<LI>they are more efficient in several ways
+</UL>
+<P>
+Note: multiple copies of the same task running at the same time each have their own separate copy of their local variables.
+</P>
+
+<H6>Scene-Local Variables</H6>
+
+<P>
+Each scene has its own set of local variables which it shares with
+the task that created it; both the scene and task 
+see changes to the variables made by either.
+</P>
+
+<P>
+Any task which starts as a result of a scene event (e.g. a tap on an element)
+also shares the variables of the scene (and thus of the original
+task which created the scene).
+</P>
+
+<P>
+As a consequence, a task started by a scene event (e.g. Tap on an element)
+which shows a new scene e.g. via the <I>Show Scene</I> action, will result in
+the second scene sharing the variables of the first scene.
+</P>
+
+<P>
+When a task shows a scene that was created by a different task (or a different copy
+of the same task) and subsequently hidden, the task's variables are <B>copied</B> to the scene variables (overriding
+values of variables which already exist) but
+the task does <B>not share</B> the scene variables and cannot see changes to them.
+</P>
+
+
+
+<H5>Escaping Variable Names</H5>
+
+If you want to prevent a variable name being replaced, put a <B>\</B> in front of it e.g.
+
+<BLOCKQUOTE>
+<CODE>Variable Set, %new, \%old</CODE>
+</BLOCKQUOTE>
+
+Will set the value of <I>%new</I> to <I>%old</I>, <B>not</B> the <B>value</B> of <I>%old</I>.
+<P>In order to precede a variable name with a <B>\</B> you can escape the backslash e.g.
+<P>
+
+<BLOCKQUOTE>
+<CODE>Variable Set, %new, \\%old</CODE>
+</BLOCKQUOTE>
+
+Will set the value of <I>%new</I> to <B>\</B> followed by the <B>value</B> of <I>%old</I>.
+
+<H5>Variable References</H5>
+
+It's possible to indirectly refer to variables by preceeding one or
+more extra <B>%</B> signs to the start of the variable name.
+For example:
+
+<BLOCKQUOTE><CODE>
+Variable Set, %colour, red<BR>
+Variable Set, %varname, colour<BR>
+Flash %%varname
+</CODE></BLOCKQUOTE>
+
+<P>
+... will flash <B>red</B>.
+</P>
+<P>
+Using this notation it's possible to assign variables whose name is
+not known beforehand:
+
+<BLOCKQUOTE><CODE>
+Read File, variablename.txt, To Var, %varname<BR>
+Variable Set, %%varname, red
+</CODE></BLOCKQUOTE>
+
+<P>
+This will set the variable whose name is stored in the file <CODE>variablename.txt</CODE> to <B>red</B>.
+</P>
+
+
+<P>
+You can nest references as deeply as you like (e.g. <CODE>%%%%var</CODE>)
+but mental stress and bugs are sure to follow.
+</P>
+<P>
+If any part of the chain has an invalid variable name then the original
+reference will be returned. In the first example, if <CODE>%varname</CODE>
+is set to <CODE>!!!</CODE>, then <B>%%varname</B> will be flashed instead
+of <B>red</B>.
+</P>
+
+<H5>Variable Lifetime</H5>
+
+The value a <B>global</B> variable holds lasts until Tasker is uninstalled if
+it is not changed by any task.
+<P><B>Local</B> variables are lost at the end of the task they were created in, or
+when the parent scene is destroyed in the case of tasks called from scenes.
+</P>
+
+<H5>Uninitialized Variables</H5>
+
+<P>
+User-variables which have not had a value assigned do not have replacements carried out e.g. in the expression <I>I love %fruit</I>, if
+%fruit is uninitialized, the expression remains as it is, otherwise %fruit is replaced with the value.
+</P>
+<P>
+Exception: uninitialized variables used in mathematical expressions are replaced with 0.
+</P>
+
+<H4>Variables In Plugins</H4>
+
+Plugin developers can tell Tasker to replace variables
+it finds in plugin strings with their current Tasker value. If you have a plugin
+which doesn't support this, send the developer this URL
+
+<BLOCKQUOTE>
+<A HREF="http://tasker.dinglisch.net/plugins.html">http://tasker.dinglisch.net/plugins.html</A>
+</BLOCKQUOTE>
+
+<P>
+which has the relevant details.
+</P>
+
+<A NAME="arrays"/>
+<H4>Variable Arrays</H4>
+
+Tasker supports pseudo-arrays.
+<P>
+They are especially useful when used with the <CODE>For</CODE> action, since you can
+perform a set of actions on each element in turn e.g. list a set of files then 
+test each one.
+</P>
+
+<H5>Examples</H5>
+
+<P>
+If the four variables <B>%arr1, %arr2, %arr3, %arr4</B> hold respectively <B>a, b, c</B> and <B>d</B>
+then we have an array with 4 <I>elements</I>.
+These variables can be used just like any other, however it is also possible to access
+them in special ways. Here are some examples:
+</P>
+<UL>
+	<LI><B>%arr(#)</B><br>
+	The number of defined array elements (<B>4</B> in this case)
+	<LI><B>%arr(#>)</B><br>
+	The index of the first defined array element, or <B>0</B> if none are defined (<B>1</B>).
+	<LI><B>%arr(#<)</B><br>
+	The index of the last defined array element, or <B>0</B> if none are defined (<B>4</B>)
+	<LI><B>%arr(#?b/c)</B><br>
+	A comma-separated list of the array indices (lowest to highest) with matching values, or <B>0</B> if none match (<B>2,3</B> in the example)
+	<LI><B>%arr(#?~Rregex here)</B><br>
+	Same as above but with regex matching
+	<LI><B>%arr(>)</B><br>
+	The contents of the first defined array element (<B>a</B>)
+	<LI><B>%arr(<)</B><br>
+	The contents of the last defined array element (<B>d</B>)
+	<LI><B>%arr()</B> or <B>%arr(:)</B><br>
+	All of the array elements separated by commas (<B>a,b,c,d</B>)
+	<LI><B>%arr(2)</B> or just <B>%arr2</B><br>
+	The content of the element with index 2 (<B>b</B>)
+	<LI><B>%arr(2:4)</B><br>
+	Contents of defined elements with indices 2 to 4 (<B>b,c,d</B>)
+	<LI><B>%arr(:3)</B><br>
+	All the defined elements with indices up to 3 (<B>a,b,c</B>)
+	<LI><B>%arr(3:)</B><br>
+	All the defined elements with indices starting from 3 (<B>c,d</B>)
+	<LI><B>%arr(1:2)</B><br>
+	All the defined elements with indices from 1 to 2 (<B>a,b</B>)
+</UL>
+
+Notes:
+
+<UL>
+<LI>arrays will virtually always have all their elements defined so e.g. %arr(>) will be the same as %arr(1), %arr(#) will be the same as %arr(#<)
+<LI>index specifiers can themselves be variables (e.g. %arr(1:%MAX) or %arr(#?%FINDME)) but <B>not</B> variable arrays
+</UL>
+
+<H5>Creating An Array</H5>
+
+<OL>
+	<LI>using <CODE>Array Set</CODE>:<BR>
+	<b>Array Set, %arr, a b c d</b>
+	<LI>using <CODE>Variable Split</CODE> on an existing (simple) variable:<br>
+	<B>Variable Set %arr a b c d</B><BR>
+	<B>Variable Split %arr</B><BR>
+	<LI>by assigning individual elements with <CODE>Variable Set</CODE>:<BR><B>Variable Set, %arr3, c</B>.
+	<LI>using <CODE>Array Push</CODE> to add an initial element
+	<LI>some other actions also create arrays for their results e.g. <CODE>List Files</CODE>.
+</OL>
+
+<H5>Inserting Elements</H5>
+
+Use the <CODE>Array Push</CODE> action.
+
+<P>
+The <I>Fill Spaces</I> parameter might need more explanation. It is only relevant if one or more of the array elements are undefined. As an example, if we have the array elements %arr1 and %arr3 containing <B>apple</B> and <B>banana</B>:
+</P>
+<UL>
+<LI><B>Array Push %arr1, 1, pear</B><br>leaves %arr1, %arr2 and %arr4 containing <B>pear</B>, <B>apple</B> and <B>banana</B>.<BR>
+<LI>but <B>Array Push %arr2, 1, pear, Fill Spaces</B><BR>leaves %arr1, %arr2 and %arr3 containing <b>pear</B>, <B>apple</B> and <B>banana</B>.
+</UL>
+
+<H5>Removing Elements</H5>
+
+<P>
+Use the <CODE>Array Pop</CODE> action. Note the difference between <CODE>Array Pop</CODE> and <CODE>Variable Clear</CODE>: 
+<CODE>Pop</CODE> reduces the number of elements in the array, while <CODE>Clear</CODE> merely changes elements to undefined.
+</P>
+
+<P>
+Example: if we have the array elements %arr1, %arr2, %arr3 containing <B>apple</B>,<B>pear</B> and <B>banana</B>:
+</P>
+<UL>
+<LI><B>Variable Clear %arr2</B><br>leaves %arr1 and %arr3 containing <B>apple</B> and <B>banana</B>.<BR>
+<LI>but <B>Array Pop %arr2</B><br>leaves %arr1 and %arr2 containing <B>apple</B> and <B>banana</B>.
+</UL>
+
+<H5>Deleting An Array</H5>
+
+Use <CODE>Array Clear</CODE>.<P>In most cases you could also use <B>Variable Clear %arr*</B> with Pattern Matching checked,
+but that would also delete variables called e.g. %arrTOODEETOO so <CODE>Array Clear</CODE> is safer.</P>
+
+<H5>Sorting</H5>
+
+The <CODE>Array Process</CODE> action offers various sorting options, amongst other things.
+
+<H5>Array Efficiency</H5>
+
+Arrays are intended for convenience when processing high-level data, not for e.g.
+processing astronomical data.  Doing thousands of array actions will likely
+take several seconds (although mostly due to the housekeeping work done by Tasker
+in-between each action rather than due to the array operations themselves).
+</P>
+<P>
+In terms of storage efficiency, they are also fairly hopeless. You probably do not
+want to store tens of thousands of items in an array.
+</P>
+
+</BODY>
+</HTML>

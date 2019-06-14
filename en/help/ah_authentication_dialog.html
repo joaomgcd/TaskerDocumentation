@@ -1,0 +1,23 @@
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<body>
+	
+	<H2>Authentication Dialog</H2>
+	<P>Show a dialog that allows the current user to authenticate. This can be used to allow for secure execution of certain tasks.</P>
+	<P><b>Read Result To</b> will set the authentication result into both a variable and an array with that variable name:</P>
+	<ul>
+		<li><b>Variable</b>: Will contain the last authentication result. Can be <b>success</b> or whatever error there was in case of an error. You will probably use this most of the time.</li>
+		<li><b>Array</b>: For advanced uses. Will contain all authentication results that resulted from the dialog, ie, if your finger wasn't recognized first but then it was you'll have an array with 2 items: an error and success</li>
+	</ul>
+	<P>If you want to handle errors use the <b>Continue Task After Error</b> option and check the result variable.</P>
+
+	<H3>Credentials</H3>
+	<P>Works on all Android versions.</P>
+	<P>Shows the standard Android authentication dialog and asks for whatever credentials you currently have setup on your device.</P>
+	<P>It doesn't work if you don't have any credentials setup at the moment of running.</P>
+
+	<H3>Biometric</H3>
+	<P>Only works for Android 9 and above</P>
+	<P>If you fail to authenticate 5 times in a row Android will block access to this for 30 seconds</P>	
+</body>
+</html>

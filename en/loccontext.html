@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Location Context</TITLE></HEAD>
+<BODY>
+
+<H2>
+	Location Context
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+<P>
+A <I>location context</I> specifies a circular geographical area in which
+it is active. It is formed by a centre point (<I>latitude, longitude</I>) plus
+a <I>radius</I> around that point.
+</P>
+
+<H4>Location Providers</H4>
+
+A location provider is a method of supplying geographical coordinates. Tasker must
+use one or more location providers to be able to decide when a location context
+should become active or inactive.
+
+<A NAME="gps"/>
+<H5>GPS</H5>
+
+<P>
+The most accurate provider available (around +-10m), but its performance degrades quickly
+indoors and it uses a relatively large amount of power. 
+</P>
+<P>
+To set the frequency of GPS fixes, see <CODE>Menu / Preferences / Monitor</CODE>.
+<I>GPS Check Time</I> determines the check frequency in seconds while the device
+is awake, <I>Off Check Time</I> while the device is asleep.
+</P>
+<P>
+GPS will only be used for a particular context if it is specified in the location
+edit screen.
+</P>
+
+<A NAME="net"/>
+<H5>Network</H5>
+
+This provider uses a combination of cell-towers
+and WiFi information (if wifi is enabled) to determine the device's geographical location. It is
+less power-hungry than GPS, but also less accurate (sometimes +- several kilometres)
+ and requires data network availability.
+<P>
+Network will only be used for a particular context if it is specified in the location
+edit screen.
+</P>
+
+See also:
+
+<UL>
+	<LI><A HREF="activity_locselect.html">Location Edit Screen</A>
+	<LI><A HREF="loctears.html">Location Without Tears</A> (guidance for choosing a location method)
+</UL>
+
+</BODY>
+</HTML>

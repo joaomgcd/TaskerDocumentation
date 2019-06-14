@@ -1,0 +1,83 @@
+<!--#include virtual=/tablestart.html -->
+<H2>
+        FAQ: Other
+        <IMG ALIGN="right" SRC="androidlogo.png"/>
+        <IMG ALIGN="right" SRC="icon_tasker.png"/>
+</H2>
+
+<UL>
+        <LI><A HREF="#a">Do you plan to include feature X ?</A>
+        <LI><A HREF="#b">Should I worry about using Tasker's Accessibility service ?</A>
+        <LI><A HREF="userguide/en/app_widgets.html#diff">What's the difference between a Widget and a Shortcut ?</A>
+	<LI><A HREF="#instant">What's an <I>Instant Profile</I> ?</A>
+</UL>
+
+<!----------------------------------------------------------------------------->
+
+<A NAME="a"/>
+<H4>Do you plan to include feature X ?</H4>
+
+The developer has a large list of potential features and works through it according
+to a mystical method based on star configurations. It's difficult to say what
+will be done in advance, sorry.
+
+<!----------------------------------------------------------------------------->
+<A NAME="b"/>
+<H4>Should I worry about using Tasker's Accessibility service ?</H4>
+
+Not at all.
+
+<P>
+Although the Android warning says Tasker might read passwords, in fact:
+</P>
+
+<UL>
+	<LI>Android doesn't allow apps to see the contents of fields labelled <I>Password</I>
+	<LI>Tasker doesn't even ask Android for data about text fields, only buttons, windows
+	and notifications
+</UL>
+
+<!----------------------------------------------------------------------------->
+<A NAME="instant"/>
+<H4>What's an <I>Instant Profile</I> ?</H4>
+
+<P>
+Most profiles have a duration. Their enter task fires, they are active for a while, then they go inactive and settings
+may be restored or an exit task fired. However, profiles with
+</P>
+
+<UL>
+    <LI>an Event context, <B>or</B>
+    <LI>a Time context where the From parameter is the same as the To parameter, <B>or</B>
+    <LI>a Time context with a repeat value specified
+</UL>
+
+<P>
+are only active for an instant and hence it does not make sense to talk about an exit task and restoration of settings.
+</P>
+
+<P>
+There's no point setting brightness from 200 to 30, and then a millisecond later back to 200, 
+therefore settings made by an instant profile stay at whatever value is specified.
+</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+
+
+<!--#include virtual=/tableend.html -->

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: MIDI</TITLE></HEAD>
+<BODY>
+
+<H2>
+	MIDI
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+<P>
+Tasker includes basic support for interacting with a (single) musical instrument which support the MIDI protocol.
+</P>
+
+<P>You don't need to know anything about MIDI in order to play complex
+tunes on an instrument via Tasker.
+</P>
+
+<H3>Requirements and Setup</H3>
+
+<P>The Android ROM on the Android device must support the USB Host protocol.
+</P>
+
+<P>
+A USB OTG (<I>On The Go</I>) adapter is required for the Android device.
+</P>
+
+<P>
+If the MIDI device has a USB-To-Host connecter, a normal USB lead can then be used from the
+OTG adapter to the MIDI device.
+</P>
+
+<P>
+If the MIDI device has only MIDI inputs, a USB-To-MIDI adapter must be used from the OTG adapter
+to the MIDI device.
+</P>
+
+<P>
+When a connection has been established with the MIDI device, Android should ask whether permission
+should be granted to Tasker to use the device. In order to make things easier and allow automation
+without user-interaction, it's recommended that <B>Always</B> be selected.
+</P>
+
+<H3>Action: MIDI Play</H3>
+
+Tasker supports playing of notes in various voices and on multiple channels via the <I>MIDI Play</I> action in the <I>Media</I> category.
+
+<P>
+The <I>Score</I> parameter in the <I>MIDI Play</I> action uses a Tasker-specific format to hopefully allow even non-musicians to easily 'code' some music.
+</P>
+
+<H4>Examples:</H4>
+
+<UL>
+	<LI><CODE>C</CODE><BR>
+	plays a single C note and stops
+
+	<LI><CODE>D D</CODE><BR>
+	plays a D twice
+
+	<LI><CODE>D . . C</CODE><BR>
+	plays a D, wait 2 beats, then plays a C
+
+	<LI><CODE>CDA#</CODE> <B><I>or</I></B> <CODE>C,D,A#</CODE><BR>
+	plays a C, D and A# simultaneously
+
+	<LI><CODE>D!10</CODE><BR>
+	plays a D very softly
+
+	<LI><CODE>D!10 !100,C C C</CODE><BR>
+	plays a D very softly then a few loud Cs
+
+	<LI><CODE>C2 C3 C4</CODE><BR>
+	Plays three Cs of increasing octaves (higher pitch)
+
+	<LI><CODE>D*4</CODE><BR>
+	plays a D for 4 beats
+
+	<LI><CODE>C#/4</CODE><BR>
+	plays a C for a quarter beat
+
+	<LI><CODE>C#/4D</CODE><BR>
+	plays a C for a quarter beat and simultaneously a D for a full beat
+
+	<LI><CODE>@1 C C C</CODE><BR>
+	Selects voice 1 then plays 3 Cs
+
+	<LI><CODE>C@1,D@2</CODE> <B><I>or</I></B> <CODE>C@1D@2</CODE><BR>
+	Plays a C with voice 1 and a D with voice 2
+
+	<LI><CODE>@1 C<BR>@2 E*4</CODE><BR>
+	Plays a C on the first channel with voice 1, while playing and holding 
+	an E on the second channel with voice 2.
+
+	<LI><CODE>C A<BR><BR>B D</CODE><BR>
+	Plays C A B D on channel zero. Note that just starting a new line
+	would mean creating a new channel.
+
+	<LI><CODE>C A<BR>A B<BR><BR>B D<BR>C D</CODE><BR>
+	Plays C A B D on channel 0 while playing simultauously
+	A B C D on channel 1.
+</UL>
+
+<H4>Note Specification</H4>
+
+A note specification can be made up of several parts indicating different things about what and how to play. The note itself must be the first part, all other
+parts are optional.
+
+<H6>The Note</H6>
+
+Possible notes for the English locale are <CODE>C, C#, D, D#, E, F, F#, G, G#, A, A#, B</CODE>. These represent the notes
+starting at <I>middle C</I> on a piano, which are in the 4th octave. Flat
+notes are also possible e.g. <CODE>D_</CODE>.
+
+<P>
+Deeper notes can be achieved
+by specifying a lower octave e.g. <CODE>E2</CODE> or <CODE>A#3</CODE> and higher notes a higher octave
+e.g. <CODE>C6</CODE>.
+</P>
+
+<P>For convenience, lower case versions of the notes are an octave
+deeper than the upper case versions e.g. <CODE>c</CODE> is equivalent
+to <CODE>C3</CODE>.
+</P>
+
+<P>Other locales may have different note naming conventions.</P>
+
+<H6>Note Duration (Optional)</H6>
+
+A note is by default held for one beat. A <CODE>*</CODE> indicates the
+note should be held longer e.g. <CODE>C*6</CODE> holds a C for 6 beats.
+A <CODE>/</CODE> indicates the note should be shorter e.g. <CODE>C/2</CODE>
+indicates that the note should be played for half a beat.
+
+<H6>Note Velocity</H6>
+
+<I>Velocity</I> usually indicates to a MIDI instrument how hard to play the note. It's represented in Tasker via an
+exclamation mark e.g. <CODE>!6</CODE> means 'play this note with velocity 6'.
+
+<P>The lowest value is 0 and the highest 127.</P>
+
+<H6>Note Voice</H6>
+
+<I>Voice</I> specifies which instrument to play a note with. It's represented in Tasker by an @ sign
+e.g. <CODE>C@1</CODE> 'play a C using voice 1'.
+
+<P>
+The voice can be from 0 to 127.
+</P>
+
+<P>
+Most MIDI instruments don't have more than 128 voices and so you 
+probably don't need to read any further in this section.
+</P>
+
+<P>However, if your instrument has more voices you will probably
+need to specify them using the values <I>MSB</I> and/or <I>LSB</I>
+which you will need to find in the instrument's user manual.
+<P>
+
+<P>
+Tasker allows specificaton of LSB and Program
+(the name of the basic parameter) together e.g: <CODE>B@3.1</CODE>
+specifies LSB 3 and Program 1.
+</P>
+<P>
+To specify an MSB also, add it on the left e.g. <CODE>D@6.5.3</CODE>
+specifies MSB 6, LSB 5 and Program 3.
+
+<H4>Chords</H4>
+
+Several notes can be played at the same time by grouping them
+together (no whitespace) or separating them with 
+commas e.g. C,D</CODE> and <CODE>CD</CODE> both play a C and a D.
+
+<H4>Channels and Beats</H4>
+
+A specification of a single note or chord is called a beat.
+
+<P>
+A channel consists of a set of beats separated by whitespace which are dealt with one-by-one at the same time as the corresponding
+beats on other channels. In that way, it's possible to see which notes are going to be played simultaneously.
+</P>
+
+<P>Beats usually consist purely of a few notes, but they can also
+specify default values of velocity and voice for the channel.
+</P>
+
+<P>
+For example, <CODE>!10,C D E!100 F</CODE> will play a quiet C,
+a quiet D, a loud E then a quiet F. <CODE>@2 C D E@3 F</CODE> plays a C then a D in voice 2, an E in voice 3, then an F in voice 2 again.
+</P>
+
+<P>When you reach the end of a line with a channel, do <B>not</B> go
+further on the next line. If you do so, the next line will be treated
+as a new channel. Instead, leave a blank line.
+<BR>
+See the last two examples above.
+
+<P>
+A dash character <CODE>-</CODE> as the  <B>whole</B> beat means 'do nothing this beat'. 
+</P>
+
+<P>
+A dash followed by a number will rest for that number of beats. This will mess
+up the channel alignment, but can be useful for channel which isn't used
+very often.
+</P>
+
+<H4>Bars</H4>
+
+A bar is a character that divides music into pieces of equal length. 
+Tasker totally ignores <CODE>|</CODE> characters so they do not
+count as a beat.
+
+<H4>Comments</H4>
+
+<P>
+The remainder of a line can be ignored by inserting a single quotation character '.
+The line before the quotation mark, and subsequent lines, are unaffected.
+<P>
+
+<P>
+The rest of a whole channel can be ignored by inserting a double quotation mark ".
+The line before the quotation marks are unaffected.
+</P>
+
+<P>
+Comments can be useful for testing specific parts of a score independently.
+</P>
+
+<H4>Variable Support</H4>
+
+<P>
+The <CODE>Score</CODE> parameter supports variable just like most other
+places in Tasker.
+</P>
+
+<P> That means you can e.g. specify a voice specification
+with Variable Set and then use the name to make it easier to read
+the music e.g. <CODE>@%piano,C @%guitar,D</CODE> (play a C
+with piano then a D with guitar: assuming you've first set
+the variables to a voice which matches their name on your
+MIDI instrument)
+</P>
+
+<P>
+You can also define variables with sequences of notes and then
+define a song as being repeating names e.g. <CODE>%intro %verse %chorus %verse %end</CODE>.
+</P>
+
+<H4>Music 'Programming'</H4>
+
+MIDI Play actions can of course be interspersed with other Tasker actions
+so that you can do things like loops which play a piece of music at different
+pitch levels, loudness, speed etc Here's a task which plays a long chord
+with 10 different instrument and each instrument at 5 different velocities
+(loudness levels).
+
+<PRE><CODE>
+For, %loudness, 20:100:20
+For, %voice, 1:10
+MIDI Play, @%voice,!%loudness C,E,G
+</CODE></PRE>
+
+<H3>Tested Devices</H3>
+
+Tasker has been tested with the following devices:
+
+<UL>
+	<LI>Yamaha Clavinova 480
+</UL>
+
+Please let the developer know if you can confirm it working on other
+devices.
+
+</HTML>

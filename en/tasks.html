@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Tasks</TITLE></HEAD>
+<BODY>
+
+<H2>
+	Tasks
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+A task is simply a set of actions which are performed one after the other.
+
+<H4>Named / Anonymous Tasks</H4>
+
+A task can be given a name. This allows:
+<UL>
+	<LI>the same task to be used in more than one profile</LI>
+	<LI>easier identification of what the task does</LI>
+	<LI>in the case of a <A NAME="app_widgets.html">task widget/shortcut</A>, 
+	it provides a label	for the icon on the home screen.</LI>
+</UL>
+
+<P>
+When creating a profile, widget or shortcut, 
+often the associated task will consist only of one or two actions which will not
+be reused. For this case, Tasker allows you to create a task without a name
+(an <I>Anonymous</I> task).
+</P>
+
+<H4>Task Visibility</H4>
+
+Anonymous tasks are only visible when editing the profile that they are associated
+with. 
+<P>
+Named tasks are visible on any screen that allows task editing.
+Any changes made to the set of tasks in any screen is reflected in all the other
+screens.
+
+<H4>Task Icon</H4>
+
+Each task has an associated icon, by default a question mark. The icon is used
+
+<UL>
+	<LI>to represent the task on the home screen when it is used as a
+<A NAME="widgets.html">widget or shortcut</A>
+	<LI>when the task is <A HREF="appcreation.html">turned into and app</A>
+	<LI>for easier identification of the task within the Tasker UI
+</UL>
+
+<H4>Deleting Tasks</H4>
+
+Named tasks can only be deleted via the <I>Delete</I> button on the
+<A HREF="activity_taskedit.html">Task Edit</A> screen. Unnamed tasks
+are deleted automatically when the profile they are part of is deleted,
+or a named task is selected for that profile.
+
+<P>
+Named tasks cannot be deleted while a profile still refers to them.
+</P>
+<P>
+When a task is deleted that is referred to by a previously created named
+widget or task, the widget will stop working.
+</P>
+<P>
+Android does not allow Tasker to automatically remove the widget from the
+Home Screen.
+</P>
+
+<A NAME="scheduling"></A>
+<H4>Task Scheduling</H4>
+
+When there is a single task waiting to be executed, it's actions are executed one-by-one
+until finished.
+
+<P>
+When there are several tasks in the queue at once, it's important to understand
+how they are handled:
+</P>
+<UL>
+	<LI>only <B>one action</B> from the same <A HREF="#actiongroups">action group</A> can be executed at once to
+	prevent interference
+	<LI>the task in the queue with the <B>highest priority</B> goes first and blocks lower priority tasks
+	<LI>tasks with the <B>same priority</B> take turns executing an action
+	each, starting with the most recent addition to the queue <B>unless</B> one task is a child of the 
+other (started via <A HREF="help/ah_run_task.html">Perform Task</A>), in which case the child executes first.
+</UL>
+
+<P>
+Task priority, 0 to 50 inclusive with 0 being lowest, is determined according to whatever causes the task to run.
+
+<UL>
+<LI>enter tasks run by profiles have the priority specified in Profile Properties, the default is 5.
+<LI>exit tasks run by profiles have the priority specified in Profile Properties <B>plus 1001</B>, the default is therefore 1016
+<LI>tasks run by <B>widgets</B> or <B>shortcuts</B> can be set in Task Properties when the widget/shortcut is created, the default is 7
+<LI>tasks run from scene elements have priority <B>one more</B> than the task which showed the scene
+<LI>tasks run from the <B>Test</B> button in the task edit screen have priority 100 by default, long-click the play buttin to choose a different one.
+</UL>
+ 
+</P>
+A couple of guidelines are:
+<UL>
+<LI>if you want a particular task to always interrupt other tasks that may be
+executing, give it a high priority
+<LI>if you have a task that lasts for a while,
+you probably want to give it a low priority so it doesn't block other tasks
+from being executed.
+</UL>
+
+<A NAME="actiongroups"></A>
+<H4>Action Groups</H4>
+
+Actions are divided into groups for scheduling based on how long the action takes to execute and what it
+interferes with:
+
+<UL>
+	<LI><B>Speech</B>: <CODE>Say, Say To File</CODE>
+	<LI><B>Javascript</B>: <CODE>Javascript</CODE>
+	<LI><B>Fix</B>: <CODE>Get Location</CODE>
+	<LI><B>Voice</B>: <CODE>Get Voice</CODE>
+	<LI><B>Proxy</B>: <CODE>Display Brightness, Query Action, Photo, Photo Series, Photo Series Time</CODE>
+	<LI><B>Proxy Scene</B> Enter Key, Menu, Popup, Popup Task Buttons, Variable Query
+	<LI><B>Other Scenes</B>: the name of the scene being shown
+	<LI><B>Normal</B>: all other actions
+</UL>
+
+<H4>Wait Actions</H4>
+<P>
+<CODE>Wait</CODE> and <CODE>Wait Until</CODE> are special cases. The rules for handling them are complicated
+and try to do the 'best thing' dependent on the situation.
+</P>
+
+<H4>Same-Profile Tasks</H4>
+
+Tasks launched by the same profile by default always execute in the order in which they are launched. Other tasks from the same profile remain completely inactive until any previous task from the same profile is complete. The main purpose of this rule is to correctly handle rapid changes in a profile's activation state.
+<P>
+This behaviour can be disabled by deselecting <I>Enforce Task Order</I> in the Profile Properties dialog.
+</P>
+
+<H5>Example</H5>
+
+This example demonstrates the effect of Enforce Task Order and shows also how sub-tasks launched by
+<A HREF="help/ah_run_task.html">Perform Task</A> are handled.
+<PRE>
+Profile: Example
+Enter Task: Enter1
+   Perform Task, Enter2
+Exit Task: Exit1
+   Perform Task, Exit2
+</PRE>
+
+<B>With</B> Enforce Task Order:
+
+<P>
+Enter1 and Enter2 are both guaranteed to finish before either of Exit1 or Exit2. Whether Enter1 or
+Enter2 finishes first depends on their relative priority. Same for Exit1 and Exit2.
+All 4 tasks compete based on priority against tasks from other profiles. Exit tasks have a higher base
+priority so will finish before Enter tasks.
+</P>
+
+<B>Without</B> Enforce Task Order:
+
+<P>
+If the profile goes active and inactive quickly, Enter1, Enter2, Exit1 and Exit2 will all compete
+purely on priority. Since Exit tasks have higher base priority, Exit1 and Exit2 will probably finish first.
+</P>
+
+<A NAME="collisions"></A>
+<H4>Collisions</H4>
+
+Sometimes a task needs to be executed of which a copy is already executing.
+This can happen quite often e.g. when a task widget button is pressed twice quickly,
+or a task contains a Wait action or shows a dialog.
+<P>
+The way in which a collision is resolved is specified by the user. There are
+3 options:
+</P>
+
+<UL>
+	<LI>the <B>new</B> task is ignored (the default)
+	<LI>the <B>existing</B> task is aborted and the new one starts from its first action.
+	The current action of the previous task is finished if it is already being carried out.
+	<LI>both tasks run simultaneously
+</UL>
+
+<P>
+Note that the last option can lead to several copies of a task all running at once.
+</P>
+
+<A NAME="stayawake"></A>
+<H4>Behaviour When Device Off</H4>
+
+By default, after a few seconds of the screen being off Android will power down the device and thus running
+tasks will be paused.
+<P>
+In the Task Properties dialog, it can be specified that a task should keep running.
+</P>
+
+<H5>Dialogs</H5>
+
+An action that shows some kind of dialog (such as a lock screen, popup, menu) 
+blocks execution of any other action, even one of higher priority, until it is completed.
+
+<H5>Wait / Wait Until</H5>
+
+These are exceptions. A wait action can be interrupted by another task's action and
+will resume (if necessary) when the other task's action is finished.
+
+<H4>Killing Tasks</H4>
+
+If you have a problem with a task that never ends, you can manually end tasks
+with the <B>Kill</B> button in the Task Edit screen.
+
+</BODY>
+</HTML>

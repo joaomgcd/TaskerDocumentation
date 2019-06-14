@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Flow Control</TITLE></HEAD>
+<BODY>
+
+<H2>
+	Flow Control
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+<H4>Overview</H4>
+
+Task flow control is based on the following Tasker elements:
+
+<UL>
+	<LI><A HREF="variables.html">variable</A> values
+	<LI><A HREF="#condition">conditions</A> on individual actions
+	<LI><I>If / Else / Endif</I> actions for conditional grouping of following actions
+	<LI><I>For / End For</I> to do a set of actions once for each of a set of elements
+	<LI><I>Goto</I> action (jumping around within a task).
+	<LI><I>Perform Task</I> action (calling other tasks as subroutines)
+	<LI><I>Stop</I> action (terminate task immediately)
+
+</UL>
+
+<P>
+On the Wiki there is a detailed example of <A HREF="http://tasker.wikidot.com/fileproc">
+processing a file's content</A> [External Link].
+</P>
+<P>
+Tip: if you accidentally create a task that never ends when experimenting
+with loops, use the <B>Kill</B> button in the Task Edit screen to end it
+manually.
+</P>
+
+<A NAME="condition"/>
+
+<H5>Conditions</H5>
+
+Every action can have a condition associated with
+it (specify this in the Action Edit screen). If the condition does not match,
+the action will be skipped.
+<P>
+A condition consists of an <I>operator</I> ('equals' etc) and two <I>parameters</I>.
+The possible operators are:
+<UL>
+	<LI><I>Equals</I> (eq)<BR>
+	The left parameter is identical to the right parameter.
+
+	<LI><I>Doesn't Equal</I> (neq)<BR>
+	The left parameter is not identical to the right parameter.
+
+	<LI><I>Matches</I> (~)<BR>
+	The right parameter is a pattern which the left parameter is <A HREF="matching.html">matched against</A>.
+
+	<LI><I>Not Matches</I> (!~)<BR>
+	As above, but the match must fail for the action to be executed.
+
+	<LI><I>Matches Regex</I> (~R)<BR>
+	The right parameter is a regular expression which the left parameter is <A HREF="matching.html#regex">matched against</A>.
+
+	<LI><I>Doesn't Match Regex</I> (!~R)<BR>
+	As above, but the match must fail for the action to be executed.
+
+	<LI><I>Maths: Less Than</I> (&lt;)<BR>
+	Both parameters (after variables are substitued) must be numbers or mathematical expressions and the first must be <B>less</B> than the second
+	e.g. <code>3</code> < <code>6</code>. See <A HREF="maths.html">Maths</A> for more info.
+
+	<LI><I>Maths: Greater Than</I> (&gt;)<BR>
+	As above, but the first parameter must evaluate to <B>more</B> than the second.
+
+	<LI><I>Maths: Equals</I> (=)<BR>
+	As above, but the two parameters must be numerically equal.
+	
+	<LI><I>Maths: Isn't Equal To</I> (!=)<BR>
+	As above, but the two parameters must be <B>not</B> numerically equal.
+
+	<LI><I>Maths: Is Even</I> (Even)<BR>
+	The left parameter is an even number.
+
+	<LI><I>Maths: Is Odd</I> (Odd)<BR>
+	The left parameter is an odd number.
+
+	<LI><I>Is/Isn't Set</I> (Set/!Set)<BR> 
+	Whether the specified variable has a value or not.
+</UL>
+
+<P>
+Expressions which are not mathematically valid  e.g. <I>I Am The Walrus > 5</I> give a warning and evaluate to <B>false</B>
+when used with a mathematical operator.
+</P>
+
+<A NAME="for"/>
+<H4>Foreach Loop</H4>
+
+<P>
+Goal: perform a set of actions for each of <I>apple</I>, <I>pear</I> and <I>banana</I>.
+</P>
+
+<TABLE>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>1.</TD> <TD><B>For</B><BR>%item<BR>apple,pear,banana</TD>
+		<TD>Loop once for each of apple, pear and banana</TD>
+	</TR>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>2.</TD> <TD>&nbsp;&nbsp;<B>Action One</B><BR></TD>
+		<TD>Example: Flash %item</TD>
+	</TR>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>3.</TD> <TD>&nbsp;&nbsp;<B>Action Two</B><BR></TD>
+		<TD>...</TD>
+	</TR>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>4.</TD> <TD><B>End For</B><BR>
+		</TD>
+		<TD>Return to action 1 if we havn't done all the items yet</TD>
+	</TR>
+</TABLE>	
+
+<P>
+Result: Action One and Action Two are performed three times. The first time, the variable %item is set to <I>apple</I>, the second time <I>pear</I> and the last time <I>banana</I>.
+</P>
+<P>
+You can insert a <CODE>Goto</CODE> action in the loop with either <I>Top of Loop</I> (meaning continue, skip to the next item straight away) or <I>End of Loop</I> (meaning break, stop without doing any more items) specified.
+</P>
+<P>In adition to simple text, the <CODE>For</CODE> action accepts any comma-separated combination of these Items:</P>
+<UL>
+	<LI>a numeric range e.g. 1:5 (= <B>1,2,3,4,5</B>)
+	<LI>a numeric range with a jump e.g. 8:2:-2 (= <B>8,6,4,2</B>)
+	<LI>a numeric range defined by variable values e.g. <I>2:%end:%skip</I>, <I>1:%arr(#)</I>  
+	<LI>a variable name (which is replaced) e.g. %fruit (= <B>banana</B> maybe)
+	<LI>a <A HREF="variables.html#arrays">variable array</A> part e.g. <I>%arr(1:2)</I> (= %arr1, %arr2 = <B>apple,banana</B> maybe)
+</UL>
+
+<P>
+A common case is to use %arr(), which performs a loop for each element in the array %arr.
+</P>
+
+<P>
+<B>Warning</B>: the <I>Values</I> parameter in the loop is reevaluated with each iteration of the loop, meaning
+that modifying array variables which appear there from within the loop can have unexpected effects. To workaround that,
+it can be best to use the following sequence:
+<PRE><CODE>   Variables Set, %values, %arrayWhichWillChange()
+   Variable Split, %values
+   For, %value, %values()
+      ...
+</CODE>
+</PRE>
+
+</P>
+
+<H4>For Loop</H4>
+
+<P>
+Goal: perform a set of actions for each of a set of elements in turn.
+</P>
+
+Use the <I>Foreach Loop</I> as described above, with the <I>Items</I> parameter being a range specification e.g. 4:0, 100, 0:8:2 (= <B>4,3,2,1,0,100,0,2,4,6,8</B>).
+
+<H4>Until Loop</H4>
+
+<P>
+Goal: perform a Task X until some condition is met (at least once)
+</P>
+
+<TABLE>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>1.</TD> <TD><B>Action One</B><BR></TD>
+		<TD>...</TD>
+	</TR>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>2.</TD> <TD><B>Action Two</B><BR></TD>
+		<TD>...</TD>
+	</TR>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>3.</TD> <TD><B>Goto</B><BR>1
+		<BR><I>If %qtime <B>&lt;</B> 20</TD>
+		<TD>Return to action 1 if runtime < 20</TD>
+	</TR>
+</TABLE>	
+
+<P>
+Result: Action One and Action Two are performed until %QTIME contains the value 20 or more
+i.e. until the task has been running for 20 seconds.
+</P>
+
+<P>
+Note: %QTIME is a builtin local variable available in all tasks.
+</P>
+
+<H4>While Loop</H4>
+
+<P>
+Goal: perform a Task X while some condition is met.
+</P>
+
+<TABLE>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>1.</TD> <TD><B>Stop</B><BR>
+		<BR><I>If %fruit <B>Not Matches</B> Apple</TD>
+		<TD>Stop task if it's not crunchy, otherwise
+		go to next action</TD>
+	</TR>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>2.</TD> <TD><B>Action One</B><BR></TD>
+		<TD>...</TD>
+	</TR>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>3.</TD> <TD><B>Action Two</B><BR></TD>
+		<TD>...</TD>
+	</TR>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>4.</TD> <TD><B>Goto</B><BR>1</TD>
+		<TD>Go back and see if we're still crunchy</TD>
+	</TR>
+</TABLE>	
+<P>
+Result: Action One and Action Two are performed while %fruit contains the value Apple.
+</P>
+
+<H4>Counter Loop</H4>
+
+<P>
+Goal: perform a Task X a set number of times.
+</P>
+<TABLE>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>1.</TD> 
+		<TD><B>Variable Set</B><BR>%count, 0</TD>
+		<TD>Initialize the counter</TD>
+	</TR>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>2.</TD> <TD><B>Action One</B><BR>Label: <I>LoopStart</I></TD>
+		<TD>...</TD>
+	</TR>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>3.</TD> <TD><B>Action Two</B><BR></TD>
+		<TD>...</TD>
+	</TR>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>4.</TD> <TD><B>Variable Add</B><BR>%count, 1</TD>
+		<TD>Add one to %count</TD>
+	</TR>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>5.</TD> <TD><B>Goto</B><BR><I>LoopStart</I>
+		<BR><I>If %count <B>&lt;</B> 10</TD>
+		<TD>Return to action 2 if count < 10</TD>
+	</TR>
+</TABLE>	
+
+<P>
+Result: after initialization of %count to 0, the task loops around the actions 
+from 2-5 until
+%count reaches 10, at which point the condition on the <CODE>Goto</CODE> fails
+and the end of the task is reached.
+</P>
+<P>
+Note that we used a <CODE>Goto</CODE> to a <B>labelled</B> action this time. In
+all but the very simplest tasks it's better to use a label rather than a number. It's easier to work out what's happening and if you insert or delete actions before the loop starts, the <CODE>Goto</CODE> will still jump to the right place.
+</P>
+<P>An alternative way to do this loop is to use a For action specified as <I>0:10</I>.
+</P>
+
+<H4>If / Then / Else Condition</H4>
+
+<P>
+Goal: perform certain Tasks if conditions are met, otherwise perform a
+different task.
+</P>
+
+<TABLE>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>1.</TD> 
+		<TD><B>If</B><BR>
+		<I>%fruit <B>~</B> Apple</TD>
+		<TD><B>~</B> is short for 'matches'</TD>
+	</TR>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>2.</TD> <TD>&nbsp;&nbsp;<B>Action One</B></TD>
+		<TD>...</TD>
+	</TR>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>3.</TD> <TD>&nbsp;&nbsp;<B>Action Two</B><BR></TD>
+		<TD>...</TD>
+	</TR>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>4.</TD> 
+		<TD><B>Else If</B><BR>
+		<I>%fruit <B>~</B> Pear</TD>
+		<TD>an <CODE>Else</CODE> action with a condition</TD>
+	</TR>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>5.</TD> <TD>&nbsp;&nbsp;<B>Action Three</B></TD>
+		<TD>...</TD>
+	</TR>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>6.</TD> 
+		<TD><B>Else</B><BR></TD>
+		<TD></TD>
+	</TR>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>7.</TD> <TD>&nbsp;&nbsp;<B>Action Four</B><BR></TD>
+		<TD>...</TD>
+	</TR>
+</TABLE>
+
+<P>
+Result:  actions One and Two are executed if %fruit matches Apple, Action Three is executed if %fruit matches Pear, otherwise Action Four is executed.
+</P>
+
+<P>
+Notes:
+</P>
+
+<UL>
+	<LI>you can have as many <CODE>Else If</CODE>s in a condition as you like
+	<LI>if your condition is in the middle of a more complicated task, you need to tell Tasker where the condition ends with an <CODE>End If</CODE> action
+</UL>
+
+<H4>Subroutines</H4>
+
+To call another task, use the <CODE>Perform Task</CODE> action. To use it as
+a subroutine, you just need to ensure that the priority of the calling
+task is less than the priority of the called task (more info:
+<A HREF="tasks.html#scheduling">scheduling</A>).
+<P>The parent can optionally pass values to the child and receive a result back:</P>
+
+<P><I>Parent Task</I></P>
+
+<TABLE>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>1.</TD> <TD>&nbsp;&nbsp;<B>Perform Task</B>
+		<BR>
+		Child,
+		<BR>
+		Priority, 10
+		<BR>
+		%par1,  5,
+		<BR>
+		Result Value Variable, %result
+		</TD>
+		<TD>pass 5 to the child, expect a result in %result</TD>
+	</TR>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>2.</TD> <TD>&nbsp;&nbsp;<B>Variable Flash</B><BR>Result: %result</B>
+		</TD>
+	<TD>what did we get back ?</TD>
+</TABLE>
+
+<P><I>Child Task</I></P>
+
+<TABLE>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>1.</TD> <TD>&nbsp;&nbsp;<B>Variable Set</B>
+		<BR>
+		%newval, %par1 + 1, Do Maths
+		</TD>
+		<TD>add one to the value that was passed</TD>
+	</TR>
+	<TR BGCOLOR="#aaaaff" VALIGN="top">
+		<TD>1.</TD> <TD>&nbsp;&nbsp;<B>Return</B><BR>
+		%newval
+		<BR>
+	<TD>set %result in the parent to the value of %newval in the child</TD>
+	</TR>
+</TABLE>
+
+<P>Result: the parent flashes <B>6</B></P>
+
+<P>Notes:</P>
+<UL>
+	<LI>changes made to <I>%par1</I> and <I>%par2</I> in the child task are <B>not</B> reflected by their changing in the parent task
+	<LI>receiving a return value is optional for the parent, even if the child tries to give it one
+	<LI>unlike <CODE>Return</CODE> statements in most computer languages, Tasker's does not necessarily stop the child task, so if the child and parent have the same priority they can both run together and the child return several results over time.
+</UL>
+
+
+</BODY>
+</HTML>

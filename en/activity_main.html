@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Main Screen</TITLE></HEAD>
+<BODY>
+
+<H2>
+	Main Screen
+	<IMG style="float:right;" SRC="icon_tasker.png"/>
+</H2>
+
+This is the first screen shown when you startup Tasker. It allows you
+to organize and configure Tasker's four main 'building blocks':
+<I>Profiles, Tasks, Scenes</I> and <I>Variables</I>.
+
+<UL>
+	<LI>Main Tabs
+	<UL>
+		<LI><A HREF="#profiles">Profiles</A>
+		<LI><A HREF="#tasks">Tasks</A>
+		<LI><A HREF="#scenes">Scenes</A>
+		<LI><A HREF="#variables">Variables</A>
+	</UL>
+	<LI><A HREF="#action">Action Bar</A>
+	<LI><A HREF="#menus">Menus</A>
+	<LI><A HREF="#projects">Projects</A>
+</UL>
+
+<H3>Main Tabs</H3>
+
+Displayed in the action bar on most devices.
+
+<UL>
+	<LI><B>Click</B> on a tab to view a list of the relevant things
+	<LI><B>Click</B> on an <b>already selected</b> tab to get options for it
+</UL>
+
+<!-- __________________________ PROFILES _________________________ -->
+
+<A NAME="profiles" />
+<H4><I>Profiles</I></H4>
+
+Each item in the list represents a profile. The profile links contexts (conditions) on
+the left to tasks which should be run on the right. The profile name is green if
+the profile is active. There are three main parts to each profile.
+</P>
+
+<H5><I>1. Title Bar</I></H5>
+
+<P>
+This shows the profile name (or description if it has no name) and a
+switch on the right shows whether the profile is enabled or not.
+</P>
+<P>
+<UL>
+	<LI><B>Click</B> on the name to expand / collapse the profile. When expanded, the contexts and tasks (described below), are visible.
+	<LI><B>Long-click</B> on the profile name to get profile options or to drag  profile(s) around
+	<LI><B>Click</B> on the switch to control whether the profile is enabled or not.
+</UL>
+
+<P>Important: the switch being set to <B>on</B> does <B>not</B> mean the profile is <B>active</B>
+(will run its tasks), it means that the profile <B>can</B> become active
+<B>if</B> its conditions are met.
+</P>
+
+<H5><I>2. Contexts</I></H5>
+
+<P>
+On the left hand side of the profile are an icon and text for each context in the
+profile. The contexts dictate when the profile should become active. When <B>all</B> contexts
+are active then the profile will be active.
+</P>
+
+<UL>
+	<LI><B>Click</B> on the context to edit it
+	<LI><B>Long-click</B> to show management options, such as editing or adding a new context
+</UL>
+
+<P>
+You can configure what clicks and long-clicks on contexts do in <CODE>Menu / Prefs / UI</CODE>.
+</P>
+
+<H5><I>3. Tasks</I></H5>
+<P>
+On the right hand side of the profile are one or two tasks to
+carry out based on its activation status.
+</P>
+<UL>
+	<LI><B>Click</B> on the task to edit it
+	<LI><B>Long-click</B> to show management options. 
+</UL>
+<P>
+A task indicated with a <B>green, right-pointing</B> arrow is an
+<I>entry</I> task, executed when the profile first becomes active.
+</P>
+<P>
+A task indicated with a <B>red, left-pointing</B> arrow is an
+<I>exit</I> task, executed when the profile becomes inactive again.
+</P>
+<P>Exception: a profile containing an event context or a repeating
+or non-ranged time context has two green
+arrows, to denote that both tasks are executed immediately because
+the profile activation and deactivation is instantaneous.
+</P>
+
+<P>Click on the <B>Profiles</B> tab when it is already selected for
+general profile-related options such as sorting.
+</P>
+
+<!-- __________________________ TASKS  _________________________ -->
+
+<A NAME="tasks" />
+<H4>Tasks</H4>
+
+The task list shows the named <A HREF="tasks.html">tasks</A> which have been created.
+<UL>
+	<LI><B>Click</B> on a task to edit it
+	<LI><B>Long-click</B> for options or to drag task(s) around
+</UL>
+<P>
+Note that a profile can be assigned an <I>anonymous</I> task (one without
+a name) which is not accessible in the task list, only via the
+relevent profile in the profile list.
+</P>
+
+<P>Click on the <B>Tasks</B> tab when it is already selected for
+general task-related options such as sorting.
+</P>
+
+<!-- __________________________ SCENES  _________________________ -->
+
+<A NAME="scenes" />
+<H4>Scenes</H4>
+
+The scene list shows the <A HREF="scenes.html">scenes</A> which have been created.
+<UL>
+	<LI><B>Click</B> on a scene to edit it
+	<LI><B>Long-click</B> for options or to drag scene(s) around
+</UL>
+
+<P>Scenes with a green name have been created but may be invisible (hidden).</P>
+
+<P>Click on the <B>Scenes</B> tab when it is already selected for
+general scene-related options such as sorting.
+</P>
+
+<!-- __________________________ VARIABLES  _________________________ -->
+
+<A NAME="variables" />
+<H4>Variables</H4>
+
+<P>The Variables tab is not shown if <A HREF="beginner.html">Beginner Mode</A> is enabled.</P>
+
+<P>By default, all global <A HREF="variables.html">user-variables</A> that Tasker knows about are listed, which includes any that have a value set or are mentioned somewhere in a profile, task or scene.
+</P>
+<UL>
+	<LI><B>Click</B> on a variable to edit it
+	<LI><B>Long-click</B> for options
+</UL>
+<P>
+Note that variables whose names are all lower-case are <I>local</I> variables and not shown because they are only valid within the task that refers to them.
+</P>
+
+<P>Click on the <B>Vars</B> tab when it is already selected for
+general variable-related options such as sorting and filtering.
+</P>
+
+<P>
+The filter controls function as follows:
+</P>
+
+<UL>
+        <LI><B>Indexed</B> (button)<BR>includes variables whose names end in a number e.g. <CODE>%LOC3</CODE>, otherwise they are excluded.
+        <LI><B>Empty</B> (button)<BR>includes variables which have currently have no value assigned, deselect to show only variables that have a value.
+        <LI><B>Referenced</B> (button,home project only)<BR>includes variables which are referenced in profiles, tasks or scenes.<BR>Deselect to show only 'orphan' variables.
+        <LI><B>Filter</B> (textbox)<BR>excludes variables which don't contain the specified text somewhere in their name (case-sensitive)
+</UL>
+
+<P>In a user-created project, only variables referenced by that project are shown.</P>
+
+<P>
+Unlike most screens in Tasker, changes made in the variable list cannot be cancelled.
+</P>
+
+
+<!-- -------------------------- ACTION BAR --------------------- -->
+<A NAME="action" />
+<H4>Action Bar</H4>
+
+<H5><I>Apply</I> Button</H5>
+
+<P>
+Save and apply any changes which have been made <B>without</B>
+exiting the UI.
+</P>
+<P>
+This is unnecessary prior to leaving the UI via
+the back button or home key, it's just for convenience
+when testing changes.
+</P>
+
+<P>
+Not visible in <A HREF="beginner.html">Beginner Mode</A>.
+</P>
+
+<H5><I>Overflow</I> Button</H5>
+
+Click to access menu options if no menu hard-key is available on the device.
+
+<!-- -------------------------- MENUS --------------------- -->
+<A NAME="menus"/>
+<H3>Menus</H3>
+
+<H4>Menu Item: Browse Examples</H4>
+
+Links to websites with projects, profiles etc offering solutions for common 
+problems.  Important: once downloaded you need to import the file into
+your active user data. For example, profiles are imported by long-clicking
+the profile tab and selecting Import.
+
+<H4>Menu Items: Data</H4>
+
+<H5>Clear</H5>
+
+Removes all data that has been created to that point. Does
+not remove preferences (use <CODE>Menu / Preferences</CODE> and click <B>Defaults</B> for
+that) or variables (long-click on the Variables tab for that).
+
+<H5>Backup</H5>
+
+Saves the existing user data to a backup file on external storage.
+
+<H5>Restore</H5>
+
+Options for restoring backups of various types.
+
+<!-- -------------------------- PROJECT TABS --------------------- -->
+<A NAME="projects"/>
+<H3>Projects</H3>
+
+<P>
+Tasker allows organisation of profiles, tasks, scenes and variables
+into groups called <I>Projects</I>, each with a separate <I>Project Tab</I>.
+</P>
+<P>The projects tabs are hidden in <A HREF="beginner.html">Beginner Mode</A>.
+</P>
+
+<UL>
+	<LI><B>Click</B> on a project tab to switch to viewing only
+things in that project
+	<LI><B>Long-click</B>  on a project tab for options, including
+adding a new tab. Options can also be accessed by a single click on the
+selected project tab.
+	<LI><B>Long-click and Select</B>, then drag to a project tab, any items you 
+want to move to that project
+</UL>
+
+<P>The first tab has a slightly special status, it cannot be removed
+and anything which is not a member of another project is placed there.
+</P>
+
+</BODY>
+</HTML>

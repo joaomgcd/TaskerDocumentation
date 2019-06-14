@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Scene Element: Web</TITLE></HEAD>
+<BODY>
+
+<H2>
+	Scene Element: Web
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+<H4>About</H4>
+
+A <I>Web</I> element is like a browser window.
+
+<H4>Parameters: Mode / Source</H4>
+
+These parameters determine how the content for the WebView is to be acquired.
+
+<UL>
+	<LI><I>URI</I>: the <I>Source</I> parameter refers to a URI
+(e.g. http://) from which the WebView should retrieve content.
+	<LI><I>File</I>: the <I>Source</I> parameter contains a local
+file path from which the WebView should retrieve content.
+	<LI><I>Direct</I>: the <I>Source</I> parameter directly specifies
+the HTML and/or JavaScript content to load
+</UL>
+
+<H4>Parameter: Allow Phone Access</H4>
+
+<P>
+If checked, the content in the WebView is allowed access to local device files,
+data stores, and can run JavaScript, including Tasker's <A HREF="javascript.html">JavaScript Interface functions</A>.
+</P>
+<P>
+This is a very powerful feature, since it allows a WebView to
+present a complex and highly functional interface, but
+should only be enabled if you entirely trust the source of
+the specified content.
+</P>
+
+<P>Note that references to local files must be absolute (include the directory)
+even when the WebView source is specified as a file e.g. <CODE>/sdcard/myfiles/scripts.js</CODE></P>
+
+<H4>Parameter: Self Handle Links</H4>
+
+<P>If checked, links will be handled by the WebView itself, otherwise they
+will be passed to the system for handling e.g. by the default web browser.
+</P>
+
+<H4>Parameter: Support Popups</H4>
+
+<P>
+If this parameter is <B>not</B> checked, HTML elements which generate a popup window, for instance
+selection elements in forms, will crash the scene when they are activated.
+</P>
+
+<P>
+If this parameter <B>is</B> checked, when the scene is hidden and reshown, some of its state
+will be lost e.g. which part of the page was being displayed, zoom level.
+</P>
+
+<H4>Events</H4>
+
+<UL>
+<A HREF="activity_elementedit.html#linktap">Link Tap</A>,
+<A HREF="activity_elementedit.html#pageloaded">Page Loaded</A>
+</UL>
+
+<H4>Related Actions</H4>
+
+<UL>
+<LI><A HREF="help/ah_scene_element_web_control.html">Element Web Control</A>
+<LI><A HREF="help/ah_scene_element_focus.html">Element Focus<A>
+<LI><A HREF="help/ah_scene_element_position.html">Element Position</A>
+<LI><A HREF="help/ah_scene_element_size.html">Element Size</A>
+<LI><A HREF="help/ah_scene_element_visibility.html">Element Visibility</A>
+<LI><A HREF="help/ah_scene_element_depth.html">Element Depth</A>
+<LI><A HREF="help/ah_scene_element_test.html">Test Element</A>
+</UL>
+
+<H4>See Also</H4>
+
+The <A HREF="activity_elementedit.html">Element Editor</A> screen.
+
+</BODY>
+</HTML>

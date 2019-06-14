@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Task / Shortcut Widgets</TITLE></HEAD>
+<BODY>
+
+<H2>
+	Task / Shortcut Widgets
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+The standard way of running a Tasker task is by attaching it to a profile
+which performs it when the profile becomes active. However, tasks can
+be directly assigned to icons on the home screen called <I>Widgets</I> or
+<I>Shortcuts</I>.
+
+<H4>Standard Widgets / Shortcuts</H4>
+
+These consist of an icon (the Task icon) with a label (the Task name)
+underneath, and look identical to the normal application icons
+in the home screen.
+<P>
+Clicking on the icon runs the associated Task.
+</P>
+
+<H4>Task Timer Widgets</H4>
+
+This type consists of an icon and label, like the standard widgets,
+but also has a countdown timer display which counts down Days, Hours, 
+Minutes and Seconds.
+<P>
+When the timer expires (reaches 0) the associated Task is run.
+</P>
+<P>
+Tapping on the <B>icon</B> of the widget shows a configuration
+screen where the timer can be configured.
+</P>
+<P>
+Tapping on the <B>timer section</B> of the widget will pause,
+restart or reset the timer, depending on its current state.
+</P>
+<P>
+Note that the timer updates more rarely when it is still a long
+way from expiry in order to minimize  power usage.
+</P>
+<P>
+See Also:
+<UL>
+	<LI>action <A HREF="help/ah_timer_widget_control.html">Timer Widget Control</A>
+	<LI>action <A HREF="help/ah_timer_widget_set.html">Timer Widget Set</A>
+	<LI>action <A HREF="help/ah_test_tasker.html">Test Tasker</A>
+	<LI>event <A HREF="help/eh_timer_change.html">Timer Change</A>
+</UL>
+
+<H4>Creating a Widget / Shortcut</H4>
+
+<OL>
+	<LI>Click and hold in an empty space on the Android home screen, until
+	a dialog appears.
+	<LI>Select <B>Widgets</B> or <B>Shortcuts</B>
+	<LI>Select <B>Task</B> or <B>Task Timer</B> (Widgets only)
+	<LI>Pick an existing task or create a new one. When creating a new one, if
+	you do not expect to change the function of the widget/shortcut select
+	One-Time to avoid it cluttering your list of tasks.
+	<LI>Use the <A HREF="activity_widget_configure.html">Configuration Screen</A>
+	to configure what should happen when the icon is clicked (or the timer
+	expires, in the case of a Task Timer widget). Take care to
+	select an appropriate name and icon for the task, as these will appear on
+	the home screen.
+</OL>
+
+<H4>Changing a Widget / Shortcut</H4>
+
+<P>
+The function of widgets or shortcuts created from one-time tasks cannot be changed, it must be deleted and recreated.
+</P>
+
+<P>
+On the other hand, if you associate a normal named task with a widget or shortcut then when the task is changed (via the Task Edit
+screen) the function of the widget or shortcut also changes.
+</P>
+
+<P>
+There are also some actions which will change the appearance of any widget:
+</P>
+
+<UL>
+	<LI><I>Tasker/Change Icon Set</I>: changes the icon of a set of widgets to a different
+	style.
+	<LI><I>Tasker/Set Widget Icon</I>: changes the icon of a particular widget
+	<LI><I>Tasker/Set Widget Label</I>: changes the label of a particular widget
+</UL>
+
+The latter two you could use to visually show the status of something e.g. WiFi.
+
+<H4>Deleting a Widget / Shortcut</H4>
+
+<P>
+Click and hold on the icon in the Android home screen until the dustbin
+icon appears. Drag the widget or shortcut icon to the dustbin icon and release.
+</P>
+
+<A NAME="diff"/A>
+<H4>Differences Between Widgets and Shortcuts</H4>
+
+<H5>Advantages of Shortcuts</H5>
+
+<UL>
+        <LI>they can be created in some places that widgets can't e.g. in home screen folders
+        <LI>their layout probably better matches the default launcher layout
+        <LI>long shortcut labels will scroll when selected in the default launcher
+</UL>
+
+<H5>Advantages of Widgets</H5>
+
+<UL>
+        <LI>their icon and label can be dynamically changed after creation
+        via the <I>Set Widget Icon</I> and <I>Set Widget Label</I> actions.
+        <LI>timer widgets are possible
+        <LI>they can be created without a label
+</UL>
+
+So a shortcut should be used unless the extra configuration possibilities of a widget are necessary.
+
+<H4>General</H4>	
+
+<UL>
+	<LI>you can create as many Tasker widgets and shortcuts as you like. You can even have several Timer widgets running at the same time.
+	<LI>Timer Task widgets continue to update even when the screen is off.
+</UL>
+
+</BODY>
+</HTML>

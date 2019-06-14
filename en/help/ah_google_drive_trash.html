@@ -1,0 +1,37 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+	.input{
+
+	}
+	.input .title{
+		font-size: 110%;
+		font-weight: bold;
+		margin-top: 24px;
+	}
+	.input .text{
+
+	}
+</style>
+</head><body>
+	<H3>Google Drive Trash</H3>
+	<P>Put a file or folder from Google Drive into or out of Trash.</P>
+	<DIV class="inputs">
+		<div class="input">
+			<div class="title">Output Variables</div>
+			<div class="text">Details about the trashed/untrashed file or folder</div>
+		</DIV>
+		<div class="input">
+			<div class="title">Account</div>
+			<div class="text">The account you want to the files with</div>
+		</DIV>		
+		<div class="input">
+			<div class="title">Type: File Id</div>
+			<div class="text">Trash a file by its ID. You can get the Id after you upload the file, or with a Google Drive List action (check the output variables)</div>
+		</DIV>
+		<div class="input">
+			<div class="title">Type: Remote Path</div>
+			<div class="text">Trash a file or folder by specifying its Google Drive path. If you only specify the <b>Remote Folder</b> field, a folder and its contents will be trashed. If you also specify the <b>Remote File Name</b> field, only a single file will be trashed.</div>
+		</DIV>
+	</DIV>
+	<P><b>Note</b>: For security reasons this action can't be used on App Factory generated apps.</P>
+</body></html>

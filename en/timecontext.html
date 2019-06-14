@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Time Context</TITLE></HEAD>
+<BODY>
+
+<H2>
+	Time Context
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+<P>
+A <I>Time Context</I> specifies a particular range, or one (or more) points in time.
+There are three major components, at least one of which must be selected (by enabling
+its checkbox on the left):
+</P>
+
+<UL>
+	<LI><B>From Time</B>: the starting time of the range. If it's not specified,
+	<B>00:00</B> is assumed.
+	<LI><B>To Time</B>: the end time of the range, inclusive. The context will deactivate
+	after the <B>end</B> of the specified minute.<BR>If To Time is not specified then
+	<B>23:59</B> is assumed i.e. the context deactivates at midnight.
+	<LI><B>Repeat</B>: if no repeat is selected, the context is assumed to be
+	a continuous range which starts at <I>From Time</I> and ends at <I>To Time</I>.
+	If a repeat <B>is</B> specified, the first occurrence is at <I>From Time</I> and then
+	every X hours or minutes until <I>End Time</I>.
+</UL>
+
+<P>
+When not in <A HREF="beginner.html">Beginner Mode</A>, it's possible to specify a <A HREF="variables.html">global user variable</A> as the source of the <CODE>From Time</CODE> or <CODE>To Time</CODE> by
+clicking on one of the rotating-arrow icons.
+</P>
+<P>
+The variable contents must specify the hours and minutes in <B>24-hour format</B> and
+separated by a <B>period</B> (dot) or <B>colon</B> e.g. <I>13.45</I>. Leading 0s can be ommited
+e.g. <I>9.7</I> for seven-minutes-past-nine-in-the-morning.
+</P>
+<P>Alternatively, the time can be specified in seconds-since-the-epoch format, in which case
+only the hour and minute part of the specification are used.
+</P>
+<P>
+When the variable value changes, the time context is reevaluated which may result in
+it activating or deactivating. If the variable value does not specify a valid time then the profile will
+deactivate (if it's already activated).
+</P>
+<P>Note: in some cases it may be wise to disable the profile (via the <I>Profile Status</I> action) before
+changing the associated variable values. For example, if your time context is from 16.00 to 16.00 (i.e. acting
+as an event) and it should be changed to 17.00,17.00, if you don't disable it first then as soon as 
+you change the first value the time context will become a 23 hour range (17.00-16.00) and probably
+activate.
+</P>
+
+
+<P>
+Notes:
+</P>
+<UL>
+	<LI>to specify a precise time, set <I>From</I> and <I>To</I> times the same. In that case, the context is treated as an instant event,
+	it it only active for a fraction of a second, so no setting restoration is done.
+	<LI>each repeat (if <I>Repeat</I> is set) is also treated like an instant event.
+</UL>
+</BODY>
+</HTML>

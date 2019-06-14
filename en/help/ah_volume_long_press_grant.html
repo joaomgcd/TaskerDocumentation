@@ -1,0 +1,41 @@
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+</head>
+<body>
+	<H4><span class="name">Volume Key Long Press Handling</span> Permission</H4>
+	<P>To use this, Tasker needs to be granted permission to <span class="name">handle volume key long press interception</span> on your device</P>
+	<P>
+		<ol>
+			<li><b>Enable Developer Mode</b>: Go to Android Settings -> About Phone and look for the <b>Build Number</b> option. Touch it multiple times until developer mode is enabled.</li>
+			<li><b>Enable USB Debugging</b>: Go to Android Settings -> and look for the <b>Developer Options</b> option. In there, enable the <b>USB debugging</b> option.</li>
+			<li><b>Install ADB on your PC</b>: Check <a href="https://www.xda-developers.com/google-releases-separate-adb-and-fastboot-binary-downloads/">here</a> for a quick way to do it.</li>
+			<li><b>Connect device to PC</b>: Connect your device to a PC and look on your phone. A prompt should show up asking you to allow your phone to be debugged by your PC. Accept this.</li>
+			<LI>Open the command prompt from the file folder that contains the extracted downloads. To do this, press the windows key and type <b>cmd</b>. When the prompt opens, type <b>cd </b> followed by folder your downloaded ADB to.</LI>
+			<li><b>Grant permission</b>: Open a command line a on your PC and write <pre class="small">adb shell pm grant net.dinglisch.android.taskerm android.permission.<span class="permission">SET_VOLUME_KEY_LONG_PRESS_LISTENER</span></pre>If you're on a mac write <pre class="small">./adb shell pm grant net.dinglisch.android.taskerm android.permission.<span class="permission">SET_VOLUME_KEY_LONG_PRESS_LISTENER</span></pre></li>
+		</ol>
+	</P>
+
+	<H4>Notes:</H4>
+	<UL>
+		<LI>On MIUI devices you may have to open developer options and enable the <b>USB debugging (Security Settings)</b> setting to be able to run the above command.</LI>
+	</UL>
+</body>
+<script type="text/javascript">
+	/*var url_string =  window.location.href;
+	var url = new URL(url_string);
+	var permission = url.searchParams.get("permission");
+	if(!permission){
+		permission = "WRITE_SECURE_SETTINGS";
+	}
+	const permissionElements = document.querySelectorAll(".permission");
+	permissionElements.forEach(element=>element.innerHTML = permission);
+
+	var nameParam = url.searchParams.get("name");
+	if(!nameParam){
+		nameParam = "Write Secure Settings";
+	}
+	const nameElements = document.querySelectorAll(".name");
+	nameElements.forEach(element=>element.innerHTML = nameParam);*/
+</script>
+</html>

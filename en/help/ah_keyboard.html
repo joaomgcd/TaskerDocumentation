@@ -1,0 +1,44 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+	.input{
+
+	}
+	.input .title{
+		font-size: 110%;
+		font-weight: bold;
+		margin-top: 24px;
+	}
+	.input .text{
+
+	}
+</style>
+</head><body>
+	<H3>Keyboard</H3>
+	<P>Make Tasker send keyboard presses to whatever app is in the foreground.</P>
+	<DIV class="inputs">
+		<div class="input">
+			<div class="title">Input</div>
+			<div class="text">Comma separated list of key presses.</div>
+			<div class="text">The following formats are allowed for each key press:</div>
+			<ul>
+				<li><b>write(Some Text)</b>: will directly insert the text (in this case <b>Some Text</b>) in a text box but only if a text box in an app has focus</li>
+				<li><b>replace(Some Text)</b>: will replace all the text in the focused text box with the selected text (in this case <b>Some Text</b>)</li>
+				<li><b>wait(400)</b>: will wait for the time (in this case <b>400 ms</b>) before moving on to the next key press</li>
+				<li><b>select(Some Text)</b>:  will select the first occurrence of the text (in this case <b>Some Text</b>) in a text box but only if a text box in an app has focus</li>
+				<li><b>selectPositions(1,10)</b>: will select the text in a focused text box starting and ending in the selected positions (in this case <b>start in 1</b> and <b>end in 10</b>)</li>
+				<li><b>cursor(1)</b>: will set the cursor position (in this case <b>position 1</b>) in a focused text box.</li>
+				<li><b>selectAll()</b>: will select all the text in a focused text box.</li>
+				<li><b>delete(Some Text)</b>: will delete the first occurrence of the text (in this case <b>Some Text</b>) in a text box but only if a text box in an app has focus</li>
+				<li><b>deleteAll()</b>: will delete all the text in a focused text box.</li>
+				<li><b>'29'</b>: will use the key code between single quotes (in this case <b>29</b>, which corresponds to the <b>A</b> keycode) directly. Check out all the standard keycodes <a href="https://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_0">here</a>. Look for the <b>Constant Value</b> value of all the constants that start with <b>KEYCODE_</b>.</li>
+				<li><b>Tab</b>: if none of the above special characters surround the key press, the keycode corresponding to the text will be sent (in this case, the <b>Tab</b> key will be sent). You can find a list of these by using the magnifying glass near the <b>Input</b> field in this action.</li>
+			</ul>
+			<div class="title">Modifiers</div>
+			<div class="text">The following modifiers are allowed for each key press (applies to custom key codes and direct key):</div>
+			<ul>
+				<li><b>Control+Shift+C</b>: will press <b>C</b>, with the <b>Control</b> and <b>Shift</b> modifiers</li>
+			</ul>
+
+		</DIV>
+	</DIV>
+</body></html>

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Intents</TITLE></HEAD>
+<BODY>
+
+<H2>
+        Intents
+        <IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+<P>
+Intents are Android's main method for allowing apps to communicate with each other and share data.
+Intents are for advanced users. This document is not intended to explain how intents work, but
+how to use Tasker's intent facilities.
+</P>
+
+<H3>Sending Intents</H3>
+
+You can find information about intents and details of several built-in Android intents on the Android SDK
+<A HREF=" https://developer.android.com/reference/android/content/Intent.html">
+Reference Site</A>.
+
+<P>
+Tasker allows you to send arbitraty intents using the <I>Send Intent</I> action in the
+<I>Misc</I> category. This allows
+you to provoke behaviour in other apps, when you know the particular form of intent they
+are designed to respond to.
+</P>
+<a name="sendparameters"></a>
+<H4>Send Intent Parameters</H4>
+
+Note that any parameter specified except Extras will reduce the set of possible receivers
+of the intent.
+
+<H5>Action</H5>
+
+What the sender would like the receiver to do with the data.
+
+<P>
+Example: <CODE>android.intent.action.VIEW</CODE>
+</P>
+
+<H5>Cat</H5>
+
+Gives additional information about the action.
+
+<H5>Mime-Type</H5>
+
+From the developer reference: "This is used to create intents that only specify a type and not data, for example to indicate the type of data to return."
+
+<P>
+Can't be used together with a Data specification.
+</P>
+
+<H5>Data</H5>
+
+The main data specification in the form of a URI. 
+
+<P>
+Can't be used together with a Mime-Type specification.
+</P>
+
+<H5>Extras</H5>
+
+Any additional data to send with the intent.
+
+<P>
+The extras must be in the form of a single <B>colon-separated</B> key and value.
+</P>
+<P>
+If the value can be parsed as an integer, long (integer ending in L), floating point number, double (float ending in D) or boolean (true/false) it will be treated as one.
+</P>
+
+<P>
+The value can also be forced to a simple type (long etc) or <CODE>Uri</CODE> via casting.
+</P>
+<P>The name of a Java object created via the Java Function action which is of type <CODE>Parcelable</CODE> can also be used (e.g. a <CODE>Bundle</CODE>)
+</P>
+<P>If none of the above apply, the value will be treated as a <CODE>String</CODE>.
+
+<P>
+Examples:
+</P>
+
+<UL>
+<LI>have_flowers:true <BR>(<CODE>boolean</CODE>)
+<LI>this.is.an.integer.example:34<BR>(<CODE>int</CODE>)
+<LI>this.is.a.double.example:34D<BR>(<CODE>int</CODE>)
+<LI>address: (Uri) http://a.b <BR>(<CODE>Uri</CODE>)
+<LI>bunchofvalues:mybundle (where mybundle is the name of a Java object of type Bundle)<BR>(<CODE>Parcelable</CODE>)
+<LI>simple.string.example:hello there!<BR>(<CODE>String</CODE>)
+</UL>
+
+<H5>Package, Class</H5>
+
+Allow specification of a particular package and/or class within the package to
+restrict the broadcast to.
+
+<H5>Target</H5>
+
+The type of Android component which should receive the intent.
+
+<!--
+Send Intent always sends <B>ordered</B> intents, meaning that the potential listeners can receive the
+intent in an order which is dependent on the priority of their intent filter and can also abort
+the intent once they have received it (prevent it being passed further).
+</P -->
+
+<H4>Finding App Intents</H4>
+
+Many intents that an app listens for are declared in its package manifest
+(called AndroidManifest.xml). You can view details of those intents
+using the <I>aapt</I> tool that comes with the Android SDK like this:
+
+<BLOCKQUOTE>
+<CODE>
+aapt dump xmltree example.apk AndroidManifest.xml
+</CODE>
+</BLOCKQUOTE>
+
+<P>
+Look for Intent Filter elements.
+</P>
+
+It's not (easily) possible to determine which intents an app listens
+for dynamically (i.e. while the app is running).
+
+<!-- ________________________________ RECEIVE ______________________________ -->
+
+<H3>Receiving Intents</H3>
+
+<P>
+Tasker allows you to receive a large range of intents, sent by apps or the system, using the <I>Intent Received</I> event in the <I>System</I> category.
+</P>
+
+<P>
+For each event you create, Tasker sets up a corresponding
+<A HREF="https://developer.android.com/reference/android/content/IntentFilter.html">
+Intent Filter</A> object.
+</P>
+
+<H4>Limitations</H4>
+
+<UL>
+<LI>Tasker can only receive intents which
+are sent to <B>broadcast receiver</B> components, not to activities
+or services.
+<LI>some intent senders require that a corresponding intent filter is specified statically
+(i.e. in an Android Manifest). Those intents cannot be received.
+<LI>intents which are broadcast with a specification of a particular
+package component to receive it cannot be received.
+</UL>
+<a name="receivedparameters"></a>
+<H4>Intent Received Parameters</H4>
+
+<H5>Action</H5>
+
+If specified, the received intent must have also that action specified.
+
+<H5>Cat</H5>
+
+Any categories specified in the received intent must also be specified
+in the Tasker event. Note that this is logically different to the
+situation for the Action parameter.
+
+<H5>Scheme</H5>
+
+If any schemes are included in the filter, then an Intent's data must be either one of these schemes or a matching data type. If no schemes are included, then an Intent will match only if it includes no data.
+
+<H5>Mime Type</H5>
+
+If a type is specified, then an Intent's data must be the same,
+or match the Scheme parameter. If no Mime Type is specified,
+then an Intent will only match if it specifies no Data.
+
+<H5>Priority</H5>
+
+If the intent is part of an <I>ordered broadcast</I>, then the priority
+specified here will affect whether this event will receive the intent
+before or after other listeners.
+
+<H5>Stop Event</H5>
+
+If the intent is part of an <I>ordered broadcast</I>, then specifying
+Stop Event will prevent it being passed to other listeners after this one. 
+
+<H4>Accessing Intent Data</H4>
+
+When an intent triggers an Intent Received event, the resulting 
+task(s) which are executed have access to many details of the
+intent via local variables (where relevant and present):
+
+<UL>
+	<LI><I>%intent_data</I>: the data
+	<LI><I>%evtprm1</I>: the action
+	<LI><I>%evtprm2</I>: the first category
+	<LI><I>%evtprm3</I>: the second category
+	<LI><I>%evtprm4</I>: the URI scheme
+	<LI><I>%evtprm5</I>: the MIME type
+</UL>
+
+<P>
+In addition, any <I>extras</I> attached to the intent can be
+accessed under their name, with the following modifications to
+make them valid variable names:
+
+<UL>
+	<LI>all letters will be converted to lower-case, then
+	<LI>names of length less than 3 will have <B>var_</B> prefixed
+	<LI>non-letter-or-digit characters will be converted to _, then
+	<LI>names not starting with a letter will have <B>a</B> prefixed, then
+	<LI>names not ending with a letter or digit will have <B>a</B> affixed
+	<LI>if the result is the name of another extra, <B>_dup</B> will be affixed until that is no longer the case
+</UL>
+
+<P>
+For example, an extra with key <B>%SOUND_ON</B> will be available as <B>%sound_on</B>, and an
+extra with key <B>package.SOUND_ON!</B>, will be available via the local variable <B>%package_sound_on_a</B>
+</P>
+
+<P>
+The following extra types are presented in Tasker as local arrays:
+<CODE>String [], Integer [], ArrayList<String>, ArrayList<Integer></CODE>.
+
+<P>
+Example:  a string array extra `named 'fruits' with values 'pear' and
+'apple' will result in the local variables %fruits1 (=pear) and %fruits2 (=apple).
+</P>
+
+</BODY>
+</HTML>

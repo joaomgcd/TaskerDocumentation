@@ -1,0 +1,29 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+	.input{
+
+	}
+	.input .title{
+		font-size: 110%;
+		font-weight: bold;
+		margin-top: 24px;
+		margin-bottom: 8px;
+	}
+	.input .text{
+		margin-bottom: 4px;
+
+	}
+</style></head><body><H3>Notify</H3><P>Show a notification on the top bar.<br/><br/>The specified Title will appear on the bar initially with the Icon.<br/><br/>Notifications with a particular (non-empty) title replace existing ones with that title.<br/><br/>When the notification area is pulled down, the specified Text will be visible.<br/><br/>If Permanent is checked, the notification will not be removed by clicking on it or pressing the Clear button. It *can* be removed using the Notify Cancel action.<br/><br/>A common use of creating a permanent notification is to allow permanent quick access to e.g. a Menu Task through the Notification Bar. Specify a task to run when the notification is clicked by creating a profile with a Notification Click event.<br/><br/>Up to 3 Actions can be specified which will appear in the notification area. In some cases it may be necessary to slide down to reveal the actions. Actions do not run as part of the notifying task.</P>
+<h4>BETA ONLY</h4>
+<DIV class="inputs">
+		<div class="input">
+			<div class="title">Category</div>
+			<div class="text">If you use Android 8 or above you have to use the new <b>Notification Category</b> system.</div>
+			<div class="text">A notification category is a mandatory feature of notifications that allows users to change notification features in Android Settings.</div>
+			<div class="text">The first time the <b>Category</b> field is used in a <b>Notify</b> action, the category will be created in Android Settings with the settings (Sound, Vibration, LED, etc) set to those that are configured in the action. Subsequent uses of the same category will use the same settings, even if changed in the Tasker action.</div>
+			<div class="text">To make it perfectly clear, an Android Notification Category's settings can never be changed by Tasker after it's first created. Only you, the user, can change those settings in the Android System Settings for Tasker.</div>
+			<div class="text">By default Tasker will use the <b>User Notifications</b> category if the <b>Category</b> field is not filled in.</div>
+			<div class="text">You will be warned if you create a notification without a category because, as mentioned above, the <b>User Notifications</b> category will be used and that category will be set up with default settings that can not be changed by Tasker.</div>
+		</DIV>
+	</DIV>
+</body></html>

@@ -1,0 +1,180 @@
+<!--#include virtual=/tablestart.html -->
+<H2>
+        FAQ: App Creation
+        <IMG ALIGN="right" SRC="androidlogo.png"/>
+        <IMG ALIGN="right" SRC="icon_tasker.png"/>
+</H2>
+
+<UL>
+        <LI><A HREF="#c">Does app creation support profiles and scenes ?</A>
+        <LI><A HREF="#a">Why is the app always shown as running ?</A>
+        <LI><A HREF="#b">How do I do initialization on the first launch ?</A>
+        <LI><A HREF="#h">How can my task tell if it is running in Tasker or a child app ?</A>
+        <LI><A HREF="#d">Why isn't my app detecting background events ?</A>
+	 <LI><A HREF="#e">How can I send the developer a short-term App Factory log ?</A>
+	 <LI><A HREF="#e2">How can I send the developer a long-term App Factory log ?</A>
+	 <LI><A HREF="#f">Can I include Google Play's licencing service in my app ?</A>
+	 <LI><A HREF="#g">Can I get the java source code from my created app ?</A>
+</UL>
+
+<!----------------------------------------------------------------------------->
+
+<A NAME="c"/>
+<H4>Does app creation support profiles and scenes ?</H4>
+
+<P>
+Sure. You can export projects as apps and projects can contain
+profiles, tasks and scenes.
+</P>
+<P>
+For help accessing projects, see <CODE>Menu / Info / Help This Screen</CODE>
+in the main screen.
+</P>
+
+<!----------------------------------------------------------------------------->
+
+<A NAME="a"/>
+<H4>Why is the app always shown as running ?</H4>
+
+<P>
+Tasker tries to detect when it's monitor service is no longer needed but that is
+not always possible. You can put a <CODE>Disable</CODE> action from the <CODE>Tasker</CODE>
+category at the end of your launch task to ensure that it happens.
+</P>
+
+<P>
+The monitor will be started again automatically each time the app is lauched from the home
+screen.
+</P>
+
+
+<!----------------------------------------------------------------------------->
+<A NAME="b"/>
+<H4>How do I do initialization on the first launch ?</H4>
+
+Setup your launch task something like this:
+
+<PRE><CODE>
+If %LaunchCount = 0
+   ...initialization actions...
+Else
+   ...normal actions...
+Elsif
+Variable Add, %LaunchCount, 1
+</CODE></PRE>
+
+<!----------------------------------------------------------------------------->
+<A NAME="h"/>
+<H4>How can my task tell if it is running in Tasker or a child app ?</H4>
+
+Use the <B>Test App</B> action and select the mode <B>This Package</B>.
+<P>
+The resulting variable will contain the package identifier you specified in the
+App Configuration screen if the task is running in a child app, otherwise
+it will contain one of <I>net.dinglisch.android.tasker</I> or <I>net.dinglisch.android.taskerm</I>.
+</P>
+
+<!----------------------------------------------------------------------------->
+<A NAME="d"/>
+<H4>Why isn't my app detecting background events ?</H4>
+
+One possible cause is: when an app has just been installed on Android it is in a 'frozen' state until
+there is some user interaction with it (usually clicking the home screen icon
+at least once).
+
+<!-------------------------------------------------------------------->
+<A NAME="e"/>
+<H4>How can I send the developer a short-term App Factory log ?</H4>
+
+<UL>
+        <LI>download aLogcat, free from Android Market
+        <LI>disable Tasker in the main screen bottom-left
+        <LI>in the App Config screen, check <I>Advanced Properties</I> and then <I>Debug</I>
+        <LI>create and install the new app *twice*
+	<LI>launch the new app from the home screen
+	<LI>reproduce whatever conditions cause the problem
+        <LI>go to aLogCat, click <B>Menu / Pause</B> then <B>Menu / Send</B>
+        <LI>the destination email is listed in <B>Menu / Info / User Support</B> in Tasker
+        <LI>include at the top a brief description of the problem that the email concerns
+</UL>
+
+<P>
+Try to make the log as soon as possible after the problem occurs.
+</P>
+
+<!-------------------------------------------------------------------->
+<A NAME="e2"/>
+<H4>How can I send the developer a long-term App Factory log ?</H4>
+
+<UL>
+        <LI>disable Tasker by long-clicking the icon top-left in the main screen
+        <LI>in the App Config screen, check <I>Advanced Properties</I> and then <I>Debug</I>
+        <LI>create and install the new app *twice*
+	<LI>enable the <B>Storage</B> permission for the app in Android Settings if necessary
+	<LI>launch the new app from the home screen
+	<LI>reproduce whatever conditions cause the problem
+	<LI>send the developer the log files in the directory NAMEOFAPP in the root directory of the SD card
+        <LI>the destination email is listed in <B>Menu / Info / User Support</B> in Tasker
+        <LI>include at the top a brief description of the problem that the email concerns
+</UL>
+
+<P>
+Try to make the log as soon as possible after the problem occurs.
+</P>
+
+<!-------------------------------------------------------------------->
+<A NAME="f"/>
+ <H4>Can I include Google Play's licencing service in my app ?</H4>
+
+No, this is not possible.
+<P>
+Tasker's code does not include the licencing service because of continual problems
+it caused. In any case, the licensing service is ineffectual for preventing
+unauthorized code distribution.
+</P>
+<P>
+If you really want to include licensing in your app, you could e.g. require the
+user to enter their order code and check via the <I>HTTP Get</I> action on your
+server if that is a valid number.
+</P>
+<P>
+Setting up such a server to download Google order details and accept verification
+requests is a lot of effort and requires some technical knowledge, however.
+</P>
+
+
+<!-------------------------------------------------------------------->
+<A NAME="g"/>
+<H4>Can I get the java source code from my created app ?</H4>
+
+<P>
+Short answer: no.
+</P>
+
+<P>
+Long answer: when a new app is created, Tasker doesn't create new java code to
+implement the things in your task or project configuration. Instead, the existing
+Tasker code is used with the new app and executed similarly to how it's executed
+in Tasker, but in the shell of a new APK.
+</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+
+
+<!--#include virtual=/tableend.html -->

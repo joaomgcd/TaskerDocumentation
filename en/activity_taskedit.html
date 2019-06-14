@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Task Edit</TITLE></HEAD>
+<BODY>
+<H2>
+	Task Edit
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+<P>
+This dialog allows editing of the actions in a task, and various properties
+of the task.
+</P>
+
+<H4>Action List</H4>
+
+The main part of the screen is a list of the actions contained in the currently
+selected task.
+
+<UL>
+	<LI><B>Click</B> on an action to edit it
+	<LI><B>Long-click</B> on an action to enter multi-select mode and for options
+	<LI><B>Click-and-drag</B> at the right hand side of the action to move it around e.g. to the trash bin
+</UL>
+
+<P>If a particular action is a <A HREF="settings.html">setting</A>, that will be indicated on
+the right-hand side of the action.
+</P>
+
+<H5>Condition and Block Colours</H5>
+
+<P>If an action has had a condition set for it, the condition is shown with
+a red or green bar next to it; <B>green</B> indicates that the condition is currently met (the action will execute), <B>red</B> indicates the opposite. Of course, when the task is executed it could be that it changes things so that the condition is then met.
+</P>
+
+<P>If an action is within an <CODE>If / End If</CODE> block it is displayed
+indented with a red or green margin. The colours have the same significance
+as for individual action conditions described above.
+</P>
+
+<P>
+If an action is within a <A HREF="flowcontrol.html#for">For loop</A> it
+is displayed indented with a <B>grey</B> margin. If the <CODE>For</CODE> 
+action has a condition on it which is not met, the margin will be <B>red</B>
+(because the actions in the loop will never execute, like an <CODE>If / End If</CODE> block).
+</P>
+
+<H4>Task Control Row</H4>
+
+Directly underneath the action list is a row of buttons with icons.
+
+<H5>Play/Step Buttons</H5>
+
+<P>Run the task.</P>
+
+<P>
+The Play button will run the task right through till the end, the Step
+button will run a single task each time it's pressed.
+</P>
+
+<P>
+During tasting, the current action is shown with an arrow and
+the next task with a faded arrow.
+<P>
+The success of each action is shown when it finishes with a 
+green (action OK) or red (action failed) circle.
+</P>
+
+<P>
+Tasks run via the Play or Step button have priority <B>10</B>.
+</P>
+<P>Long-click the Play or Test button to manually set the priority 
+of the task when it runs
+<b>during the test</b>.  Please be aware that
+setting a lower priority can result in interference from other tasks running
+which are e.g. triggered by profiles.
+</P>
+
+<P>
+Tip: pressing the Step button while a task is playing will cause
+the task to switch to stepping mode when the current action finishes.
+</P>
+
+<H5>Add Action Button</H5>
+
+Add an action to the end of the task. When in multi-select mode, adds an action
+after the current selected item, if only one item is selected.
+
+<H5>Task Properties</H5>
+
+Show extended properties for the task. Not visible in <A HREF="beginner.html">Beginner Mode</A>.
+
+<H5>Task Icon</H5>
+
+Shows the icon associated with the task. Clicking on it allows changing of the icon.
+
+<H4>Menu Items</H4>
+
+<H5>Action Labels</H5>
+
+Toggle display of action labels (which are specified in the <A HREF="activity_actionedit.html">Action Edit</a> screen).
+
+<H5>Param Names</H5>
+
+Toggle display of the name of each action parameter.
+
+<H5>Icons</H5>
+
+Toggle display of the setting/action indicator icon for each action.
+
+</BODY>
+</HTML>

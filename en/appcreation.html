@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: App Creation</TITLE></HEAD>
+<BODY>
+
+<H2>
+	App Creation
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+<UL>
+	<LI><A HREF="#intro">Introduction</A>
+	<LI><A HREF="#example">Hello World Example</A>
+	<LI><A HREF="#config">App Configuration</A>
+	<LI><A HREF="#sign">Signing</A>
+	<LI><A HREF="#target">Target Device Requirements</A>
+	<LI><A HREF="#misc">Miscellaneous</A>
+	<LI><A HREF="http://tasker.dinglisch.net/faq-appcreation.html">FAQ (External Link)</A>
+</UL>
+
+<A NAME="intro" />
+<H3>Introduction</H3>
+
+<P>
+Tasker allows creation of completely standalone apps (APK files) which have no
+requirement for Tasker to be installed on the device they're used on.
+</P>
+<P>
+The intention is to allow people to create their own apps for fun, for sale 
+or just to share with friends.  Or if you are concerned about all 
+the permissions Tasker needs you
+can create an app that has only the permissions you require!
+</P>
+
+<P>
+App creation is uncomplicated and takes only a few seconds once you're setup.
+</P>
+
+<P>
+To create apps, you need the following on <B>your</B> device (not necessarily
+on the device(s) the app will run on):
+</P>
+
+<UL>
+	<LI>Android 2.3+
+	<LI><I>Tasker App Factory</I> (free, see below)
+	<LI>a device with an <I>ARM</I> or <I>x86</I> processor (the vast majority of devices have one of those)
+</UL>
+
+<P>App creation is accessed by long-clicking on a project (<B>not</B> the base project) or task
+and selecting <B>Export</B> then <B>As App</B>. Any 
+linked resources needed (e.g. other tasks, images) are included
+as part of the new app.
+</P>
+<P>
+To export anything except a single task, you need to create a project and put anything you
+wish to export in the project.
+</P>
+
+<A NAME="example" />
+<H3>Hello World Example</H3>
+
+Let's make a simple app that just pops up <B>Hello World!</B> when it's launched.
+
+<H4>1. Create A Task</H4>
+
+<UL>
+	<LI><B>make a new task</B><BR>
+	click on the Tasks tab then click <B>+</B> to add a new task.
+	Give it a name <I>Hello World</I>.
+
+	<LI><B>give the task an icon</B><br>
+	 click the grid icon at the bottom of the screen and pick any icon
+
+	<LI><B>add the Popup action</B><BR>
+	click <B>+</B> in the bottom left to add an action, select category <B>Alert</B> and then action <B>Popup</B>. Fill in <B>Hello World!</B> in the <I>Text</I> parameter, then click the accept button bottom left to accept the action, then again to accept the task.
+
+	<LI><B>ask Tasker to create an app</B><BR>
+	long-click on the task you just made, select <B>Export</B> then <B>As App</B>. A popup appears mentioning a Missing App.
+</UL>
+
+<H4>2. Install Tasker App Factory</H4>
+
+<P>
+To generate apps, Tasker needs a free helper app called <I>Tasker App Factory</I>.
+It's available on Play Store and from the Tasker website.
+</P>
+
+<P>
+Click the accept button on the popup to install the helper app.
+</P>
+
+<H4>3. App Generation</H4>
+
+<P>
+Tasker should now start generating your app, which will take maybe 12 seconds
+depending on your device.
+</P>
+
+<P>
+If all goes well, the Cancel button will turn into an OK button meaning
+your app is ready!
+</P>
+
+<P>We can't run the app straight away though because it hasn't been installed.
+Click on the rightmost bottom button with the Android icon to ask Android
+to install your app.
+</P>
+
+<P>
+Once Android is done installing, you can click it's <B>Open</B> button to
+run the app, or you can simply go to the home screen and click on the app's
+icon in the launcher.
+</P>
+
+<P>
+You should see a Hello World popup!
+</P>
+
+<A NAME="config" />
+<H3>App Configuration</H3>
+
+<P>More usually, before an app is generated you will be presented
+with a configuration screen which lets you specify various options
+for the new app.
+</P>
+
+
+<A NAME="sign" />
+<H3>App Signing</H3>
+
+<P>
+Android requires that all apps be <I>signed</I> i.e. that they certify who
+created them. By default, Tasker uses an automatically-generated 
+insecure certificate to sign apps and doesn't bother mentioning it. 
+</P>
+
+<P>
+However, if you want to release an app via a public site
+(Play Store for example), you will need to sign it with a 
+proper (secure) certificate.
+That's done so the site knows that it's you that's giving
+them the app each time you submit a new version.
+</P>
+
+<P>Certificates are kept in a <I>keystore</I> which is protected
+with a password. To generate a keystore with a secure certificate,
+use <CODE>Menu / More / Developer Options / Create Certificate</CODE>.
+</P>
+
+<P>
+Once you've generated the keystore, Tasker will often need to
+ask you for the certificate password before app generation so that
+it can be used to sign each new version of your app.
+</P>
+
+<P>
+If Android's backup service is enabled in Android settings, Tasker
+makes a backup of the keystore there.
+</P>
+
+<P>Tasker also makes an automatic backup of the keystore to
+<PRE>
+	/sdcard/Tasker/factory/keystore.user
+</PRE>
+
+<P>
+when it is first created and when you backup your profile data
+with <CODE>Menu / Data / Backup</CODE>. It's highly advisable
+to make a copy of that file and keep it safe away from your device.
+</P>
+
+<A NAME="target" />
+<H3>Target Device Requirements</H3>
+
+The device the child app is used on must meet the following requirements:
+
+<UL>
+	<LI>the minimum SDK version specified in the Kid Config screen
+	<LI>have hardware corresponding to features specified in the Kid Config screen
+</UL>
+
+<A NAME="misc" />
+<H3>Miscellaneous</H3>
+
+<H4>Accessibility Service</H4>
+
+<P>
+Android accessibility support changed in Android 4.1 (JellyBean). If support is 
+needed for accessibility services in 4.1+, the <B>Minimum Android Version</B> in
+the child Configuration screen must be set to <B>16</B> or higher. If support is required
+pre-4.1, it must be set to <B>less than</B> 16.
+</P>
+<P>In other words, to support both pre- and post-4.1 devices, two APKs must be
+generated.</P>
+
+<P>
+This applies to all features that rely on an Accessibility Service (events <I>Notification, New Window, Button Widget Clicked, Notification Click</I>, variables <I>%NTITLE, %WIN</I>, <I>App Context</I> from min version 20+)
+</P>
+<P>
+Google Play Store allows publication of APKs targetting different Android versions
+under the same package name, however this has not been tested by the developer
+of Tasker.
+</P>
+
+<H4>Launch Task</H4>
+
+<P>
+When the specified launch task runs in the child app, the following local variables will be available
+to it:
+</P>
+<UL>
+	<LI><I>%launch_data</I>: the data (URI) in the intent that caused the child app to launch (often empty)
+</UL>
+
+<H4>Monitor Service</H4>
+
+<P>
+Most child apps include a service which constantly monitors for events. If you know that you don't need
+to monitor events anymore (in-between app launches) you can use the <I>Disable</I> action in the Tasker category to
+stop it.
+</P>
+
+<P>
+It will be automatically started again next time the app is launched.
+</P>
+
+<H4>Widgets / Shortcuts</H4>
+
+<UL>
+	<LI>it's not possible in Android to auto-create widgets with any app
+	<LI>it's not possible *currently* to offer the user child-app widgets,
+	that may be available in the future to some extent
+</UL>
+
+<H4>Memory Problems</H4>
+
+If you are having low memory problems during app generation, you can ask
+the App Factory to use external storage for the generation process.
+See <CODE>Menu / Prefs / More / Factory</CODE>.
+
+<H4>Preferences</H4>
+
+<P>
+The new app does not take over any preferences from Tasker, all of the preferences in the child app are in their
+default state, with a couples of exceptions.
+</P>
+
+<P>
+Despite the misleading name, you can use the <I>Set Tasker Pref</I> action in the <I>Tasker</I> category
+<B>in the child app</B> to change some of the <B>child's</B> preferences
+ when it is running.
+</P>
+
+<H4>Available Tasker Features</H4>
+
+Obviously, the device the new app runs on may not have the same set of
+available e.g. actions as the device the app is created on.
+
+<P>
+The <I>Test</I> action in the <I>Misc</I> category allows you to check
+which Tasker features are available at <I>run time</I> (when the app
+is being used).
+</P>
+
+<H4>Images</H4>
+
+Referenced images (even scene doodles and photos from internal storage)
+are bundled in with the app.
+<P>
+Tip: to include a dynamic image (e.g. which you download to a file path
+via HTTP Get), put the image reference in a variable, and put the variable
+in the relevant action.
+</P>
+
+<H4>Plugins</H4>
+
+<P>
+When the new app is launched, it checks that all referenced plugins
+are installed on the device and prompts the user to install missing ones.
+</P>
+<P>
+Some plugins may not work on other devices if they themselves store something about the
+action to be performed, since that data will not be available on the
+other device.
+</P>
+
+<P>
+Plugin authors: see also <A HREF="http://tasker.dinglisch.net/plugins.html#gen">here</A>.
+</P>
+
+<H4>JavaScript actions</H4>
+
+Scripts referenced by a <I>JavaScript</I> action are packaged with the new app
+and run directly from there.
+
+<H4>SL4A Scripts</H4>
+
+Scripts referenced in a <I>Run Script</I> action are packaged with the new
+app and unpacked to <CODE>/sdcard/sl4a/scripts</CODE>, prefixed with the
+package name, on first run. Tasker automatically inserts the WRITE_EXTERNAL_STORAGE
+permission for that purpose.
+
+<P>
+If SL4A is missing on the target device, the new app will prompt the user 
+to download when launched.
+</P>
+<P>
+If a new version of the app is reinstalled on the target device, the new versions
+of the scripts will be written if the <B>length</B> has changed.
+</P>
+
+<H4>Other External Components</H4>
+
+The following external components are also checked for on launch of the new app where
+necessary:
+
+<UL>
+	<LI>Speech engines (<I>Say, Say After</I>)
+	<LI>APNDroid (<I>Mobile Data APN</I>)
+	<LI>Zoom (<I>Zoom</I> action category actions)
+	<LI>apps for <I>3rd Party</I> actions
+	<LI>apps for <I>3rd Party</I> events
+</UL>
+
+<H4>Maps</H4>
+
+<P>
+The data for Maps is provided by Google and they require a <I>maps key</I> (v2) for
+each developer that uses it. If you are using Map scene elements in your app, you need a key
+from Google that can be included with your app. 
+</P>
+
+<P>Here are the steps to acquire a key:
+<OL>
+<LI>[if necessary] setup a <A HREF="http://www.google.com/accounts/">Google Account</A>
+<LI>[if necessary] create a <A HREF="http://developer.android.com/distribute/index.html">developer account</A>
+<LI>[if necessary] create a <A HREF="#sign">signing keystore</A>
+<LI>get the SHA1 fingerprint of your certificate: <CODE>Menu / More / Developer Options / Certificate Checksum</CODE>
+<LI>Create an <A HREF="https://developers.google.com/maps/documentation/android/start#create_an_api_project_in_the_google_apis_console">Google API Project</A>
+<LI>Obtain the <A HREF="https://developers.google.com/maps/documentation/android/start#obtain_a_google_maps_api_key">Maps key</A>
+</OL>
+
+<P>
+Enter the key in the App Configuration screen when generating your app. Note that the
+box will only be presented if your app uses one or more Map scene elements.
+</P>
+
+<P>
+Note that the device on which the created app is used needs Google's Play Services APK installed, otherwise
+the map elements will not function.
+</P>
+
+<H4>Variables</H4>
+
+The new app is completely independent of Tasker, so it also does
+not share any variable values.
+
+<H4>Permissions</H4>
+
+Tasker attempts to reduce the set of permissions required by the new app to
+the smallest set required for the functionality it contains. For example,
+no <I>Vibrate</I> permission will be requested if there is no vibrate action
+used.
+<P>
+The WAKE_LOCK permission is unfortunately always required for technical reasons.
+</P>
+
+<H4>App Size</H4>
+
+Generated apps are minimally around 640K but are unlikely to be
+significantly larger unless a lot of images are referenced.
+It's possible that this minimum can be reduced in the future.
+
+<H4>Encryption</H4>
+
+<P>
+Code for encryption is included in any app created by App Factory, however
+if you don't use encryption features it's unlikely to be a problem
+in terms of export restrictions. However, that is an opinion, it is <B>not legal advice</B>.
+</P>
+<P>
+Note that code libraries for encryption are included with every Android device. Tasker
+(and child apps) use these libraries to perform the encryption, they do not contain
+encryption code themselves.
+</P>
+
+<H4>Licence</H5>
+
+<P>
+You are free to distribute and sell apps created by Tasker in any
+way you wish. No licence fees to the developer of Tasker are necessary.
+It would be courteous to reference Tasker and it's website 
+(http://tasker.dinglisch.net) somewhere in your new app if possible.
+</P>
+
+<P>
+Please note that use of images from some Ipacks in commercial software
+is prohibited by the licence terms of the image creators. You will need
+to contact the image designer to request their assent in such cases.
+(the origin of an Ipack's images is displayed in the Ipack image selection
+screen).
+</P>
+
+</BODY>
+</HTML>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Maths</TITLE></HEAD>
+<BODY>
+
+<H2>
+	Maths
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+<H4>Where Is Maths Used ?</H4>
+
+<UL>
+	<LI>When you do <CODE>Variable Set</CODE> and click the <I>Do Maths</I> checkbox
+	<LI>With the <CODE>If</CODE> action, if you select a mathematical comparison like <B>&lt;</B> or <B>=</B>
+	<LI>With individual action conditions when a mathematical comparison is selected
+</UL>
+
+<H4>What's Available</H4>
+
+Tasker uses the <A HREF="http://www.softwaremonkey.org/Code/MathEval">MathEval</A> library by Lawrence PC Dol.
+
+<H4>Operators</H4>
+
+<UL>
+	<LI><B>+ - * /</B> - the basic operators
+	<LI><B>%</B> - modulus
+	<LI><B>^</B> - power
+</UL>
+
+<H5>Constants</H5>
+
+ <ul>
+    <li><B>E</B>                  - the base of the natural logarithms
+    <li><B>EUL</B>              - Euler's Constant
+    <li><B>LN2</B>                - log of 2 base e
+    <li><B>LN10</B>               - log of 10 base e
+    <li><B>LOG2E</B>              - log of e base 2
+    <li><B>LOG10E</B>             - log of e base 10
+    <li><B>PHI</B>                - the golden ratio
+    <li><B>PI</B>                 - the ratio of the circumference of a circle to its diameter
+</ul>
+
+<H5>Functions</H5>
+
+<P>
+Trigonometric functions expect a value in radians.
+</P>
+<P>
+Functions take their argument in parenthesis e.g. sin(torad((90))
+</P>
+<UL>
+
+    <li><B>abs</B>           - absolute value
+    <li><B>acos</B>          - arc cosine; the returned angle is in the range 0.0 through pi
+    <li><B>asin</B>          - arc sine; the returned angle is in the range -pi/2 through pi/2
+    <li><B>atan</B>          - arc tangent; the returned angle is in the range -pi/2 through pi/2
+    <li><B>cbrt</B>          - cube root
+    <li><B>ceil</B>          - smallest value that is greater than or equal to the argument and is an integer
+    <li><B>cos</B>           - trigonometric cosine
+    <li><B>cosh</B>          - hyperbolic cosine
+    <li><B>exp</B>           - Euler's number e raised to the power of the value
+    <li><B>expm1</B>         - <i>e</i><super>x</super>-1
+    <li><B>floor</B>         - largest value that is less than or equal to the argument and is an integer
+    <li><B>getExp</B>  	     - unbiased exponent used in the representation of val
+    <li><B>log</B>           - natural logarithm (base e)
+    <li><B>log10</B>         - base 10 logarithm
+   <li><B>log1p</B>         - natural logarithm of (val+1)
+    <li><B>nextup</B>        - floating-point value adjacent to val in the direction of positive infinity
+    <li><B>round</B>         - closest 64 bit integer to the argument
+    <li><B>roundhe</B>       - double value that is closest in value to the argument and is equal to a mathematical integer, using the half-even rounding method.
+    <li><B>signum</B>        - signum function of the argument; zero if the argument is zero, 1.0 if the argument is greater than zero, -1.0 if the argument is less than zero
+    <li><B>sin</B>           - trigonometric sine
+    <li><B>sinh</B>          - hyperbolic sine
+    <li><B>sqrt</B>          - correctly rounded positive square root
+    <li><B>tan</B>           - trigonometric tangent
+    <li><B>tanh</B>          - hyperbolic tangent
+    <li><B>todeg</B>     	- converts an angle measured in radians to an approximately equivalent angle measured in degrees
+    <li><B>torad</B>     	- converts an angle measured in degrees to an approximately equivalent angle measured in radians
+    <li><B>ulp</B>           - size of an ulp of the argument
+</UL>
+
+
+</BODY>
+</HTML>

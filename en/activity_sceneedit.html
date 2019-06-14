@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+ <HEAD><TITLE>Tasker: Scene Edit</TITLE></HEAD>
+<BODY>
+<H2>
+	Scene Edit
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+<P>
+The scene editor is used for designing custom scenes.
+</P>
+
+The editor consists of three areas:
+
+<H3>Display Area</H3>
+
+The main part of the editor, where the position and size of elements are arranged.
+The display area has two modes dependent on the setting of the magnifying glass icon in the corner.
+
+<H4>Preview Mode</H4>
+
+This mode shows the scene as it will appear when displayed.
+
+<UL>
+	<LI>Click-and-drag</B> on the <B>edge</B> of the scene to resize it
+</UL>
+
+<H4>Editing Mode</H4>
+
+This mode is zoomed to make editing easier.
+
+<UL>
+	<LI><B>Long-click</B> on an <B>empty</B> area to create a new element positioned there
+	<LI><B>Long-click</B> on an <B>element</B> to get options for the element
+	<LI><B>Click</B> on an <B>element</B> to edit it.
+	<LI><B>Click-and-drag</B> on the <B>centre</B> of an element to move it
+	<LI><B>Click-and-drag</B> on the <B>edge</B> of an element to resize it
+</UL>
+
+<P>
+When moving and resizing, the sides of elements are snapped to a grid to make alignment
+easier. The grid size is unique to each scene and can be changed via <B>Menu / Grid Size</B>.
+</P>
+
+<H3>Tool Bar</H3>
+
+<H4>Touch Mode</H4>
+
+There are four touch modes which decide the effect of taps on the
+display area. 
+
+<I>Normal Mode</I> is described above. <I>Edit Mode</I> is the same as
+<I>Normal Mode</I> except that all controls except the
+Touch Mode selector are hidden to allow access to small controls along the scene edges. 
+<I>Move Mode</I> is intended to make it easier to reposition elements. <I>Resize</I> mode
+is for making resizing easier. 
+<P>
+
+<H4>Element Picker</H4>
+
+<P>
+Allows selection of an element by name. This is most useful when an element is
+difficult to directly click on due to other elements or because it's very small.
+</P>
+<P>
+Both short and long clicks on the element names behave the same as short and long
+clicks on the element itself.
+</P>
+
+<H4>Undo</H4>
+
+Allows undo of all operations, up to 20 steps in the past.
+
+<H4>New Element</H4>
+
+Create a new element in the <B>middle</B> of the scene. Useful if the scene is already
+cluttered with a lot of elements so there is no free space.
+
+<H3>Menu Options</H3>
+
+<H4>Background Colour</H4>
+
+A complex background can be set by long-tapping an element and specifying it as 
+the <A HREF="#back">background element</A>. If a uniform colour is sufficient, it can also
+be specified with this menu option.
+
+<P>
+However, there is a special case where it's a good idea to specify a background colour even
+if you already have a background element. A scene is resized to fit the container
+ into which it's placed, but in some cases (e.g. when it is shown as a full screen activity) there will be margins left on one
+side of the container because the <I>aspect ration</I> of the scene
+(the relative size of its width and height) of a scene is never changed. In such a
+case, the margins are coloured with the background colour specified here.
+</P>
+
+<H3>Element Long-Click Options</H3>
+
+<A NAME="back" />
+<H4>Set Background</H4>
+
+An element which is set as the scene background is resized to always fill the whole scene
+and interferes less with selection of other elements. To reverse this, long-tap on it and
+select <B>Set Foreground</B>.
+
+<H4>Pin</H4>
+
+When an element is positioned satisfactorily, it can be pinned to make it easier to
+select and manipulate other elements. To reverse this, long-tap on it and select
+<B>Unpin</B>.
+
+<H4>Set Depth</H4>
+
+Each element has a particular depth which is unique to it. Deeper elements are obscured
+by shallower elements which overlap them.
+
+<H3>Orientation</H3>
+
+<P>
+The geometry (<B>position</B> and <B>size</B>) of each element can be configured independently for
+portrait and landscape display orientations by rotating the device to the desired
+orientation in the editor.
+</P>
+
+<P>
+If no geometry is configured for a particular orientation when the scene is displayed, Tasker will attempt to
+fit the elements into the scene based on the geometry of the elements in the other orientation.
+</P>
+
+</BODY>
+</HTML>

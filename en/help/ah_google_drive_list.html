@@ -1,0 +1,37 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+	.input{
+
+	}
+	.input .title{
+		font-size: 110%;
+		font-weight: bold;
+		margin-top: 24px;
+	}
+	.input .text{
+
+	}
+</style>
+</head><body>
+	<H3>Google Drive List</H3>
+	<P>Get details about files and folders on your Google Drive.</P>
+	<DIV class="inputs">
+		<div class="input">
+			<div class="title">Output Variables</div>
+			<div class="text">Arrays of details about your files and folders. Each position on each array corresponds to one item. For example, position <b>1</b> on <b>%gd_id()</b> corresponds to position <b>1</b> on <b>%gd_name</b>, etc.</div>
+		</DIV>
+		<div class="input">
+			<div class="title">Account</div>
+			<div class="text">The account you want to list the files from</div>
+		</DIV>
+		<div class="input">
+			<div class="title">Type: Remote Folder</div>
+			<div class="text">List files inside a folder on your Google Drive</div>
+		</DIV>
+		<div class="input">
+			<div class="title">Type: Query</div>
+			<div class="text">List the files using a custom query. For example, you can use <b>name contains 'My doc'</b> to search for files that contain the words 'My doc' in their name. Check <a href="https://developers.google.com/drive/api/v3/search-parameters" target="_blank">here</a> for complete documentation.</div>
+		</DIV>
+	</DIV>
+	<P><b>Note</b>: For security reasons this action can't be used on App Factory generated apps.</P>
+</body></html>

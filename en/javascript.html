@@ -1,0 +1,2257 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: JavaScript Support</TITLE></HEAD>
+<BODY>
+
+<H2>
+	JavaScript Support
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+<UL>
+	<LI><A HREF="#intro">Introduction</A>
+	<LI><A HREF="#localvars">Local Variables</A>
+	<LI><A HREF="#globalvars">Global Variables</A>
+	<LI><A HREF="#array">Arrays</A>
+	<LI><A HREF="#settings">Settings</A>
+	<LI><A HREF="#exe">Execution</A>
+	<LI><A HREF="#offdevice">Working Off-Device</A>
+	<LI><A HREF="#builtin">Builtin Functions</A>
+
+	<BR>
+	<A HREF="#alarmVol">alarmVol</A>
+	<A HREF="#audioRecord">audioRecord</A>
+	<A HREF="#audioRecordStop">audioRecordStop</A>
+
+	<BR>
+	<A HREF="#btVoiceVol">btVoiceVol</A>
+	<A HREF="#browseURL">browseURL</A>
+	<A HREF="#button">button</A>
+
+	<BR>
+	<A HREF="#call">call</A>
+	<A HREF="#callBlock">callBlock</A>
+	<A HREF="#callDivert">callDivert</A>
+	<A HREF="#callRevert">callRevert</A>
+	<A HREF="#callVol">callVol</A>
+	<A HREF="#carMode">carMode</A>
+	<A HREF="#clearKey">clearKey</A>
+	<A HREF="#composeEmail">composeEmail</A>
+	<A HREF="#composeMMS">composeMMS</A>
+	<A HREF="#composeSMS">composeSMS</A>
+	<A HREF="#convert">convert</A>
+	<A HREF="#createDir">createDir</A>
+	<A HREF="#createScene">createScene</A>
+	<A HREF="#cropImage">cropImage</A>
+
+	<BR>
+	<A HREF="#decryptDir">decryptDir</A>
+	<A HREF="#decryptFile">decryptFile</A>
+	<A HREF="#deleteDir">deleteDir</A>
+	<A HREF="#deleteFile">deleteFile</A>
+	<A HREF="#destroyScene">destroyScene</A>
+	<A HREF="#displayAutoBright">displayAutoBright</A>
+	<A HREF="#displayAutoRotate">displayAutoRotate</A>
+	<A HREF="#displayTimeout">displayTimeout</A>
+	<A HREF="#dpad">dpad</A>
+	<A HREF="#dtmfVol">dtmfVol</A>
+
+	<BR>
+	<A HREF="#elemBackColour">elemBackColour</A>
+	<A HREF="#elemBorder">elemBorder</A>
+	<A HREF="#elemPosition">elemPosition</A>
+	<A HREF="#elemText">elemText</A>
+	<A HREF="#elemTextColour">elemTextColour</A>
+	<A HREF="#elemTextSize">elemTextSize</A>
+	<A HREF="#elemVisibility">elemVisibility</A>
+	<A HREF="#enableProfile">enableProfile</A>
+	<A HREF="#encryptDir">encryptDir</A>
+	<A HREF="#encryptFile">encryptFile</A>
+	<A HREF="#endCall">endCall</A>
+	<A HREF="#enterKey">enterKey</A>
+	<A HREF="#exit">exit</A>
+
+	<BR>
+	<A HREF="#filterImage">filterImage</A>
+	<A HREF="#flash">flash</A>
+	<A HREF="#flashLong">flashLong</A>
+	<A HREF="#flipImage">flipImage</A>
+
+	<BR>
+	<A HREF="#getLocation">getLocation</A>
+	<A HREF="#getVoice">getVoice</A>
+	<A HREF="#global">global</A>
+	<A HREF="#goHome">goHome</A>
+
+	<BR>
+	<A HREF="#haptics">haptics</A>
+	<A HREF="#hideScene">hideScene</A>
+
+	<BR>
+	<A HREF="#listFiles">listFiles</A>
+	<A HREF="#loadApp">loadApp</A>
+	<A HREF="#loadImage">loadImage</A>
+	<A HREF="#local">local</A>
+	<A HREF="#lock">lock</A>
+
+	<BR>
+	<A HREF="#mediaControl">mediaControl</A>
+	<A HREF="#mediaVol">mediaVol</A>
+	<A HREF="#micMute">micMute</A>
+	<A HREF="#mobileData">mobileData</A>
+	<A HREF="#musicBack">musicBack</A>
+	<A HREF="#musicPlay">musicPlay</A>
+	<A HREF="#musicSkip">musicSkip</A>
+	<A HREF="#musicStop">musicStop</A>
+
+	<BR>
+	<A HREF="#nightMode">nightMode</A>
+	<A HREF="#notificationVol">notificationVol</A>
+
+	<BR>
+	<A HREF="#performTask">performTask</A>
+	<A HREF="#popup">popup</A>
+	<A HREF="#profileActive">profileActive</A>
+	<A HREF="#pulse">pulse</A>
+
+	<BR>
+	<A HREF="#readFile">readFile</A>
+	<A HREF="#reboot">reboot</A>
+	<A HREF="#resizeImage">resizeImage</A>
+	<A HREF="#ringerVol">ringerVol</A>
+	<A HREF="#rotateImage">rotateImage</A>
+
+	<BR>
+	<A HREF="#saveImage">saveImage</A>
+	<A HREF="#say">say</A>
+	<A HREF="#scanCard">scanCard</A>
+	<A HREF="#sendIntent">sendIntent</A>
+	<A HREF="#sendSMS">sendSMS</A>
+	<A HREF="#setAirplaneMode">setAirplaneMode</A>
+	<A HREF="#setAirplaneRadios">setAirplaneRadios</A>
+	<A HREF="#setAlarm">setAlarm</A>
+	<A HREF="#setAutoSync">setAutoSync</A>
+	<A HREF="#setBT">setBT</A>
+	<A HREF="#setBTID">setBTID</A>
+	<A HREF="#setClip">setClip</A>
+	<A HREF="#setGlobal">setGlobal</A>
+	<A HREF="#setKey">setKey</A>
+	<A HREF="#setLocal">setLocal</A>
+	<A HREF="#settings">settings</A>
+	<A HREF="#setWallpaper">setWallpaper</A>
+	<A HREF="#setWifi">setWifi</A>
+	<A HREF="#shell">shell</A>
+	<A HREF="#showScene">showScene</A>
+	<A HREF="#shutdown">shutdown</A>
+	<A HREF="#silentMode">silentMode</A>
+	<A HREF="#sl4a">sl4a</A>
+	<A HREF="#soundEffects">soundEffects</A>
+	<A HREF="#speakerphone">speakerphone</A>
+	<A HREF="#statusBar">statusBar</A>
+	<A HREF="#stayOn">stayOn</A>
+	<A HREF="#stopLocation">stopLocation</A>
+	<!--A HREF="#stopTask">stopTask</A -->
+	<A HREF="#systemLock">systemLock</A>
+	<A HREF="#systemVol">systemVol</A>
+
+	<BR>
+	<A HREF="#takeCall">takeCall</A>
+	<A HREF="#takePhoto">takePhoto</A>
+	<A HREF="#taskRunning">taskRunning</A>
+	<A HREF="#type">type</A>
+
+	<BR>
+	<A HREF="#usbTether">usbTether</A>
+	<A HREF="#unzip">unzip</A>
+
+	<BR>
+	<A HREF="#vibrate">vibrate</A>
+	<A HREF="#vibratePattern">vibratePattern</A>
+
+	<BR>
+	<A HREF="#wait">wait</A>
+	<A HREF="#wifiTether">wifiTether</A>
+	<A HREF="#writeFile">writeFile</A>
+
+	<BR>
+	<A HREF="#zip">zip</A>
+
+	<LI><A HREF="#notes">Function Notes</A>
+</UL>
+
+<A NAME="intro" />
+<H3>Introduction</H3>
+<P>
+Tasker supports running JavaScript code in tasks or <A HREF="element_web.html">WebView</A> scene elements.
+Most Tasker actions can be accessed direct from the JavaScript.
+JSON and XMLHTTPRequest are also directly available from the JavaScript code.</P>
+
+<H4>JavaScript in Tasks</H4>
+
+<P>
+JavaScript can be embedded inline in tasks via the <I>JavaScriptlet</I> (direct
+specification of JavaScript to run) or <I>JavaScript</I> (load script from file)
+actions.
+</P>
+
+<P>
+In both cases, the JavaScript executes in sequence with the other actions in the task
+and variables are transparently converted so pieces of JavaScript can be 
+interwoven throughout the task.
+</P>
+
+<H4>Embedded in HTML</H4>
+
+WebView elements allow specification of mixed HTML and JS for the element
+content.
+
+<BLOCKQUOTE>
+<CODE>
+&lt;H1 onClick="setWifi( false )"&gt;ClickMeToTurnOffWifi&lt;/H1&gt;
+</CODE>
+</BLOCKQUOTE>
+
+<P>
+This allows a single WebView to present a complete user-interface.
+</P>
+
+<A NAME="localvars" />
+<H3>Local Variables</H3>
+
+<P>
+In <CODE>JavaScript(let)</CODE> actions, local variables (all lower case, e.g. <B>%myvar</B>) are directly accessible in the JavaScript without
+the % sign (e.g. <B>myvar</B>). If the script changes the value, the new value is transparently
+used by subsequent actions in the task.
+</P>
+<P>
+The values of new (all lower case) variables declared in JavaScript (with the <CODE>var</CODE> keyword) are also available to subsequent actions,
+with the exception of those which are chain-declared e.g. <CODE>var one = 'aval', two = 'bval';</CODE>
+</P>
+<P>
+In JavaScript embedded in HTML, the functions <A HREF="#local">local</A> and
+<A HREF="#setLocal">setLocal</A> must be used to access variables local to the scene hosting the WebView.
+</P>
+
+<A NAME="globalvars" />
+<H3>Global Variables</H3>
+
+Tasker global variables need to be accessed via <A HREF="#global">global()</A> and set via <A HREF="#setGlobal">setGlobal()</A>. 
+Global arrays are not supported due to an Android limitation.
+
+<A NAME="array" />
+<H3>Arrays</H3>
+
+<P>
+Local Tasker arrays are transparently available in <I>Javascript(let)</I>s and vice-versa.
+They are not available in WebViews.
+</P>
+<P>
+Arrays which are not existing Tasker arrays must be declared in the JS as such i.e. in
+this case <I>arr</I> will not be visible to the remainder of the task:
+</P>
+
+<PRE>
+	var arr = getSomeArray();
+</PRE>
+
+<P>
+Whereas in this case it will:
+</P>
+
+<PRE>
+	var arr = [];
+	arr = getSomeArray();
+</PRE>
+
+<P>
+Note that:
+</P>
+
+<UL>
+<LI>JavaScript array indices start at 0, whereas Tasker array indices start at 1
+<LI>JavaScript uses <CODE>[]</CODE> while Tasker uses <CODE>()</CODE>
+</UL>
+
+<P>
+So, for example, <CODE>%arr(1)</CODE> (Tasker) is equivalent to <CODE>arr[0]</CODE> (JavaScript).
+</P>
+
+<A NAME="settings" />
+<H3>Settings</H3>
+
+Unlike normal Tasker actions, settings which are changed in JavaScript as part of a profile's
+enter task are <B>not</B> restored when the profile exits.
+
+<A NAME="exe" />
+<H3>Execution</H3>
+
+<H4>Execution Instances</H4>
+
+Only one script can execute at one time. Once a piece of
+JavaScript is executing, it cannot be interrupted by another
+piece.
+
+<A NAME="offdevice" />
+<H4>Working Off-Device</H4>
+
+You might wish to develop long and/or complicated tasks off-device e.g. on a PC.
+
+There are two strategies for that:
+
+<H4>1. <CODE>JavaScript</CODE> action</H4>
+
+For off-device testing, use <CODE>Menu / More / Developer / Save JS Library Template</CODE> to get dummy
+definitions for the built in functions. Include that file when developing on your PC.
+<P>
+To test in your JavaScript code whether you're on-device or not, use
+<BLOCKQUOTE><CODE>
+var onAndroid = ( global( 'sdk' ) > 0 );
+</CODE></BLOCKQUOTE>
+</P>
+
+<P>
+By using the <CODE>JavaScript</CODE> action rather than <CODE>JavaScriptlet</CODE> you can easily
+access a file synced from PC to a file on the Android device.
+</P>
+
+<H4>2. Using WebView</H4>
+
+<P>
+If you specify a website URL as the content for your WebView, then testing the
+code on the target device is a simple matter of pushing the new version to your webserver and
+reloading the WebView on the device (see action <A HREF="help/ah_scene_element_web_control.html">Element Web Control</A>)
+</P>
+
+<H4>Builtin Function Execution</H4>
+
+<P>
+Calls to most Tasker builtin functions (see below) are
+executed as normal single-action tasks and thus may be blocked
+by other executing tasks.
+</P>
+<P>
+They execute at the priority of the task that executed the JavaScript
+<B>plus two</B>.
+</P>
+
+<H4>JavaScript(let): Alert,Confirm,Prompt</H4>
+
+Scripts using these functions require a 'user-interface' and may cause
+interference with the currently running app (though in most cases they
+will not).
+
+<H4>JavaScript(let): Auto Exit</H4>
+
+<P>
+By default, the <CODE>JavaScript(let)</CODE> action will end when the main execution
+sequence is finished.
+</P>
+<P>
+If you are using asynchronous code e.g. via <I>setTimeout()</I> or other callbacks,
+you should deselect <I>Auto Exit</I>. You are then responsible yourself for telling
+Tasker to continue the task by calling <I>exit()</I>.
+</P>
+<P>
+In any case, execution will stop when the timeout configured for the action is reached.
+</P>
+
+<H4>JavaScript(let): Libraries</H4>
+
+You can specify as many libraries as you want in the <I>Libraries</I> parameter, 
+separated by newlines.
+<P>
+Several popular libraries are pre-selectable.
+</P>
+<P>
+You may wish to download them manually to your local storage and change the <I>http</I> URL
+to a <I>file</I> URL so that Internet is not required to run your script.
+</P>
+
+<P>
+Warning: library code will have access to local files, data providers etc. on the device
+</P>
+
+<P>
+Important: if you are using your own libraries developed on Windows, you may need to convert
+CRLF style line endings to Unix style LF.
+</P>
+
+<A NAME="builtin" />
+<H3>Builtin Functions</H3>
+
+<P>
+Tasker makes most of it's actions available via functions which can be called directly via name
+in <CODE>JavaScript(let)</CODE> actions and WebView elements.
+</P>
+<P>
+Exceptions:
+</P>
+
+<UL>
+	<LI>in WebView content where mode is set to <B>URL</B>, the functions must be prefixed by <B>tk</B> e.g. <CODE>tk.flash('Woo!')</CODE>
+	<LI>when executing code via <I>eval</I> the functions must be prefixed by <B>tk.</B>
+</UL>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="alarmVol" />
+<A NAME="btVoiceVol" />
+<A NAME="callVol" />
+<A NAME="dtmfVol" />
+<A NAME="mediaVol" />
+<A NAME="notificationVol" />
+<A NAME="systemVol" />
+<A NAME="ringerVol" />
+<H5>alarmVol / btVoiceVol / callVol / dtmfVol / mediaVol / notificationVol / systemVol / ringerVol</H5>
+
+<P>
+<CODE>var ok = alarmVol( int level, bool display, bool sound )</CODE>
+</P>
+<P>Set the relevant system volume to <I>level</I>.
+</P>
+<P>If <I>display</I> is true, the new level will be flashed up on-screen.</P>
+<P>If <I>sound</I> is true, a tone will sound at the new level.</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="audioRecord" />
+<H5>audioRecord</H5>
+
+<P>
+<CODE>var ok = audioRecord( str destPath, str source, str codec, str format )</CODE>
+</P>
+<UL>
+<LI><I>destPath</I>: where to put the recording. Note that a file extension is not
+necessary, it will correspond to the selected <I>format</I>.
+<LI><I>source</I>: <B>def, mic, call, callout</B> or <B>callin</B>
+<LI><I>codec</I>: <B>amrn, amrw</B> or <B>aac</B>
+<LI><I>format</I>: <B>mp4, 3gpp, amrn</B> or <B>amrw</B>
+</UL>
+<P>
+The JavaScript does <B>not</B> wait for the audio recording to complete.
+</P>
+
+<P>See also: <A HREF="#audioRecordStop">audioRecordStop()</A>.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="audioRecordStop" />
+<H5>audioRecordStop</H5>
+
+<P>
+<CODE>var ok = audioRecordStop()</CODE>
+</P>
+<P>
+Stop recording previously initiated by <A HREF="#audioRecord">audioRecord()</A>.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="browseURL" />
+<H5>browseURL</H5>
+
+<P>
+<CODE>var ok = browseURL( str URL )</CODE>
+</P>
+<P>
+Open the default browser at the specifed URL.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="button" />
+<H5>button</H5>
+
+<P>
+<CODE>var ok = button( str name )</CODE>
+</P>
+<P>
+Simulate a press of the named button.
+</P>
+<P><I>name</I> must be one of <B>back, call, camera, endcall, menu, volup, voldown</B> or <B>search</B>.
+<P>
+This function requires a rooted device.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="call" />
+<H5>call</H5>
+
+<P>
+<CODE>var ok = call( str num, bool autoDial )</CODE>
+</P>
+<P>
+Make a phone call.
+</P>
+<P>If <I>autoDial</I> is <B>false</B>, the phone app will be brought up with
+the number pre-inserted, if <B>true</B> the number will also be dialed.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="callBlock" />
+<H5>callBlock</H5>
+
+<P>
+<CODE>var ok = callBlock( str numMatch, bool showInfo )</CODE>
+</P>
+<P>
+Block <B>outgoing</B> calls <A HREF="matching.html">matching</A> <I>numMatch</I>.
+</P>
+<P>
+If <I>showInfo</I> is set, Tasker will flash a message when
+a call is blocked.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="callDivert" />
+<H5>callDivert</H5>
+
+<P>
+<CODE>var ok = callDivert( str fromMatch, str to, bool showInfo )</CODE>
+</P>
+<P>
+Divert <B>outgoing</B> calls <A HREF="matching.html">matching</A> <I>fromMatch</I>
+to the number <I>to</I>.
+</P>
+<P>
+If <I>showInfo</I> is set, Tasker will flash a message when
+a call is diverted.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="callRevert" />
+<H5>callRevert</H5>
+
+<P>
+<CODE>var ok = callRevert( str numMatch )</CODE>
+</P>
+<P>
+Stop blocking or diverting outgoing calls previously specified with
+<A HREF="#callBlock">callBlock</A> or <A HREF="#callDivert">callDivert</A>.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="carMode" />
+<H5>carMode</H5>
+
+<P>
+<CODE>var ok = carMode( bool onFlag )</CODE>
+</P>
+<P>
+Turn on or off Android Car Mode.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="clearKey" />
+<H5>clearKey</H5>
+
+<CODE>var ok = clearKey( str keyName  )</CODE>
+
+<P>
+Clear the passphrase for the specified <I>keyName</I>.
+</P>
+<P>See Also: <A HREF="encryption.html">Encryption</A> in the Userguide.</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="composeEmail" />
+<H5>composeEmail</H5>
+
+<CODE>var ok = composeEmail( str to, str subject, str message  )</CODE>
+
+<P>
+Show an email composition dialog with any specified fields pre-filled.
+</P>
+<P>
+The JavaScript does <B>not</B> wait for the email to be sent before continuing.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="composeMMS" />
+<H5>composeMMS</H5>
+
+<CODE>var ok = composeMMS( str to, str subject, str message, str attachmentPath )</CODE>
+
+<P>
+Show an MMS composition dialog with any specified fields pre-filled.
+</P>
+<P>
+The JavaScript does <B>not</B> wait for the MMS to be sent before continuing.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="composeSMS" />
+<H5>composeSMS</H5>
+
+<CODE>var ok = composeSMS( str to, str message )</CODE>
+
+<P>
+Show an SMS composition dialog with any specified fields pre-filled.
+</P>
+<P>
+The JavaScript does <B>not</B> wait for the SMS to be sent before continuing.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="convert" />
+<H5>convert</H5>
+
+<CODE>var result = convert( str val, str conversionType )</CODE>
+
+<P>
+Convert from one type of value to another.
+</P>
+<P>
+<I>conversionType</I> must be one of the string constants: <B>byteToKbyte,
+		byteToMbyte, byteToGbyte, datetimeToSec, secToDatetime, secToDatetimeM, secToDatetimeL, htmlToText,
+		celsToFahr, fahrToCels, inchToCent, metreToFeet, feetToMetre, kgToPound, poundToKg, kmToMile,
+		mileToKm, urlDecode, urlEncode, binToDec, decToBin, hexToDec, decToHex, base64encode base64decode,
+		toMd5, toSha1, toLowerCase, toUpperCase, toUpperCaseFirst</B>.
+</P>
+See also: action <A HREF="help/ah_convert_variable.html">Variable Convert</A>.
+</P>
+
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="createDir" />
+<H5>createDir</H5>
+
+<P>
+<CODE>var ok = createDir( str dirPath, bool createParent, bool useRoot )</CODE>
+</P>
+<P>
+Create the named <I>dirPath</I>. If <I>createParent</I> is specified and any
+parent directory does not exist, it will also be created.
+</P>
+<P>
+If <I>useRoot</I> is specified, the operation will be performed as the root user
+(where available).
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="createScene" />
+<H5>createScene</H5>
+
+<P>
+<CODE>var ok = createScene( str sceneName )</CODE>
+</P>
+<P>
+Create the named <A HREF="scenes.html">scene</A> without displaying it.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="cropImage" />
+<H5>cropImage</H5>
+
+<P>
+<CODE>var ok = cropImage( int fromLeftPercent, int fromRightPercent, int fromTopPercent, int fromBottomPercent )</CODE>
+</P>
+<P>
+Crop an image in Tasker's image buffer previously loaded via <A HREF="#loadImage">loadImage</A>.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="decryptDir" />
+<H5>decryptDir</H5>
+
+<P>
+<CODE>var ok = decryptDir( str path, str key, bool removeKey )</CODE>
+</P>
+<P>
+As <A HREF="#decryptFile">decryptFile()</A>, but decrypts each file in the specified directory
+in turn.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="decryptFile" />
+<H5>decryptFile</H5>
+
+<P>
+<CODE>var ok = decryptFile( str path, str key, bool removeKey )</CODE>
+</P>
+<P>
+
+<P>
+Decrypt the specified file using the encryption parameters specified in <CODE>Menu / Prefs / Action</CODE>.
+</P>
+
+<P>
+If <I>removeKey</I> is not set, the entered passphrase will be reapplied automatically to the
+next encryption/decryption operation with the specified <I>keyName</I>.
+</P>
+<P>
+
+<P>See Also: <A HREF="encryption.html">Encryption</A> in the Userguide, 
+<A HREF="help/ah_decrypt_file.html">Decrypt File</A> action.</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="deleteDir" />
+<H5>deleteDir</H5>
+
+<P>
+<CODE>var ok = deleteDir( str dirPath, bool recurse, bool useRoot )</CODE>
+</P>
+<P>
+Delete the named <I>dirPath</I>.  <I>recurse</I>  must be specified if
+the directory is not empty.
+</P>
+<P>
+If <I>useRoot</I> is specified, the operation will be performed as the root user
+(where available).
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="deleteFile" />
+<H5>deleteFile</H5>
+
+<P>
+<CODE>var ok = deleteFile( str filePath, int shredTimes, bool useRoot )</CODE>
+</P>
+<P>
+Delete the named <I>filePath</I>.
+</P>
+<P><I>shredTimes</I> has range 0-10.
+</P>
+<P>
+If <I>useRoot</I> is specified, the operation will be performed as the root user
+(where available).
+</P>
+
+<P>
+See also: action <A HREF="help/ah_delete_file.html">Delete File</A>
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="destroyScene" />
+<H5>destroyScene</H5>
+
+<P>
+<CODE>var ok = destroyScene( str sceneName )</CODE>
+</P>
+<P>
+Hide the named <A HREF="scenes.html">scene</A> if it's visible, then destroy it.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="displayAutoBright" />
+<H5>displayAutoBright</H5>
+
+<P>
+<CODE>var ok = displayAutoBright( bool onFlag )</CODE>
+</P>
+
+<P>
+Whether the display brightness should automatically adjust to the ambient light or not.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="displayAutoRotate" />
+<H5>displayAutoRotate</H5>
+
+<P>
+<CODE>var ok = displayRotate( bool onFlag )</CODE>
+</P>
+
+<P>
+Whether the display orientation should change based on the physical orientation of the device.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="displayTimeout" />
+<H5>displayTimeout</H5>
+
+<P>
+<CODE>var ok = displayTimeout( int hours, int minutes, int seconds )</CODE>
+</P>
+
+<P>
+How long the period of no-activity should be before the display is turned off.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="dpad" />
+<H5>dpad</H5>
+
+<P>
+<CODE>var ok = dpad( str direction, int noRepeats )</CODE>
+</P>
+<P>
+Simulate a movement or press of the hardware dpad (or trackball).
+</P>
+<P><I>direction</I> must be one of <B>up, down, left, right</B> or <B>press</B>.
+
+<P>
+This function requires a rooted device.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="enableProfile" />
+<H5>enableProfile</H5>
+
+<P>
+<CODE>var ok = enableProfile( str name, boolean enable )</CODE>
+</P>
+
+<P>
+Enable or disable the named Tasker profile.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="encryptDir" />
+<H5>encryptDir</H5>
+
+<P>
+<CODE>var ok = encryptDir( str path, str keyName, bool rememberKey, bool shredOriginal )</CODE>
+</P>
+
+<P>
+As <A HREF="#encryptFile">encryptFile()</A>, but encrypts each file in the specified directory
+in turn.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="elemBackColour" />
+<H5>elemBackColour</H5>
+
+<P>
+<CODE>var ok = elemBackColour( str scene, str element, str startColour, str endColour )</CODE>
+</P>
+
+<P>
+Set the background <A HREF="#colour">colour</A> of the specified <A HREF="scenes.html">scene</A> element.
+</P>
+<P>
+See also: action <A HREF="help/ah_scene_element_background_colour.html">Element Back Colour</A>.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="elemBorder" />
+<H5>elemBorder</H5>
+
+<P>
+<CODE>var ok = elemBorder( str scene, str element, int width, str colour )</CODE>
+</P>
+
+<P>
+Set the border <A HREF="#colour">colour</A> and width of the specified <A HREF="scenes.html">scene</A> element.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="elemPosition" />
+<H5>elemPosition</H5>
+
+<P>
+<CODE>var ok = elemPosition( str scene, str element, str orientation, int x, int y, int animMS )</CODE>
+</P>
+
+<P>
+Move an element within it's scene.
+</P>
+
+<P>
+<I>orientation</I> must be one of <B>port</B> or <B>land</B>. <I>animMS</I> indicates the duration of the corresponding animation in MS. A zero-value indicates no animation.
+</P>
+<P>
+See also: action <A HREF="help/ah_scene_element_position.html">Element Position</A>.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="elemText" />
+<H5>elemText</H5>
+
+<P>
+<CODE>var ok = elemText( str scene, str element, str position, str text )</CODE>
+</P>
+
+<P>
+Set the text of the specified <A HREF="scenes.html">scene</A> element.
+</P>
+<P>
+<I>pos</I> must be one of <B>repl</B> (replace existing text completely), <B>start</B>
+(insert before existing text) or <B>end</B> (append after existing text).
+</P>
+<P>
+See also: action <A HREF="help/ah_scene_element_text.html">Element Text</A>.
+</P>
+<!-- ___________________________________________________________________ -->
+
+<A NAME="elemTextColour" />
+<H5>elemTextColour</H5>
+
+<P>
+<CODE>var ok = elemTextColour( str scene, str element, str colour )</CODE>
+</P>
+
+<P>
+Set the text  <A HREF="#colour">colour</A> of the specified <A HREF="scenes.html">scene</A> element.
+</P>
+<P>
+See also: action <A HREF="help/ah_scene_element_text_colour.html">Element Text Colour</A>.
+</P>
+
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="elemTextSize" />
+<H5>elemTextSize</H5>
+
+<P>
+<CODE>var ok = elemTextSize( str scene, str element, int size )</CODE>
+</P>
+
+<P>
+Set the text size of the specified <A HREF="scenes.html">scene</A> element.
+</P>
+<P>
+See also: action <A HREF="help/scene_element_text_size.html">Element Text Size</A>.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="elemVisibility" />
+<H5>elemVisibility</H5>
+
+<P>
+<CODE>var ok = elemVisibility( str scene, str element, boolean visible, int animationTimeMS )</CODE>
+</P>
+
+<P>
+Make the specified <A HREF="scenes.html">scene</A> element visible or invisible.
+</P>
+<P>
+See also: action <A HREF="help/ah_scene_element_visibility.html">Element Visibility</A>.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="endCall" />
+<H5>endCall</H5>
+
+<P>
+<CODE>var ok = endCall()</CODE>
+</P>
+
+<P>
+Terminate the current call (if there is one).
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="encryptFile" />
+<H5>encryptFile</H5>
+
+<P>
+<CODE>var ok = encryptFile( str path, str keyName, bool rememberKey, bool shredOriginal )</CODE>
+</P>
+
+<P>
+Encrypt the specified file using the encryption parameters specified in <CODE>Menu / Prefs / Action</CODE>.
+</P>
+
+<P>
+If <I>rememberKey</I> is set, the entered passphrase will be reapplied automatically to the
+next encryption/decryption operation with the specified <I>keyName</I>.
+</P>
+<P>
+If <I>shredOriginal</I> is specified, the original file will be overwritten several
+times with random bits if encryption is successful.
+</P>
+<P>See Also: <A HREF="encryption.html">Encryption</A> in the Userguide, 
+<A HREF="help/ah_encrypt_file.html">Encrypt File</A> action.</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="enterKey" />
+<H5>enterKey</H5>
+
+<P>
+<CODE>var ok = enterKey( str title, str keyName, bool showOverKeyguard, bool confirm, str background, str layout, int timeoutSecs )</CODE>
+</P>
+
+<P>
+Show a dialog to enter the passphrase for the specified <I>keyName</I>. The JavaScript waits 
+until the dialog has been dismissed or the timeout reached.
+</P>
+
+<UL>
+<LI><I>confirm</I>: if set, the passphrase must be entered twice to ensure it is correct.
+<LI><I>background</I>: [optional] a file path or file URI to a background image.
+<LI><I>layout</I>: the name of a user-created <A HREF="scenes.html">scene</A> to use in place of the built-in scene.
+</UL>
+
+<P>See Also: <A HREF="encryption.html">Encryption</A> in the Userguide</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="filterImage" />
+<H5>filterImage</H5>
+
+<P>
+<CODE>bool ok = filterImage( str mode, int value )</CODE>
+</P>
+
+<P>
+Filter an image previously loaded into Tasker's image buffer via
+<A HREF="#loadImage">loadImage()</A></P>
+</P>
+
+
+<P>
+Possible values of <I>mode</I> are:
+</P>
+
+<UL>
+<LI><B>bw</B>: convert to black &amp; white, using <I>value</I> as a threshold
+<LI><B>eblue</B>: enhance blue values by <I>value</I>
+<LI><B>egreen</B>: enhance green values by <I>value</I>
+<LI><B>ered</B>: enhance red values by <I>value</I>
+<LI><B>grey</B>: convert to greyscale, <I>value</I> is unused
+<LI><B>alpha</B>: set pixel alpha (opposite of transparency) to <I>value</I>
+</UL>
+
+<P><I>value</I> should be 1-254.</P>
+<!-- ___________________________________________________________________ -->
+
+<A NAME="flipImage" />
+<H5>flipImage</H5>
+
+<P>
+<CODE>bool ok = flipImage( bool horizontal )</CODE>
+</P>
+
+<P>
+Flip an image previously loaded into Tasker's image buffer via
+<A HREF="#loadImage">loadImage()</A></P>
+</P>
+<P>
+If <I>horizontal</I> is false, the image is flipped vertically.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="exit" />
+<H5>exit</H5>
+
+<P>
+<CODE>exit()</CODE>
+</P>
+
+<P>
+Stop execution of the JavaScript.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="flash" />
+<H5>flash</H5>
+
+<P>
+<CODE>flash( str message )</CODE>
+</P>
+
+Flash a short-duration Android 'Toast' message.
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="flashLong" />
+<H5>flashLong</H5>
+
+<P>
+<CODE>flashLong( str message )</CODE>
+</P>
+
+Flash a long-duration Android 'Toast' message.
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="getLocation" />
+<H5>getLocation</H5>
+
+<P>
+<CODE>var ok = getLocation( str source, bool keepTracking, int timeoutSecs )</CODE>
+</P>
+
+<P>
+Try to get a fix of the current device location.
+</P>
+<P><I>source</I> must be one of <B>gps, net</B> or <B>any</B>.
+</P>
+<P>
+If <I>keepTracking</I> is set, the specified source(s) will be left tracking
+with the purpose of providing a much quicker fix next time the function is
+called.
+</P>
+<P>
+Fix coordinates are stored in the global Tasker variables <B>%LOC</B> (GPS) and/or <B>%LOCN</B> (Net).
+The value can be retrieved with the <A HREF="#global">global</A> function. Several other
+parameters of the fix are also available, see <A HREF="variables.html">Variables</A>.
+</P>
+
+<P>Example</P>
+<PRE>
+<CODE>
+	var lastFix = global( 'LOC' );
+	if ( 
+		getLocation( 'gps' ) &&
+		( global( 'LOC' ) != lastFix ) 
+	) {
+		flash( "New fix: " + global( 'LOC' ) );
+	}
+</CODE>
+</PRE>
+
+<P>
+See also: action <A HREF="help/ah_get_fix.html">Get Location</A>, function <A HREF="#stopLocation">stopLocation</A>.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="getVoice" />
+<H5>getVoice</H5>
+
+<P>
+<CODE>str result = getVoice( str prompt, str languageModel, int timeout )</CODE>
+</P>
+
+<P>
+Get voice input and convert to text.
+</P>
+<P>
+<I>result</I> is 'undefined' if the voice acquisition failed, otherwise
+it's an array of possible matching texts.
+</P>
+<P>
+<I>prompt</I> is a label for the dialog that is shown during voice acquisition.
+</P>
+<P>
+<I>languageMode</I> gives the speech recognition engine a clue as to the
+context of the speech. It must be one of <B>web</B> for 'web search' or
+<B>free</B> for 'free-form'.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="goHome" />
+<H5>goHome</H5>
+
+<P>
+<CODE>goHome( int screenNum )</CODE>
+</P>
+
+<P>
+Go to the Android home screen. <I>screenNum</I> is not supported by all
+home screens.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="haptics" />
+<H5>haptics</H5>
+
+<P>
+<CODE>var ok = haptics( bool onFlag )</CODE>
+</P>
+<P>
+Enable/disable system setting Haptic Feedback.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="hideScene" />
+<H5>hideScene</H5>
+
+<P>
+<CODE>var ok = hideScene( str sceneName )</CODE>
+</P>
+<P>
+Hide the named <A HREF="scenes.html">scene</A> if it's visible.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="global" />
+<H5>global</H5>
+
+<CODE>var value = global( str varName )</CODE>
+
+<P>
+Retrieve the value of a Tasker global variable. Prefixing the name with % is optional.
+</P>
+<P>
+Example:
+</P>
+
+<PRE><CODE>
+	flash( global( '%DogName' ) );
+</CODE></PRE>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="listFiles" />
+<H5>listFiles</H5>
+
+<P>
+<CODE>str files = listFiles( str dirPath, bool hiddenToo )</CODE>
+</P>
+
+<P>
+List all files in the specified <I>dirPath</I>.
+</P>
+<P>
+<I>files</I> is a newline-separated list of subfiles.
+</P>
+<P>
+If no files or found or an error occurs, the returned value will be <code>undef</code>.
+</P>
+
+
+</P>If <I>hiddenToo</I> is specified, files starting with period are
+included, otherwise they are not.
+</P>
+
+<P>Example:
+</P>
+<PRE>
+	var files = listFiles( '/sdcard' );
+	var arr = files.split( '\n' );
+	flash( 'Found ' + arr.length + ' files' );
+</PRE>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="loadApp" />
+<H5>loadApp</H5>
+
+<P>
+<CODE>var ok = loadApp( str name, str data, bool excludeFromRecents )</CODE>
+</P>
+
+<P>
+Start up the named app.
+</P>
+
+<P>
+<I>Name</I> can be a package name or app label, it's tested first against
+known package names. <B>Note</B>: app label could be localized to another
+language if the script is used in an exported app.
+</P>
+<P>
+<I>Data</I> is in URI format and app-specific.
+</P>
+<P>
+When <I>excludeFromRecents</I> is true, the app will not appear in the home screen
+'recent applications' list.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="loadImage" />
+<H5>loadImage</H5>
+
+<P>
+<CODE>var ok = loadImage( str uri )</CODE>
+</P>
+
+<P>
+Load an image into Tasker's internal image buffer.
+</P>
+<P>
+The following uri formats are currently supported:
+</P>
+
+<UL>
+	<LI><I>file://</I> followed by a local file path
+</UL>
+
+<P>
+See also <A HREF="help/ah_load_image.html">Load Image</A> action.</P>
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="lock" />
+<H5>lock</H5>
+
+<P>
+<CODE>var ok = lock( str title, str code, bool allowCancel, bool rememberCode, bool fullScreen, str background, str layout )</CODE>
+</P>
+
+<P>
+Show a lock screen, preventing user interaction with the covered part of the screen. The JavaScript waits until the 
+code has been entered or the lock cancelled (see below).
+</P>
+<UL>
+<LI><I>code</I>: the numeric code which must be entered for unlock
+<LI><I>allowCancel</I>: show a button to remove the lockscreen, which causes a return to the Android home screen
+<LI><I>rememberCode</I>: the code will be remembered and automatically entered when the lock screen is show in future,
+until the display next turns off
+<LI><I>background</I>: [optional] a file path or file URI to a background image.
+<LI><I>layout</I>: the name of a user-created <A HREF="scenes.html">scene</A> to use in place of the built-in lock scene
+</UL>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="local" />
+<H5>local</H5>
+
+<CODE>var value = local( str varName )</CODE>
+
+<P>
+Retrieve the value of a Tasker scene-local variable. The name should <B>not</B> be
+prefixed with <I>%</I>.
+</P>
+
+<P>
+This function is only for use by JavaScript embedded in HTML and accessed via
+a WebView scene element.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="mediaControl" />
+<H5>mediaControl</H5>
+
+<CODE>var ok = mediaControl( str action )</CODE>
+
+<P>
+Control media via simulation of hardware buttons.
+</P>
+<P>
+Possible <I>action</I>s are <B>next, pause, prev, toggle, stop</B> or <B>play</B>.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="micMute" />
+<H5>micMute</H5>
+
+<CODE>var ok = micMute( bool shouldMute )</CODE>
+
+<P>
+Mute or unmute the device's microphone (if present),
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="mobileData" />
+<H5>mobileData</H5>
+
+<CODE>var ok = mobileData( bool set )</CODE>
+
+<P>
+Enable or disable the system Mobile Data setting.
+</P>
+<P>
+See also: action <A HREF="help/ah_mobile_data_direct.html">Mobile Data</A> 
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="musicBack" />
+<H5>musicBack</H5>
+
+<CODE>var ok = musicBack( int seconds )</CODE>
+
+<P>
+Skip back by <I>seconds</I> during playback of a music file previously started by <A HREF="#musicPlay">musicPlay</A>.
+</P>
+<P>
+See also: <A HREF="#musicSkip">musicSkip</A>, <A HREF="#musicStop">musicStop</A>
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="musicPlay" />
+<H5>musicPlay</H5>
+
+<CODE>var ok = musicPlay( str path, int offsetSecs, bool loop, str stream )</CODE>
+
+<P>
+Play a music file via Tasker's internal music player.
+</P>
+
+<P>
+<I>stream</I> to which <A HREF="#streams">audio stream</A> the music should be played
+</P>
+
+<P>This function does <B>not</B> not wait for completion.</P>
+
+<P>The last 3 arguments may be ommitted, in which case they default to <B>0</B>,
+<B>false</B> and <B>media</B> respectively.
+</P>
+
+<P>
+See also: <A HREF="#musicStop">musicStop</A>, <A HREF="#musicBack">musicBack</A>,
+<A HREF="#musicSkip">musicSkip</A>
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="musicSkip" />
+<H5>musicSkip</H5>
+
+<CODE>var ok = musicSkip( int seconds )</CODE>
+
+<P>
+Skip forwards by <I>seconds</I> during playback of a music file previously started by <A HREF="#musicPlay">musicPlay</A>.
+</P>
+<P>
+See also: <A HREF="#musicBack">musicBack</A>, <A HREF="#musicStop">musicStop</A>
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="musicStop" />
+<H5>musicStop</H5>
+
+<CODE>var ok = musicStop()</CODE>
+
+<P>
+Stop playback of a music file previously started by <A HREF="#musicPlay">musicPlay</A>.
+</P>
+<P>
+See also: <A HREF="#musicBack">musicBack</A>, <A HREF="#musicSkip">musicSkip</A>
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="nightMode" />
+<H5>nightMode</H5>
+
+<P>
+<CODE>var ok = nightMode( bool onFlag )</CODE>
+</P>
+<P>
+Turn on or off Android Night Mode.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="popup" />
+<H5>popup</H5>
+
+<P>
+<CODE>var ok = popup( str title, str text, bool showOverKeyguard, str background, str layout, int timeoutSecs )</CODE>
+</P>
+
+<P>
+Show a popup dialog. The JavaScript waits until the popup has been dismissed or the timeout reached.
+</P>
+<UL>
+<LI><I>background</I>: [optional] a file path or file URI to a background image.
+<LI><I>layout</I>: the name of a user-created <A HREF="scenes.html">scene</A> to use in place of the built-in popup scene.
+</UL>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="performTask" />
+<H5>performTask</H5>
+
+<CODE>var ok = performTask( str taskName, int priority, str parameterOne, str parameterTwo )</CODE>
+
+<P>
+Run the Tasker task <I>taskName</I>.
+</P>
+<P>
+Note that the JavaScript does not wait for the task to complete.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="profileActive" />
+<H5>profileActive</H5>
+
+<CODE>bool active = profileActive( str profileName )</CODE>
+
+<P>
+Whether the named Tasker profile is currently active. Returns false if
+the profile name is unknown.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="pulse" />
+<H5>pulse</H5>
+
+<CODE>bool ok = pulse( bool onFlag )</CODE>
+
+<P>
+Enable or disable the Android Notification Pulse system setting.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="readFile" />
+<H5>readFile</H5>
+
+<CODE>var contents = readFile( str path )</CODE>
+
+<P>
+Read the contents of a text file.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="reboot" />
+<H5>reboot</H5>
+
+<CODE>var ok = reboot( str type )</CODE>
+
+<P>
+Reboot the device.
+</P>
+<P><I>type</I> is one of <B>normal, recovery</B> or <B>bootloader</B>.
+It can be ommitted and defaults to <B>normal</B>.
+<P>
+Requires a rooted device.
+</P>
+
+<P>
+See also: function <A HREF="#shutdown">shutdown</A>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="resizeImage" />
+<H5>resizeImage</H5>
+
+<CODE>var ok = resizeImage( int width, int height )</CODE>
+
+<P>
+Scale the current image in Tasker's image buffer to the specified dimensions.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="rotateImage" />
+<H5>rotateImage</H5>
+
+<CODE>var ok = rotateImage( str dir, int degrees )</CODE>
+
+<P>
+Rotate the current image in Tasker's image buffer.
+</P>
+<P>
+<I>dir</I> must be one of <B>left</B> or <B>right</B>.
+<I>degrees</I> must be one of <B>45, 90, 135</B> or <B>180</B>.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="saveImage" />
+<H5>saveImage</H5>
+
+<CODE>var ok = saveImage( str path, int qualityPercent, bool deleteFromMemoryAfter  )</CODE>
+
+<P>
+Save the current image in Tasker's image buffer to the specified file <I>path</I>.
+</P>
+<P>
+<A HREF="help/ah_save_image.html">Save Image</A> action.</P>
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="say" />
+<H5>say</H5>
+
+<CODE>var ok = say( str text, str engine, str voice, str stream, int pitch, int speed )</CODE>
+
+<P>
+Cause the device to say <I>text</I> out loud.
+</P>
+<UL>
+<LI><I>engine</I>: the speech engine e.g. <B>com.svox.classic</B>  Defaults to the system default (specify <I>undefined</I> for that)
+<LI><I>voice</I>: the voice to use (must be supported by <I>engine</I>). Defaults to the current system language (specify <I>undefined</I> for that)
+<LI><I>stream</I>: to which <A HREF="#streams">audio stream</A> the speech should be made
+<LI><I>pitch</I>: 1-10
+<LI><I>speed</I>: 1-10
+</UL>
+<P>
+The script waits for the speech to be finished.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="sendIntent" />
+<H5>sendIntent</H5>
+
+<CODE>var ok = sendIntent( str action, str targetComp, str package, str class, str category, str data, str mimeType, str[] extras );</CODE>
+
+<P>
+Send an intent. Intents are Android's high-level application interaction system.
+</P>
+<P>
+Any parameter may be specified as undefined.
+</P>
+<UL>
+<LI><I>targetComp</I>: the type of application component to target, one of <B>receiver, activity</B> or <B>service</B>.
+Defaults to <B>receiver</B>.
+<LI><I>package</I>: the application package to limt the intent to
+<LI><I>class</I>: the application class to limit the intent to
+<LI><I>category</I>: one of <B>none, alt, browsable, cardock, deskdock, home, info, launcher, preference, selectedalt, tab</B> or <B>test</B>,
+defaults to <B>none</B>
+<LI><I>extras</I>: extra data to pass, in the format </I>key:value</I>. May be undefined. Maximum length 2.
+</UL>
+
+<P>
+See also: action <A HREF="help/ah_send_intent.html">Send Intent</A>.
+</P>
+<!-- ___________________________________________________________________ -->
+
+<A NAME="sendSMS" />
+<H5>sendSMS</H5>
+
+<CODE>var ok = sendSMS( str number, str text, boolean storeInMessagingApp );</CODE>
+
+<P>
+Send an SMS.
+</P>
+
+<P>
+See also: action <A HREF="help/ah_send_sms.html">Send SMS</A>
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="setAirplaneMode" />
+<H5>setAirplaneMode</H5>
+
+<CODE>var ok = setAirplaneMode( bool setOn )</CODE>
+
+<P>
+Enable or disable Airplane Mode.
+</P>
+
+
+<P>
+Get the current value with:
+</P>
+
+<P>
+<CODE>
+var enabled = global( 'AIR' );
+</CODE>
+</P>
+<P>See also: function <A HREF="#setAirplaneRadios">setAirplaneRadios</A>
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="setAirplaneRadios" />
+<H5>setAirplaneRadios</H5>
+
+<CODE>var ok = setAirplaneRadios( str disableRadios )</CODE>
+
+<P>
+Specify the radios which will be <B>disabled</B> when the device enters
+Airplane Mode.
+</P>
+
+<P><I>disableRadios</I> is a comma-separated list with radio names from
+the following set: <B>cell, nfc, wifi, wimax, bt</B>.
+</P>
+
+<P>
+Get the current value with:
+</P>
+
+<P>
+<CODE>
+var radios = global( 'AIRR' );
+</CODE>
+</P>
+
+<P>See also: function <A HREF="#setAirplaneMode">setAirplaneMode</A>
+</P>
+
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="setAlarm" />
+<H5>setAlarm</H5>
+
+<CODE>var ok = setAlarm( int hour, int min, str message, bool confirmFlag )</CODE>
+
+<P>
+Create an alarm in the default alarm clock app.
+</P>
+<P> <I>confirmFlag</I> specifies whether the app should confirm that the alarm has been set.  </P>
+<P><I>message</I> is optional. <P>
+Requires Android version 2.3+.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="setAutoSync" />
+<H5>setAutoSync</H5>
+
+<CODE>var ok = setAutoSync( bool setOn )</CODE>
+
+<P>
+Enable or disable the global auto-sync setting.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="scanCard" />
+<H5>scanCard</H5>
+
+<P>
+<CODE>var ok = scanCard( str path )</CODE>
+</P>
+
+<P>
+Force the system to scan the external storage card for new/deleted media.
+</P>
+<P>
+If <I>path</I> is defined, only that will be scanned.
+</P>
+<P>
+See also: action <A HREF="help/ah_scan_card.html">Scan Card</A>
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="setBT" />
+<H5>setBT</H5>
+
+<P>
+<CODE>var ok = setBT( bool setOn )</CODE>
+</P>
+
+<P>
+Enable or disable the Bluetooth radio (if present).
+</P>
+<P>
+Test BT state with:
+</P>
+<P>
+<CODE>
+if ( global( 'BLUE' ) == "on" ) { doSomething(); }
+</CODE>
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="setBTID" />
+<H5>setBTID</H5>
+
+<P>
+<CODE>var ok = setBTID( str toSet )</CODE>
+</P>
+
+<P>
+Set the bluetooth adapter ID (the name as seen by other devices).
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="setGlobal" />
+<H5>setGlobal</H5>
+
+<CODE>setGlobal( str varName, str newValue )</CODE>
+
+<P>
+Set the value of a Tasker global user variable. Prefixing varName with % is optional.
+</P>
+<P>
+Arrays are <B>not</B> supported due to limitations of the Android JS interface.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="setKey" />
+<H5>setKey</H5>
+
+<CODE>var ok = setKey( str keyName, str passphrase  )</CODE>
+
+<P>
+Set the passphrase for the specified <I>keyName</I>.
+</P>
+<P>See Also: <A HREF="encryption.html">Encryption</A> in the Userguide.</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="setLocal" />
+<H5>setLocal</H5>
+
+<CODE>setLocal( str varName, str newValue )</CODE>
+
+<P>
+Set the value of a Tasker <B>scene-local</B> user variable. Variable names should <B>not</B>
+be prefixed with <I>%</I>.
+</P>
+<P>
+This function is only for use by JavaScript embedded in HTML and accessed via
+a WebView scene element.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="setClip" />
+<H5>setClip</H5>
+
+<CODE>var ok = setClip( str text, bool appendFlag )</CODE>
+
+<P>
+Set the global system clipboard.
+</P>
+<P>
+Test the value with:
+<P>
+<CODE>
+var clip = global( 'CLIP' );
+</CODE>
+</P>
+<!-- ___________________________________________________________________ -->
+
+<A NAME="settings" />
+<H5>settings</H5>
+
+<CODE>var ok = settings( str screenName )</CODE>
+
+<P>
+Show an Android System Settings screen.
+</P>
+<P><I>screenName</I> must be one of <B>all, accessibility, addacount, airplanemode, 
+apn, app, batteryinfo, appmanage
+bluetooth, date, deviceinfo, dictionary, display, inputmethod, internalstorage,
+locale, location, memorycard, networkoperator, powerusage, privacy, quicklaunch, 
+security, mobiledata, search, sound, sync, wifi, wifiip</B> or <B>wireless</B>.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="setWallpaper" />
+<H5>setWallpaper</H5>
+
+<CODE>var ok = setWallpaper( str path )</CODE>
+
+<P>
+Set the system home screen wallpaper.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="setWifi" />
+<H5>setWifi</H5>
+
+<P>
+<CODE>var ok = setWifi( bool setOn )</CODE>
+</P>
+
+<P>
+Enable or disable the Wifi radio (if present).
+</P>
+<P>
+Test wifi state with:
+</P>
+<P>
+<CODE>
+if ( global( 'WIFI' ) == "on" ) { doSomething(); }
+</CODE>
+</P>
+
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="shell" />
+<H5>shell</H5>
+
+<CODE>var output = shell( str command, bool asRoot, int timoutSecs )</CODE>
+
+<P>
+Run the shell command <I>command</I>.
+</P>
+<P>
+<I>asRoot</I> will only have effect if the device is rooted.
+</P>
+<P>
+<I>output</I> is 'undefined' if the shell command failed. It's maximum size is
+restricted to around 750K.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="showScene" />
+<H5>showScene</H5>
+
+<CODE>var ok = showScene( str name, str displayAs, int hoffset, int voffset, bool showExitIcon, bool waitForExit )</CODE>
+
+<P>
+Show the named <A HREF="scenes.html">scene</A>, creating it first if necessary.
+</P>
+<UL>
+<LI><I>displayAs</I>: options: <CODE>Overlay, OverBlocking, OverBlockFullDisplay, Dialog, DialogBlur, DialogDim, 
+			ActivityFullWindow, ActivityFullDisplay, ActivityFullDisplayNoTitle</CODE>
+<LI><I>hoffset, voffset</I>: percentage vertical and horizontal offset for the scene -100% to 100% (not relevant for
+full screen/window display types)
+<LI><I>showExitIcon</I>: display a small icon in the bottom right which destroys the scene when pressed
+<LI><I>waitForExit</I>: whether to wait for the scene to exit before continuing the script
+</UL>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="shutdown" />
+<H5>shutdown</H5>
+
+<CODE>var ok = shutdown()</CODE>
+
+<P>
+Shutdown the device.
+</P>
+<P>
+Requires a rooted device.
+</P>
+
+<P>See also: <A HREF="#reboot">reboot</A></P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="silentMode" />
+<H5>silentMode</H5>
+
+<CODE>var ok = silentMode( str mode )</CODE>
+
+<P>
+Set the system silent ('ringer') mode.
+</P>
+<P><I>mode</I> must be one of <B>off, vibrate</B> or <B>on</B></P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="sl4a" />
+<H5>sl4a</H5>
+
+<CODE>var ok = sl4a( str scriptName, boolean inTerminal )</CODE>
+
+<P>
+Run a previously created <A HREF="https://code.google.com/p/android-scripting/">SL4A</A> script.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="soundEffects" />
+<H5>soundEffects</H5>
+
+<CODE>var ok = soundEffects( bool setTo )</CODE>
+
+<P>
+Setting the system <I>Sound Effects</I> setting (sound from clicking on
+buttons etc.
+</P>
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="speakerphone" />
+<H5>speakerphone</H5>
+
+<CODE>var ok = speakerPhone( bool setFlag )</CODE>
+
+<P>
+Enable or disable the speakerphone function.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="statusBar" />
+<H5>statusBar</H5>
+
+<CODE>var ok = statusBar( bool expanded )</CODE>
+
+<P>
+Expand or contract the system status bar.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="stayOn" />
+<H5>stayOn</H5>
+
+<CODE>var ok = stayOn( str mode )</CODE>
+
+<P>
+Specify whether the device should remain on when power is connected.
+</P>
+<P>
+Possible <I>mode</I>s are <B>never, ac, usb, any</B>.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="stopLocation" />
+<H5>stopLocation</H5>
+
+<CODE>var ok = stopLocation()</CODE>
+
+<P>
+Stop tracking a location provider. This is only relevant when a <A HREF="#getLocation">getLocation</A>
+function has been previously called with the <I>keepTracking</I> parameter set.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<!-- A NAME="stopTask" />
+<H5>stopTask</H5>
+
+<CODE>var ok = stopTask( bool err )</CODE>
+
+<P>
+Stop the task (and therefore also the JavaScript) that the JavaScript is part off
+</P -->
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="systemLock" />
+<H5>systemLock</H5>
+
+<CODE>var ok = systemLock()</CODE>
+
+<P>
+Turn off the display and activate the keyguard.
+</P>
+<P>
+Requires Tasker's Device Administrator to be enabled in Android settings.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="taskRunning" />
+<H5>taskRunning</H5>
+
+<CODE>bool running = taskRunning( str taskName )</CODE>
+
+<P>
+Whether the named Tasker task is currently running. Returns false if
+the task name is unknown.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="takeCall" />
+<H5>takeCall</H5>
+
+<P>
+<CODE>bool ok = takeCall();</CODE>
+</P>
+
+<P>
+Auto-accept an incoming call (if there is one).
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="takePhoto" />
+<H5>takePhoto</H5>
+
+<P>
+<CODE>bool ok = takePhoto( int camera, str fileName, str resolution, bool insertGallery )</CODE>
+</P>
+
+<P>
+Take a photo with the builtin camera.
+</P>
+<UL>
+<LI><I>camera</I>: 0 = rear camera, 1 = front camera
+<LI><I>resolution</I>: format WxH e.g. 640x840
+<LI><I>insertGallery</I>: whether to insert the resulting picture in the Android Gallery application
+</UL>
+
+<P>
+See also: action <A HREF="help/ah_take_photo.html">Take Photo</A>
+</P>
+<!-- ___________________________________________________________________ -->
+
+<A NAME="type" />
+<H5>type</H5>
+
+<P>
+<CODE>var ok = type( str text, int repeatCount )</CODE>
+</P>
+<P>
+Simulate keyboard typing.
+</P>
+
+<P>
+Requires a rooted device.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="unzip" />
+<H5>unzip</H5>
+
+<CODE>boolean ok = unzip( str zipPath, bool deleteZipAfter )</CODE>
+
+<P>
+Unpack a Zip archive into the parent directory of the archive.
+</P>
+<P>
+<I>deleteZip</I> causes the zip archive to be deleted after successful
+unpacking.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="usbTether" />
+<H5>usbTether</H5>
+
+<CODE>usbTether( bool set )</CODE>
+
+<P>
+Enable or disable USB tethering.
+</P>
+
+<P>
+See also: action <A HREF="help/ah_tether_usb.html">USB Tether</A>
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="vibrate" />
+<H5>vibrate</H5>
+
+<CODE>vibrate( int durationMilliseconds )</CODE>
+
+<P>
+Cause the device to vibrate for the specified time.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="vibratePattern" />
+<H5>vibratePattern</H5>
+
+<CODE>vibratePattern( str pattern )</CODE>
+
+<P>
+Cause the device to vibrate following the specified <I>pattern</I>, which
+consists of a sequence of off then on millisecond durations e.g.
+</P>
+<P>
+<CODE>500,1000,750,1000</CODE>
+</P>
+<P>
+wait for 500ms, vibrates 1000ms, wait for 750ms, then vibrate for 1000ms.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="wait" />
+<H5>wait</H5>
+
+<CODE>wait( int durationMilliseconds )</CODE>
+
+<P>
+Pause the script for the specified time.
+</P>
+
+<P>
+Warning: may cause some preceeding functions not to complete in some situations.
+If in doubt, use JavaScript setTimeout() instead.
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="wifiTether" />
+<H5>wifiTether</H5>
+
+<CODE>var ok = wifiTether( bool set )</CODE>
+
+<P>
+Enable or disable Wifi tethering.
+</P>
+
+<P>
+See also: action <A HREF="help/ah_tether_wifi.html">Wifi Tether</A>
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="writeFile" />
+<H5>writeFile</H5>
+
+<CODE>var ok = writeFile( str path, str text, bool append )</CODE>
+
+<P>
+Write <I>text</I> to file <I>path</I>.
+</P>
+<P>If <I>append</I> is specified, the text will be attached to the
+end of the existing file contents (if there are any).
+</P>
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="zip" />
+<H5>zip</H5>
+
+<CODE>boolean ok = zip( str path, int level, bool deleteOriginalAfter )</CODE>
+
+<P>
+Zip a file or directory. 
+</P>
+<P>
+<I>level</I> is the desired compression level from 1-9, with 9 resulting
+in the smallest file and the longest compression time.
+</P>
+<P>
+<I>deleteOriginal</I> causes <I>path</I> to be deleted if the zip operation
+is successful.
+</P>
+
+
+<!-- ___________________________________________________________________ -->
+
+<A NAME="notes" />
+<H3>Notes</H3>
+
+<A NAME="streams">
+<H4>Audio Streams</H4>
+
+Must be one of <B>call, system, ringer, media, alarm</B> or <B>notification</B>
+
+<A NAME="colour">
+<H4>Colours</H4>
+
+Colours are specified in <I>AARRGGBB</I> hexadecimal format, with solid white being <B>FFFFFFFF</B>.
+
+<A NAME="paths" />
+<H4>File Paths</H4>
+
+File paths can be specified as either absolute (start with <B>/</B>) or
+relative (don't start with <B>/</B>). 
+<P>
+Relative file paths are relative to the root of the internal storage media. 
+So, for example, <CODE>pics/me.jpg</CODE> might resolve
+to <CODE>/sdcard/pics/me.jpg</CODE>.
+</P>
+
+</BODY>
+</HTML>

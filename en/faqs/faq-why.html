@@ -1,0 +1,178 @@
+<!--#include virtual=/tablestart.html -->
+<H2>
+        FAQ: Why... ?
+        <IMG ALIGN="right" SRC="androidlogo.png"/>
+        <IMG ALIGN="right" SRC="icon_tasker.png"/>
+</H2>
+
+<UL>
+	<LI><A HREF="#f">Why am I an idiot if I use a pirated copy of Tasker ?</A>
+	<LI><A HREF="#a">Why is GPS often scanning when I unlock my device ?</A>
+	<LI><A HREF="#b">Why does Tasker need so many permissions ?</A>
+	<LI><A HREF="#c">Why does Tasker need the INTERNET permission ?</A>
+	<LI><A HREF="#d">Why isn't Tasker shown in the Application Context list ?</A>
+	<LI><A HREF="#e">Why does Tasker have it's own music player <B>and</B> controls for the system music player ?</A>
+	<LI><A HREF="#g">Why does a Cell Near context not become inactive when I turn on Airplane Mode ?</A>
+	<LI><A HREF="#h">Why can't I use a downloaded icon for my shortcut task / Notify action ?</A>
+	<LI><A HREF="#i">Why does my profile have 2 enter tasks ? Why can't I add an exit task ?</A>
+</UL>
+
+<HR/>
+
+<!------------------------------------------------------------------------------->
+<A NAME="f"/>
+<H4>Why am I an idiot if I use a pirated copy of Tasker ?</H4>
+
+The hacker can do virtually anything with your phone. Record your
+calls and upload them to a website, SMS your location and all your
+contacts, make calls automatically, wipe your SD card, secretely
+record from your microphone any time etc etc
+
+<!------------------------------------------------------------------------------->
+<A NAME="a"/>
+<H4>Why is GPS often scanning when I unlock my device ?</H4>
+
+When the device wakes up, Tasker switches from a low-frequency GPS check schedule to a
+higher-frequency one. Android's GPS software always does an immediate scan when
+switching the check frequency.
+
+<P>
+It's not because Tasker is constantly scanning while the device is off
+</P>
+
+<P>
+You can change the frequency in Menu / Prefs / Monitor.
+</P>
+
+<!------------------------------------------------------------------------------->
+
+<A NAME="b"/>
+<H4>Why does Tasker need so many permissions ?</H4>
+
+Because it can do so much!
+
+<P>
+Unfortunately, Android requires that an app specify it's permissions even if they are
+never used, which means that permissions for all of the things which the user could
+<B>potentially</B> ask Tasker to do need to be specified.
+</P>
+<P>
+If you are still concerned, consider that Tasker has over 25,000 downloads at the time of writing and any abuse taking place would quickly be discovered.
+</P>
+
+<!------------------------------------------------------------------------------->
+
+<A NAME="c"/>
+<H4>Why does Tasker need the INTERNET permission ?</H4>
+
+The INTERNET permission is used solely for:
+
+<UL>
+	<LI>google maps downloading map data, only for setting up a Location context
+	<LI>to carry out HTTP Post/Get actions and other actions that require an Internet connection by their nature
+	<LI>to verify the order number, and only until it has been successfully verified
+	<LI>to check whether a new Tasker version is available, if configured in Preferences
+</UL>
+
+<P>
+Tasker never directly uses Internet access for <B>anything</B> else.
+</P>
+
+<!------------------------------------------------------------------------------->
+
+<A NAME="d"/>
+<H4>Why isn't Tasker shown in the Application Context list ?</H4>
+
+Because it's easy to get into trouble firing tasks in Tasker. For example, if 
+a profile is setup with a Tasker Application Context and a task with Load App Calculator,
+it will not be possible to enter Tasker anymore.
+
+<!------------------------------------------------------------------------------->
+
+<A NAME="e"/>
+<H4>Why does Tasker have it's own music player <B>and</B> controls for the system music player ?</H4>
+
+<UL>
+	<LI>the system music player is not guaranteed to be present or the same on all systems.
+	<LI>finer control can be exercised over the Tasker player e.g. starting the track
+	from a preset seek point
+	<LI>Tasker's player is more discrete, there is no notification bar icon.
+	<LI>by having two players available you can do things like alternating audio from different
+	music sources or even playing simiultaneously.
+</UL>
+
+<!------------------------------------------------------------------------------->
+
+<A NAME="g"/>
+<H4>Why does a Cell Near context not become inactive when I turn on Airplane Mode ?</H4>
+
+Cell Near is <I>sticky</I>. That means that once active it stays active until a non-matching
+Cell ID is seen. In Airplane Mode no Cell IDs are seen and so the context stays active.
+
+<P>
+Many people use Airplane Mode at night e.g. to save battery. If you also have a Cell Near
+profile that detects when you are home, it would become inactive at night if Cell Near wasn't
+sticky.
+</P>
+A couple of points:
+<UL>
+	<LI>the Cell radio isn't being turned on by Tasker in Airplane Mode.
+	<LI>if you want a profile to become inactive for Airplane Mode, just add an Inverted
+	state Airplane Mode to it.
+</UL>
+<P>
+
+
+<!------------------------------------------------------------------------------->
+<A NAME="h"/>
+<H4>Why can't I use a downloaded icon for my shortcut task / <CODE>Notify</CODE> action ?</H4>
+
+Some things just weren't meant to be (i.e. Android doesn't allow it).
+<P>
+To solve the shortcut problem, you can always use a widget though.
+</P>
+
+<P>
+For notifications:
+<UL>
+<LI>if you would like this to be possible one day, please star this
+<A HREF="http://code.google.com/p/android/issues/detail?id=12302">Android feature request</A>
+<LI>it would be technically possible to create 'icon pack' APKs and that might happen one day
+</UL>
+
+<!------------------------------------------------------------------------------->
+<A NAME="i"/>
+<H4>Why does my profile have 2 enter tasks ? Why can't I add an exit task ?</H4>
+
+That's because it's an <A HREF="faq-other.html#instant">instant</A> profile.
+
+<P>
+As a convenience, the Exit task with such profiles is replaced by an extra Enter task in case
+you have a lot to do with that profile.
+</P>
+
+<P>
+Note that the tasks you specify execute in the order they are specified, their actions
+do not alternate.
+</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+
+
+<!--#include virtual=/tableend.html -->

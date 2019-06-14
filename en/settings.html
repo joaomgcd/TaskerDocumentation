@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><HTML>
+<HEAD><TITLE>Tasker: Settings</TITLE></HEAD>
+<BODY>
+
+<H2>
+	Settings
+	<IMG style="float:right" SRC="icon_tasker.png"/>
+</H2>
+
+<H4>What's A Setting ?</H4>
+
+Settings are actions like <I>Display Brightness</I> and <I>Ringer Volume</I>
+whose effects are reversed by Tasker when the profile(s) which applied them 
+are no longer active.
+<P>
+Setting actions have a double arrow icon next to them.
+</P>
+
+<H4>Single Profile</H4>
+
+When a setting is applied by the profile's Enter Task, its value is restored
+after the profile becomes inactive again. For example, if
+the ringer volume is at 7 and is set to 0 in the Enter Task,
+when the profile becomes inactive it is automatically set back to 7.
+<P>
+In other words, settings are only valid for the lifetime of their profiles.
+</P>
+
+<H4>Multiple Profiles</H4>
+
+When multiple profiles that affect a setting are active simultaneously:
+<OL>
+	<LI>the setting has the value from the <B>most recently activated</B> profile
+	<LI>when <B>all</B> profiles are inactive, the setting has the value from before
+	<B>any</B> profile was active
+</OL>
+
+<H4>Special Cases</H4>
+
+<UL>
+	<LI>if a setting is changed by the Exit Task the profile will never save the setting's initial value.
+	<LI>settings changed in an <I>instant profile</I> (one with an event context or repeating/non-ranged time context)  remain changed after the
+	event. The reasoning is that there is no point in changing the setting for the
+	half-second that the event lasts.
+</UL>
+	
+<H4>Notes</h4>
+
+<UL>
+	<LI>settings are not <I>actively</I> maintained. If something else changes the setting
+	once the Enter task has run, it's not the case that this is detected and the
+	Enter task value automatically reapplied.
+</UL>
+Complicated, huh ?
+
+</BODY>
+</HTML>
