@@ -94,7 +94,6 @@ intended for printing out for use as a reference.
 		<UL>
 			<LI><A HREF="#androidpowermanagement.html">Android System Power Management</A></LI>
 			<LI><A HREF="#appcreation.html">App Creation</A></LI>
-			<LI><A HREF="#beginner.html">Beginner Mode</A></LI>
 			<LI><A HREF="#cpu.html">CPU Control</A></LI>
 			<LI><A HREF="#encryption.html">Encryption</A></LI>
 			<LI><A HREF="#gestures.html">Gestures</A></LI>					
@@ -277,8 +276,6 @@ general scene-related options such as sorting.
 <A NAME="variables" />
 <H4>Variables</H4>
 
-<P>The Variables tab is not shown if <A HREF="#beginner.html">Beginner Mode</A> is enabled.</P>
-
 <P>By default, all global <A HREF="#variables.html">user-variables</A> that Tasker knows about are listed, which includes any that have a value set or are mentioned somewhere in a profile, task or scene.
 </P>
 <UL>
@@ -327,10 +324,6 @@ the back button or home key, it's just for convenience
 when testing changes.
 </P>
 
-<P>
-Not visible in <A HREF="#beginner.html">Beginner Mode</A>.
-</P>
-
 <H5><I>Overflow</I> Button</H5>
 
 Click to access <A HREF="#menus">menu options</A> if no menu hard-key is available on the device.
@@ -369,8 +362,6 @@ Options for restoring backups of various types.
 <P>
 Tasker allows organisation of profiles, tasks, scenes and variables
 into groups called <I>Projects</I>, each with a separate <I>Project Tab</I>.
-</P>
-<P>The projects tabs are hidden in <A HREF="#beginner.html">Beginner Mode</A>.
 </P>
 
 <UL>
@@ -470,7 +461,7 @@ its checkbox on the left):
 </UL>
 
 <P>
-When not in <A HREF="#beginner.html">Beginner Mode</A>, it's possible to specify a <A HREF="#variables.html">global user variable</A> as the source of the <CODE>From Time</CODE> or <CODE>To Time</CODE> by
+It's possible to specify a <A HREF="#variables.html">global user variable</A> as the source of the <CODE>From Time</CODE> or <CODE>To Time</CODE> by
 clicking on one of the rotating-arrow icons.
 </P>
 <P>
@@ -1110,7 +1101,7 @@ after the current selected item, if only one item is selected.
 
 <H5>Task Properties</H5>
 
-Show extended properties for the task. Not visible in <A HREF="#beginner.html">Beginner Mode</A>.
+Show extended properties for the task.
 
 <H5>Task Icon</H5>
 
@@ -2596,7 +2587,7 @@ wish to export in the project.
 <A NAME="example" />
 <H3>Hello World Example</H3>
 
-Let's make a simple app that just pops up <B>Hello World!</B> when it's launched. This example assumes that you are in <I>Beginner Mode</I>, please make sure that <CODE>Menu / Prefs / UI / Beginner Mode</CODE> is checked before you start.
+Let's make a simple app that just pops up <B>Hello World!</B> when it's launched.
 
 <H4>1. Create A Task</H4>
 
@@ -2606,13 +2597,13 @@ Let's make a simple app that just pops up <B>Hello World!</B> when it's launched
 	Give it a name <I>Hello World</I>.
 
 	<LI><B>give the task an icon</B><br>
-	 long-click on the colourful icon in the bottom right and pick any icon
+	 click the icon in the bottom middle and pick any icon
 
 	<LI><B>add the Popup action</B><BR>
-	click <B>+</B> in the bottom left to add an action, select category <B>Alert</B> and then action <B>Popup</B>. Fill in <B>Hello World!</B> in the <I>Text</I> parameter, then click the accept button bottom left to accept the action, then again to accept the task.
+	click <B>+</B> in the bottom left to add an action, select category <B>Alert</B> and then action <B>Popup</B>. Fill in <B>Hello World!</B> in the <I>Text</I> parameter, then click the back button top left to accept the action, then again to accept the task.
 
 	<LI><B>ask Tasker to create an app</B><BR>
-	long-click on the task you just made, select <B>Export</B> then <B>As App</B>. A popup appears mentioning a Missing App.
+	long-click on the task you just made, select <B>Export</B> in the top right menu then <B>As App</B>. A popup appears mentioning a Missing App.
 </UL>
 
 <H4>2. Install Tasker App Factory</H4>
@@ -2629,18 +2620,12 @@ Click the accept button on the popup to install the helper app.
 <H4>3. App Generation</H4>
 
 <P>
-Tasker should now start generating your app, which will take maybe 12 seconds
+After you've given the package a name and clicking the back button top left to accept the action, Tasker should now start generating your app, which will take maybe 12 seconds
 depending on your device.
 </P>
 
 <P>
-If all goes well, the Cancel button will turn into an OK button meaning
-your app is ready!
-</P>
-
-<P>We can't run the app straight away though because it hasn't been installed.
-Click on the rightmost bottom button with the Android icon to ask Android
-to install your app.
+If all goes well, Tasker will try to auto install the app!
 </P>
 
 <P>
@@ -2656,11 +2641,7 @@ You should see a Hello World popup!
 <A NAME="config" />
 <H3>App Configuration</H3>
 
-<P>
-When in Beginner Mode, and if you only have one task to install, 
-Tasker will make guesses about how to configure the resulting app.
-</P>
-<P>More usually, before an app is generated you will be presented
+<P>Before an app is generated you will be presented
 with a configuration screen which lets you specify various options
 for the new app.
 </P>
@@ -3068,49 +3049,6 @@ So a shortcut should be used unless the extra configuration possibilities of a w
 	<LI>you can create as many Tasker widgets and shortcuts as you like. You can even have several Timer widgets running at the same time.
 	<LI>Timer Task widgets continue to update even when the screen is off.
 </UL>
-
-<A NAME="beginner.html"/>
-
-<H2>
-	Beginner Mode
-	<IMG style="float:right" SRC="icon_tasker.png"/>
-</H2>
-
-When Tasker first starts, <I>Beginner Mode</I> is enabled.
-
-<P>
-In Beginner Mode, Tasker attempts to simplify things for inexperienced
-users, mostly by UI elements which are unlikely to be needed by
-inexperienced users.
-</P>
-
-<P>
-Beginner Mode can be disabled by unchecking the option:
-</P>
-
-<BLOCKQUOTE>
-<CODE>
-Menu / Prefs / UI / Beginner Mode
-</CODE>
-</BLOCKQUOTE>
-
-<P>
-Some of the changes made in Beginner Mode are:
-</P>
-<UL>
-	<LI>main screen, Variables tab removed
-	<LI>main screen, export options removed
-	<LI>main screen, project tab not accessible
-	<LI>task edit screen, task properties icon removed
-	<LI>action edit screen, Label, Continue On Error parameters removed
-	<LI>prefs screen, many options removed
-	<LI>various places, variable selection not possible
-</UL>
-
-<P>In the userguide, when references are found to things which do not
-appear on the screen. It's worth disabling Beginner Mode to see if that's
-the problem.
-</P>
 
 <A NAME="cpu.html"/>
 
@@ -8351,7 +8289,6 @@ system log fills up very quickly:
 
 <UL>
 	<LI>you'll need an SD card inserted
-	<LI>deselect <B>Menu / Prefs / UI / Beginner Mode</b> in Tasker
 	<LI>enable <B>Menu / Prefs / Misc / Debug to SD Card</B> in Tasker
 	<LI>when the problem has occured, email the file <I>/sdcard/Tasker/log/tasker.txt</I> to
 	the developer email listed at <B>Menu / Info / Support</B>
@@ -8626,7 +8563,6 @@ Go to the main screen, long click on the tab for the type of thing you want to i
 <P>
 Export: 
 <UL>
-<LI>ensure that <CODE>Menu / Prefs / UI / Beginner Mode</CODE> is <B>un</B>checked
 <LI>go to the main screen 
 <LI>long-click on the thing you want to export
 </UL>
