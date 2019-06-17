@@ -21,6 +21,8 @@
 
 <H4>Card Unmounted</H4>A card has been unregistered by the system in preparation for removal, or has been physically removed from the device.
 
+<h4><a  target="_blank" href="eh_custom_setting.html">Custom Setting</a></h4>
+
 <H4>Date Set</H4>The date or time has been changed.<br/><br/>(it's a mystery to the author why Android reports the time has been set when the date is changed)
 
 <H4>Device Boot</H4>The phone has just finished turning on (after being shut down, not just the screen blanking).<br/><br/>It's advisable that any tasks linked to this event start with a Wait action of e.g. 5 seconds, because Android is extremely busy immediately after a boot. Note also that the SD card may not be yet mounted when this event is received, which is another reason for delaying the task if it relies on the SD card being present.
