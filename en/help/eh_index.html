@@ -91,6 +91,8 @@
 
 <H4>Screebl</H4>Info:<br/><br/>http://keyeslabs.com/joomla/screebl<br/><br/>Warning: this event may fire very rapidly on the edge of the orientation range. It's therefore a very good idea to configure a cooldown time in the Profile Properties of this profile.
 
+<h4><a  target="_blank" href="eh_secondary_app_opened.html">Secondary App Opened</a></h4>
+
 <H4>Shake</H4>The device is being physically shaken.<br/><br/>Note: on some devices the Axis may be incorrect e.g. Left-Right may be triggered by Up-Down shaking.<br/><br/>See Also: Menu / Prefs / Monitor / Display Off Monitoring / Accelerometer
 
 <H4>Steps Taken</H4>The specified number of steps have been taken.<br/><br/>The total number of steps taken since the last reset is available in the triggered task in %evtprm1.<br/><br/>A restart of the device, disabling the profile, disabling or reinstalling Tasker causes the count to <b>reset</b>.<br/><br/>When other contexts in the same profile are not active, the count is <b>paused</b>.<br/><br/>Requires Android version 4.4+ and that a hardware pedometer be present on the device.<br/><br/>When the device is sleeping, the step count will continue (without significant power usage) and the event will be triggered on wakeup an amount of times appropriate to how many steps were taken while sleeping.<br/><br/>Note: in order to improve accuracy, the response time can be on the order of a few seconds.<br/><br/>See Also: Prefs / Monitor / Display Off / Step Sensor.
