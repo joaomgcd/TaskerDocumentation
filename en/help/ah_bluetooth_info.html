@@ -1,0 +1,41 @@
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+	.input{
+
+	}
+	.input .title{
+		font-size: 100%;
+		font-weight: bold;
+		margin-top: 24px;
+	}
+	.input .text{
+		margin: 4px;
+	}
+	pre{
+		white-space: pre-line;
+	}
+</style>
+</head>
+<body>
+	<H3>Bluetooth Info</H3>
+	<P>Get information about Bluetooth devices.</P>
+	<P>You can see what information Tasker will return in the list of variables visible on the action configuration screen.</P>
+	<P>You can get info on different types of devices:</P>
+	<DIV class="inputs">
+		<div class="input">
+			<div class="title">Single Device</div>
+			<div class="text">Will get info on a device with the selected name or address. If the device is not paired to your phone it'll try to scan for the device and get info from that.</div>
+			<div class="text">If the device is not paired, setting the <b>Timeout</b> field will determine the max time Tasker will use to find the selected device before giving up.</div>
+		</DIV>
+		<div class="input">
+			<div class="title">Paired Devices</div>
+			<div class="text">Get info on all paired devices.</div>
+		</DIV>		
+		<div class="input">
+			<div class="title">Scan Devices</div>
+			<div class="text">Will scan the devices for whatever time you set the <b>Timeout</b> field to and return info on the devices found during that time.</div>
+		</DIV>		
+	</DIV>
+</body>
+</html>

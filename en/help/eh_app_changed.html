@@ -1,0 +1,32 @@
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+	.input{
+
+	}
+	.input .title{
+		font-size: 110%;
+		font-weight: bold;
+		margin-top: 24px;
+	}
+	.input .text{
+		margin: 4px;
+	}
+	pre{
+		white-space: pre-line;
+	}
+</style>
+</head>
+<body>
+	<H3>App Changed</H3>
+	<P>Will trigger whenever an app is opened (brought to the foreground).</P>
+	<P>If you need extra info on the app that was opened, use the <b>App Info</b> action in the entry task of the profile with the <b>Package</b> field set to <b>%app_package</b>.</P>
+	<DIV class="inputs">
+		<div class="input">
+			<div class="title">Package</div>
+			<div class="text">Optionally make this trigger only on selected apps.</div>
+			<div class="text">If not set will trigger on all app changes.</div>
+		</div>
+	</DIV>
+</body>
+</html>

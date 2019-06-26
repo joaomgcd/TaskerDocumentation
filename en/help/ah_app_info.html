@@ -1,0 +1,66 @@
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+	.input{
+
+	}
+	.input .title{
+		font-size: 110%;
+		font-weight: bold;
+		margin-top: 24px;
+	}
+	.input .text{
+		margin: 4px;
+	}
+	pre{
+		white-space: pre-line;
+	}
+</style>
+</head>
+<body>
+	<H3>App Info</H3>
+	<P>Get information about one or multiple apps.</P>
+	<DIV class="inputs">
+		<div class="input">
+			<div class="title">Package</div>
+			<div class="text">Always use the helper so that it's easier for you to setup this field.</div>
+			<div class="text">This field has multiple input methods:</div>
+			<ul>
+				<li><b>Leave empty</b>: Will get app info about the currently opened app</li>
+				<li><b>Package name</b>: Will get info about the app with the selected package name.</li>
+				<li><b>Last App By Order</b>: Use the <b>last(X)</b> format, where <b>X</b> is a number. Will get info about whatever app was opened those many apps ago. For example, <b>last(1)</b> will get info on the previously opened app. <b>last(5)</b> will get info on the app that was opened 5 apps ago.</li>
+				<li><b>Last App By Time</b>: Use the <b>last(Xs)</b> format, where <b>X</b> is a number in seconds. Will get info about whatever app was opened those many seconds ago. For example, <b>last(10s)</b> will get info on the app that was opened 10 seconds ago.</li>
+				<li>
+					<b>Most Used By Time</b>: Use the <b>most(time,X:Y,Z)</b> format, where 
+					<ul>
+						<li><b>X</b>: Number of minutes to start looking for app usage. For example, a value of <b>1440</b> minutes (1 day) will look at usage stats starting 1 day ago</li>
+						<li><b>Y</b>: Number of minutes to stop looking for app usage. For example, a value of <b>0</b> mintues will look at all the stats until the current time.</li>
+						<li><b>Z</b>: Number of apps to get back. For example, to get back the 5 most used apps in the select time span, set this to <b>5</b>.</li>
+					</ul>
+				</li>
+				<li><b>Most Used By Opened</b>: Use the <b>most(opened,X:Y,Z)</b> format with the same parameters as above.</li>
+			</ul>
+			<div class="text">You can add multiple inputs of any kind above. For example, you can use
+				<pre>net.dinglisch.android.taskerm/last(1)</pre>
+				to get app info for both Tasker and whatever app was last opened.
+			</div>
+		</div>
+		<div class="input">
+			<div class="title">Ignore Packages</div>
+			<div class="text">A list of package names separated by the <b>/</b> character.</div>
+			<div class="text">Will ignore these apps when getting the info.</div>
+		</div>
+		<div class="input">
+			<div class="title">Ignore Unlaunchable Apps</div>
+			<div class="text">If selected, will not get info on apps that can't be launched (ie. system apps, launchers, etc)</div>
+			<div class="text">Handy when you want to create a recent app switcher for example.</div>
+		</div>
+		<div class="input">
+			<div class="title">Get All Details</div>
+			<div class="text">If selected will get as much info as possible for the selected apps.</div>
+			<div class="text">You'll notice the variable list becoming much longer when this is selected.</div>
+			<div class="text">Use only when needed because it'll make the action slower.</div>
+		</div>
+	</DIV>
+</body>
+</html>

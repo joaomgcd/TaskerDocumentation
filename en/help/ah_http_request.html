@@ -1,0 +1,75 @@
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+	.input{
+
+	}
+	.input .title{
+		font-size: 100%;
+		font-weight: bold;
+		margin-top: 24px;
+	}
+	.input .text{
+		margin: 4px;
+	}
+	pre{
+		white-space: pre-line;
+	}
+</style>
+</head>
+<body>
+	<H3>HTTP Request</H3>
+	<P>Perform any HTTP request of any type.</P>
+	<P>This action effectively replaces the HTTP Get, Head and Post actions and those are now deprecated.</P>
+	<DIV class="inputs">
+		<div class="input">
+			<div class="title">URL</div>
+			<div class="text">The full URL you want to call</div>
+		</DIV>
+		<div class="input">
+			<div class="title">Headers</div>
+			<div class="text">List of key value pairs.</div>
+			<div class="text">Separate keys from values with the <b>:</b> character. Make sure there are no extra spaces.</div>
+			<div class="text">One header per line.</div>
+			<div class="text">Example:
+				<pre>
+					Key:Value
+					Content-Type:application/json
+					Authorization:Bearer MY_ACCESS_TOKEN
+					Other-Header:Some value
+				</pre>
+			</div>
+		</DIV>		
+		<div class="input">
+			<div class="title">Query Parameters</div>
+			<div class="text">List of key value pairs that you want to append to the URL as query parameters. Same format</div>
+			<div class="text">Same format as the <b>Headers</b> field.</div>
+		</DIV>		
+		<div class="input">
+			<div class="title">File To Save With Output</div>
+			<div class="text">If you set this, the output will be saved to the selected file instead of the %http_data variable.</div>
+		</DIV>	
+		<div class="input">
+			<div class="title">Timeout</div>
+			<div class="text">Max number of seconds that the action will try to wait before giving up</div>
+		</DIV>
+		<div class="input">
+			<div class="title">Trust Any Certificate</div>
+			<div class="text">Some HTTP (non-secure) servers will require you to enable this option so that the request can go through.</div>
+		</DIV>
+	</DIV>
+
+	<H3>When Sending Content</H3>
+	<P>If you want to send content to a server (with <b>POST</b> or <b>PUT</b> for example), you can send send some data, a file, or both.</P>
+	<DIV class="inputs">
+		<div class="input">
+			<div class="title">Body</div>
+			<div class="text">A piece of text data that you want to send to the server. This can be a number of different things depending on what the server is expecting.</div>
+		</DIV>
+		<div class="input">
+			<div class="title">File To Send</div>
+			<div class="text">A file to send to the server. This can be sent in conjunction or instead of the Body depending on server requirements.</div>
+		</DIV>
+	</DIV>
+</body>
+</html>
