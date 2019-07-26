@@ -37,8 +37,10 @@
 						<li><b>Y</b>: Number of minutes to stop looking for app usage. For example, a value of <b>0</b> mintues will look at all the stats until the current time.</li>
 						<li><b>Z</b>: Number of apps to get back. For example, to get back the 5 most used apps in the select time span, set this to <b>5</b>.</li>
 					</ul>
+					The %app_used() variable will have the number of seconds the app was open during the selected period.
 				</li>
-				<li><b>Most Used By Opened</b>: Use the <b>most(opened,X:Y,Z)</b> format with the same parameters as above.</li>
+				<li><b>Most Used By Opened</b>: Use the <b>most(opened,X:Y,Z)</b> format with the same parameters as above. 
+					The %app_used() variable will have the number times the app was opened during the selected period.</li>
 			</ul>
 			<div class="text">You can add multiple inputs of any kind above. For example, you can use
 				<pre>net.dinglisch.android.taskerm/last(1)</pre>
