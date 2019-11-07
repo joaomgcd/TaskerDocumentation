@@ -23,7 +23,11 @@
 
 <H4>Array Set</H4>Set the values of an array from a preset list of Values.<br/><br/>The values are split by Splitter, or whitespace if none is specified, and each value is then placed in a successive array index of the new array.<br/><br/>If the array already existed, it is first cleared.<br/><br/>See Also: action Variable Split.
 
+<H4><a  target="_blank" href="ah_ask_permissions.html">Ask Permissions</a></H4>
+
 <H4>Astrid</H4>Info:<br/><br/>http://weloveastrid.com
+
+<h4><a  target="_blank" href="ah_authentication_dialog.html">Authentication Dialog</a></h4>
 
 <H4>Auto Brightness</H4>Enable or disable automatic screen brightness adjustment by the system (dependent on ambient light).<br/><br/>Not available on all devices and OS versions.<br/><br/>In some cases, though the setting is restored, the screen will not react until the settings screen is visited. It may be therefore useful to put Wait 500ms and Screen Brightness XXX actions in your exit task.
 
@@ -88,6 +92,7 @@
 <H4>Create Scene</H4>Create a scene without displaying it.<br/><br/>This might be useful if needs to be prepared in some way before displaying.<br/><br/>See also: Scenes in the Userguide.
 
 <H4>Crop Image</H4>Crop the image currently in the image store.<br/><br/>The parameters specify what percentage of the image to remove from each side of the image.<br/><br/>See also: Load Image.
+<h4><a  target="_blank" href="ah_secure_setting.html">Custom Setting</a></h4>
 <h4><a  target="_blank" href="ah_data_backup.html">Data Backup</a></h4>
 <H4>DTMF Volume</H4>The function is a bit of a mystery...<br/><br/>When Display is enabled, a popup will show the new level.<br/><br/>When Sound is enabled, a tone will sound at the new volume level.
 
@@ -110,6 +115,8 @@
 <H4>Display AutoRotate</H4>Whether rotating the device also rotates the screen (between portrait and landscape).
 
 <H4>Display Brightness</H4>Brightness setting of the screen (0-255).<br/><br/>If the safeguard is enabled, levels less than 20 will be set to 20 to prevent accidental black screens.<br/><br/>Ignore Current Level: if it looks like it's already at the required level, go ahead and set it again anyway.<br/><br/>Immediate Effect: ensure the change takes effect immediately. If not selected, it may not take effect till Android registers the new value, which may require a display on-off.You may that find Immediate Effect disrupts some applications.<br/>Immediate Effect is only needed on Android versions up till 4.4.<br/><br/>If you have auto-brightness controls on your device, it's advisable to disable them before attempting to set the brightness manually. See system settings or Tasker action Auto-Brightness.
+
+<H4><a  target="_blank" href="ah_display_density.html">Display Size</a></H4>
 
 <H4>Display Timeout</H4>The length of time with no user action before the screen powers off.<br/><br/>Setting all sliders to the maximum value means 'Never'.<br/><br/>Note: this setting may be overruled by the Stay On action when the device is plugged into a power source.<br/><br/>Note: if you go to Android settings after running this action, Android will change the value to one it 'knows about' e.g. if you have set it to 9 minutes, Android Settings may change it to 10 minutes.<br/>Some have reported the same thing occuring after a reboot.
 
@@ -171,6 +178,7 @@
 
 <H4>For</H4>Do a set of actions to process each of a set of values.<br/><br/>Values is a comma-separated list of items to iterate through<br/><br/>A For loop should be ended with a matching End For action (if one is not present, one is automatically added to the end of the task)<br/><br/>Example Items:<br/><br/>apple, 0, 2:4, 3:9:3, %ARR(1:2), pear<br/><br/>This would set Variable one at a time to:<br/><br/>apple, 0, 2, 3, 4, 3, 6, 9, %ARR1, %ARR2, pear<br/><br/>See Flow Control in the Userguide for more info.
 
+<H4><a  target="_blank" href="ah_force_rotation.html">Force Rotation</a></H4>
 <H4><a  target="_blank" href="ah_google_drive_download.html">Google Drive Download</a></H4>
 <H4><a  target="_blank" href="ah_google_drive_list.html">Google Drive List</a></H4>
 <H4><a  target="_blank" href="ah_google_drive_sign_in.html">Google Drive Sign-In</a></H4>
@@ -209,6 +217,8 @@
 
 <H4>Import Data</H4>Dynamically load a task into the active configuration or replace the whole active configuration.<br/><br/>Usually the data to be loaded is first read into a variable via the Read File action.<br/><br/>When a new configuration is successfully loaded, the task (and all others) will be stopped and the monitor service also restarted.<br/><br/>Tip: the action Variable Convert / To MD5 Sum, can be used to validate the loaded data after Read File.
 
+<h4><a  target="_blank" href="ah_immersive_mode.html">Immersive Mode</a></h4>
+
 <H4>In-Call Volume</H4>Volume level of speech during calls.<br/><br/>Setting to 0 will make phone calls difficult.<br/><br/>When Display is enabled, a popup will show the new level.<br/><br/>When Sound is enabled, a tone will sound at the new volume level.
 
 <H4>Input Method Select</H4>Show the Android Input Method picker dialog.<br/><br/>If some methods you have installed are not shown, make sure they are enabled in Android settings.<br/><br/>Note: unfortunately Android does not allow changing of the input method without user iteraction.
@@ -242,6 +252,8 @@
 <H4>Load Image</H4>Load an image into the image store, overwriting any image there previously.<br/><br/>The image store is an image held in the device memory on which all actions from the Image category act.<br/><br/>Once finished manipulating an image, it can be saved to a file with the Save Image action.<br/><br/>However, it could also be used to e.g. directly set an image element in a scene.<br/><br/>Max Width Or Height: if specified, the image is scaled as it is loaded so that no dimension is more than the specified number of pixels. Useful when memory is an issue.<br/><br/>Respect EXIF Orientation: if the specified image is JPG format, it will be automatically adjusted after loading dependent on the EXIF meta-data tag, if present.
 
 <H4>Load Last App</H4>Launch the previous foreground application.
+
+<h4><a  target="_blank" href="ah_location_mode.html">Location Mode</a></h4>
 
 <H4>Lock</H4>Show a lock screen.<br/><br/>To continue, the specified code must be entered. Allow Cancel determines whether a Cancel button will be shown or not. If Cancel is pressed the user is taken back to the home screen.<br/><br/>If Remember Till Off is selected, a correctly entered password will be remembered and reused until the device enters sleep mode.<br/><br/>A common use is to lock particular applications.<br/><br/>Consider locking this profile. That will prevent circumvention of this action's lock by changes within Tasker.<br/><br/>Also consider attaching a Lock action to any application on your system which would allow removal of Tasker e.g. system Settings.<br/><br/>In any case, this action should not considered as a replacement for the system Keyguard lock, as it is less secure. A reboot will remove the lock screen, for instance.
 
@@ -281,11 +293,14 @@
 
 <H4>NewsRob</H4>Info:<br/><br/>http://newsrob.com
 
+<H4><a  target="_blank" href="ah_nfc_status.html">NFC</a></H4>
 <H4><a  target="_blank" href="ah_nfc_tag.html">NFC Tag</a></H4>
 
 <H4>Night Mode</H4>Change Android's Night Mode setting.<br/><br/>Only effective when Android's UI Mode is Car or Desk.<br/><br/>Requires Android 2.2+
 
 <H4>Notification Pulse</H4>Android system setting, whether to pulse the notification light for new notifications.
+
+<H4><a  target="_blank" href="ah_notification_settings.html">Notification Settings</a></H4>
 
 <H4>Notification Volume</H4>Volume level of notification alert.<br/><br/>Setting to 0 will mute the notification sound.<br/><br/>When Display is enabled, a popup will show the new level.<br/><br/>When Sound is enabled, a tone will sound at the new volume level.<br/><br/>Note: on some devices Notification and Ringer volume are linked, changing one will change the other. There may be an Android setting for controlling that behaviour.
 
@@ -304,6 +319,8 @@
 <H4>Open Map</H4>Launches Google Maps with a particular mode and location/destination.<br/><br/>Exactly one of Address or Lat/Long must be specified. Address is not valid for StreetView mode.<br/><br/>Address is in the format X+Y+Z e.g. Littleton+Delaware<br/><br/>Zoom is only possible with Point / StreetView and a Lat/Long specification.<br/><br/>Label is only possible with Point mode, it will show a marker with the specified label.<br/><br/>Google Maps version 3.2.1 or higher is (probably) required for Navigation.
 
 <H4>Perform Task</H4>Run the selected Tasker task.<br/><br/>You can 'nest' as many tasks as you wish.<br/><br/>When this action is used as part of an Enter task, the settings it contains are *not* restored when the profile exits.<br/><br/>When a task is started from an existing task, the existing task continues unless the Stop parameter is set.<br/><br/>If you set the priority lower than the current task, the current task will finish before the new one starts.<br/><br/>If you set the priority the same or higher than the current task (a good way to do this is to specify '%priority+1'), the new task will completely execute before the current one resumes.<br/><br/>Values assigned to %par1 and %par2 are available in the child task as normal variables.<br/><br/>If the child does a Return action, the Return Value Variable in the parent task is set to the Value specified in that Return action, however note that the value will not be returned if the Perform Task is the last action of the parent.<br/><br/>See Flow Control in the Userguide for more info.
+
+<H4><a  target="_blank" href="ah_ping.html">Ping</a></H4>
 
 <H4>Play Ringtone</H4>Play an alarm, notification or ringer ringtone throught the specified audio stream.<br/><br/>If no Sound is specified, the current default tone of the specified Type will be played.<br/><br/>Note: the task will not wait for the ringtone to complete before continuing.<br/><br/>Note: in some Android versions ringtones will endlessly loop due to an Android bug.
 
@@ -411,11 +428,15 @@
 
 <H4>Sound Effects</H4>Whether to enable or disable system sounds like clicks on icons.<br/><br/>See also: Sound/System Volume setting.
 
+<h4><a  target="_blank" href="ah_ringer_mode.html">Sound Mode</a></h4>
+
 <H4>Speakerphone</H4>Whether the speakerphone is on or off.<br/><br/>Note: this will only have any effect when a call has already started, but you could use it with e.g. a Phone Offhook event if you want every incoming call on speakerphone.
 
 <H4>Start System Timer</H4>Start a system or 3rd party countdown timer.<br/><br/>When Show UI is selected the UI of the timer app will be displayed, otherwise probably only a notification will be shown.<br/><br/>Only available from Android 4.3.<br/><br/>This action has no relation to Tasker's countdown timer widgets.
 
 <H4>Status Bar</H4>Expand or collapse the system status bar.<br/><br/>On some devices Tasker's Accessibility Service will need to be enabled in Android settings.
+
+<H4><a  target="_blank" href="ah_status_bar_icons.html">Status Bar Icons</a></H4>
 
 <H4>Stay On</H4>Whether to prevent the screen going off while a power supply is present.<br/><br/>The screen will still dim a few seconds before Screen Timeout is reached.
 
@@ -466,6 +487,8 @@
 <H4>Torch</H4>Hold the camera flashlight on.<br/><br/>May not work on all devices.<br/><br/>If it gets stuck on, just turn the device off.<br/><br/>See Also: 3rd Party / TeslaLED.
 
 <H4>Turn On</H4>Restart the system display timeout timer. If the display is off, it will be turned on.
+
+<H4><a  target="_blank" href="ah_turn_off_display.html">Turn Off</a></H4>
 
 <H4>Type</H4>Simulate typing of text.<br/><br/>Only available on a rooted device.<br/><br/>Accented characters currently do not work.<br/><br/>USB Debugging probably needs to be enabled in Android's Developer Settings.
 
