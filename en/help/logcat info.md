@@ -200,6 +200,6 @@ If you have grabbed a full logcat file with `logcat -d > '/storage/emulated/0/lo
 cat '/storage/emulated/0/logcat.txt' | /system/bin/grep 'some basic regex'
 ```
 
-Note that `logcat -d` command only outputs very recent entries so run it as soon as you complete what you want to capture entries for. You can also grab a logcat file using [Grab Timed And Filtered Logcat](https://github.com/agnostic-apollo/Tasker-Random-Stuff/tree/master/grab_timed_and_filtered_logcat) task.
+Note that `logcat -d` command only outputs very recent entries so run it as soon as you complete what you want to capture entries for. You can also grab a logcat file using [Grab Timed And Filtered Logcat](https://github.com/agnostic-apollo/Tasker-Random-Stuff/blob/master/grab_timed_and_filtered_logcat/README.md) task.
 
-`grep` will output all lines that match the regex. You can also check exit code of `grep`. Right after `grep` command run `echo $?`, if it's `0`, then it found a match, if it's `1`, then it did not, otherwise exit codes mean that `grep` command failed for some reason.
+`grep` will output all lines that match the regex. You can also check exit code of `grep`. Right after `grep` command run `echo $?`, if it's `0`, then it found a match, if it's `1`, then it did not, other exit codes mean that `grep` command failed for some reason.
